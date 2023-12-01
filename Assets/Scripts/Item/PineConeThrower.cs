@@ -66,6 +66,6 @@ class PineConeThrower : Item
     void SpawnPineCone()
     {
         var go_PineCone = Instantiate(_pineConePrefab, _stoneSpawnPosition.transform.position, transform.rotation);
-        go_PineCone.GetComponent<Projectile>().SetVelocity(_shootingDirection * _projectileSpeed);
+        go_PineCone.GetComponent<Projectile>().SetForward(_shootingDirection * _projectileSpeed);
     }
 }

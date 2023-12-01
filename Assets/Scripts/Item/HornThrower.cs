@@ -52,7 +52,7 @@ class HornThrower : Item
         {
             yield return new WaitForSeconds(1.0f);
             var go_Horn = Instantiate(_hornPrefab, _spawnPosition.transform.position, _spawnPosition.transform.rotation);
-            go_Horn.GetComponent<Projectile>().SetVelocity(_shootingDirection * _projectileSpeed);
+            go_Horn.GetComponent<Projectile>().SetForward(_shootingDirection * _projectileSpeed);
         }
     }
 }

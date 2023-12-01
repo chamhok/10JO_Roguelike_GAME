@@ -24,7 +24,8 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         // Test Code
-        AddOrUpgradeItem(Define.EItemType.Deer);
+        AddOrUpgradeItem(Define.EItemType.Stone);
+        AddOrUpgradeItem(Define.EItemType.Sun);
     }
 
     /// <summary>
@@ -55,7 +56,7 @@ public class ItemManager : MonoBehaviour
 
     private Item AddItem(Define.EItemType itemType)
     {
-        GameObject go_Item = new GameObject(itemType.ToString());
+        GameObject go_Item = new GameObject(itemType.ToString() + "Item");
         go_Item.transform.parent = transform;
         go_Item.transform.localPosition = Vector3.zero;
         Item item = null;
@@ -72,15 +73,15 @@ public class ItemManager : MonoBehaviour
                 break;
 
             case Define.EItemType.Stone:
-                item = go_Item.AddComponent<StoneThrower>();
+                item = go_Item.AddComponent<StoneItem>();
                 break;
 
             case Define.EItemType.Sun:
-                item = go_Item.AddComponent<SunDropper>();
+                item = go_Item.AddComponent<SunItem>();
                 break;
 
             case Define.EItemType.PineCone:
-                item = go_Item.AddComponent<PineConeThrower>();
+                item = go_Item.AddComponent<PineConeItem>();
                 break;
 
             case Define.EItemType.Water:

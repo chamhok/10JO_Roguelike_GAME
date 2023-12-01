@@ -52,7 +52,7 @@ class StoneThrower : Item
     private void SpawnStone()
     {
         var go_Stone = Instantiate(Resources.Load<GameObject>("Item/Stone"), _stoneSpawnPosition.transform.position, transform.rotation);
-        go_Stone.GetComponent<Projectile>().SetVelocity(_shootingDirection  * _projectileSpeed);
+        go_Stone.GetComponent<Projectile>().SetForward(_shootingDirection  * _projectileSpeed);
     }
 
     IEnumerator IFire()
