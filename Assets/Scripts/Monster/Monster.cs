@@ -7,9 +7,9 @@ public class Monster : MonoBehaviour
         public float speed;
         public float health;
         public float maxHealth;
-      //  public RuntimeAnimatorController[] animCon;
+        public RuntimeAnimatorController[] animCon;
         public Rigidbody2D target;
-        public GameObject targetObject;
+        //public GameObject targetObject;
         bool isLive;
 
         Rigidbody2D rigid;
@@ -20,7 +20,6 @@ public class Monster : MonoBehaviour
 
         private void Awake()
         {
-                target = targetObject.transform.GetComponent<Rigidbody2D>();
                 rigid = GetComponent<Rigidbody2D>();
                 spriter = GetComponent<SpriteRenderer>();
                 anim = GetComponent<Animator>();
@@ -31,9 +30,9 @@ public class Monster : MonoBehaviour
 
         void FixedUpdate()
         {
-               // if (!GameManager.instance.isLive) return;
+            
 
-               // if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) return;
+                if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) return;
 
                 Vector2 dirVec = target.position - rigid.position;
                 Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
@@ -43,7 +42,7 @@ public class Monster : MonoBehaviour
 
         private void LateUpdate()
         {
-                //if (!GameManager.instance.isLive) return;
+                //   if (!GameManager.Instance.player.isLive) return;
 
                 if (!isLive) return;
                 spriter.flipX = target.position.x < rigid.position.x;
@@ -51,28 +50,28 @@ public class Monster : MonoBehaviour
 
         private void OnEnable()
         {
-              //  target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+                target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
                 isLive = true;
                 coll.enabled = true;
                 rigid.simulated = true;
                 spriter.sortingOrder = 2;
-               // anim.SetBool("Dead", false);
+                anim.SetBool("Dead", false);
                 health = maxHealth;
         }
 
-     /*   public void Init(SpawnData data)
+        public void Init(SpawnData data)
         {
                 anim.runtimeAnimatorController = animCon[data.spriteType];
                 speed = data.speed;
                 maxHealth = data.health;
                 health = data.health;
-        }*/
+        }
 
-     /*   private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
                 if (!collision.CompareTag("Bullet") || !isLive) return;
 
-                health -= collision.GetComponent<Bullet>().damage;
+                //health -= collision.GetComponent<Bullet>().damage;
                 if (health > 0)
                 {
                         StartCoroutine(KnockBack());
@@ -87,19 +86,19 @@ public class Monster : MonoBehaviour
                         spriter.sortingOrder = 1;
                         anim.SetBool("Dead", true);
                         Dead();
-
-                        GameManager.instance.kill++;
-                        GameManager.instance.GetExp();
+/*
+                        GameManager.Instance.kill++;
+                        GameManager.Instance.GetExp();*/
                 }
-        }*/
+        }
 
-        /*IEnumerator KnockBack()
+        IEnumerator KnockBack()
         {
                 yield return wait; // 다음 하나의 물리 프레임까지 기다림
-                Vector3 playerPos = GameManager.instance.player.transform.position;
+                Vector3 playerPos = GameManager.Instance.player.transform.position;
                 Vector3 dirVec = transform.position - playerPos;
                 rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-        }*/
+        }
 
         void Dead()
         {
