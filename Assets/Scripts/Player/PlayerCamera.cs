@@ -11,10 +11,10 @@ public class PlayerCamera : MonoBehaviour
 
     void FixedUpdate()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
-        targetPos = new Vector3(target.transform.position.x,
-            target.transform.position.y, target.transform.position.z - 10);
+        //target = GameObject.FindGameObjectWithTag("Player");
+        //targetPos = new Vector3(target.transform.position.x,
+        //    target.transform.position.y, target.transform.position.z - 10);
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * CameraSpeed);
+        //transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * CameraSpeed);
     }
 }

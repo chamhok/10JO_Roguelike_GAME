@@ -73,4 +73,5 @@ public class GameManager : MonoBehaviour
         if (isGameClear) OnStageClear?.Invoke();
         else OnStageFail?.Invoke();
     }
+
 }
