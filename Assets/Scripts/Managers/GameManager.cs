@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     protected static GameManager instance;
+    public static int stageCount;
 
     public float stageLapseTime;
 
@@ -52,7 +55,18 @@ public class GameManager : MonoBehaviour
     protected virtual void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            Initialize();
+        }
+    }
+
+    private void Initialize()
+    {
+        Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
+        OnGameStart.AddListener(StageInstantiate);
+        OnGameStart.AddListener(PlayerInstantiate);
+        OnStageClear.AddListener(ToNextStage);
     }
 
     protected virtual void Start()
@@ -64,6 +78,10 @@ public class GameManager : MonoBehaviour
     protected virtual void Update()
     {
         stageLapseTime += Time.deltaTime;
+
+        // Debug Code
+        if (Input.GetKeyDown(KeyCode.Space))
+            GameOver(true);
     }
 
     public virtual void GameOver(bool isGameClear = false)
@@ -72,5 +90,27 @@ public class GameManager : MonoBehaviour
         OnGameOver?.Invoke();
         if (isGameClear) OnStageClear?.Invoke();
         else OnStageFail?.Invoke();
+    }
+
+    void StageInstantiate()
+    {
+        string path = "Prefab/Stage/" + $"Stage{stageCount:00}";
+        var obj = Resources.Load<GameObject>(path);
+        if (obj != null)
+            Instantiate(obj);
+        else
+            SceneManager.LoadScene("GameStartScene");
+    }
+
+    void PlayerInstantiate()
+    {
+        var obj = Resources.Load("Player");
+        player = Instantiate(obj).GetComponent<Player>();
+    }
+
+    void ToNextStage()
+    {
+        stageCount++;
+        SceneManager.LoadScene("StageScene");
     }
 }

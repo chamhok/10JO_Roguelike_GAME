@@ -118,6 +118,8 @@ public class PlayerData
     {
         maxHp = 100;
         level = 1;
+        atk = 1;
+        speed = 1;
         currentExp = 0;
         money = 0;
     }
