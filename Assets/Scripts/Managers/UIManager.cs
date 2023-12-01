@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    //private GameObject[] StageGrid;
-    private Canvas StageUI;
+    private Canvas CurrentUI;
     private Canvas curUI;
     //private GameObject curStageGrid;
 
@@ -16,34 +15,62 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        //StageGrid = Resources.LoadAll<GameObject>("UI\\Stage");
-        StageUI = Resources.Load<Canvas>("UI\\StageUI");
+        
+        if (currentStage == Stage.Start)
+        {
+            CurrentUI = Resources.Load<Canvas>("UI\\StartSceneUI");
+        }
+        else if (currentStage == Stage.Upgrade)
+        {
+            CurrentUI = Resources.Load<Canvas>("UI\\UpgradeUI");
+        }
+        else
+        {
+            CurrentUI = Resources.Load<Canvas>("UI\\StageUI");
+        }
     }
 
     private void Start()
     {
-        curUI = Instantiate(StageUI);
-        //curStageGrid = Instantiate(StageGrid[(int)currentStage]);
+        curUI = Instantiate(CurrentUI); 
+        if (currentStage == Stage.Start)
+        {
 
-        StartCoroutine(ShowStageName());
+        }
+        else if (currentStage == Stage.Upgrade)
+        {
+            
+        }
+        else
+        {
+            StartCoroutine(ShowStageName());
+        }
     }
 
     private void Update()
     {
-        if(currentStage != Stage.Start)
+        if (currentStage != Stage.Start)
         {
-            ShowData();
+            ShowStageData();
+        }
+        else if (currentStage == Stage.Start)
+        {
+            ShowStartData();
         }
     }
-   
 
-    private void ShowData()
+    private void ShowStageData()
     {
         ChangeStageName();
         ShowTime();
         ShowExp();
         ShowGold();
         ShowLevel();
+    }
+
+    private void ShowStartData()
+    {
+        ShowGold();
     }
 
     public void ChangeStageName()
@@ -62,6 +89,7 @@ public class UIManager : MonoBehaviour
             default: break;
         }
     }
+
     //시간 표시
     private void ShowTime()
     {
@@ -78,7 +106,7 @@ public class UIManager : MonoBehaviour
     //경험치 표시, 최대 경험치 필요함. 일단 10으로 가정.
     private void ShowExp()
     {
-        curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.exp / 10;
+        curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.exp / GameManager.Instance.player.level * 5;
     }
 
     //골드 표시
@@ -101,6 +129,7 @@ public class UIManager : MonoBehaviour
     private void SelectItem()
     {
         Time.timeScale = 0;
+        curUI.transform.Find("SelectItem").gameObject.SetActive(true);
     }
 
     private IEnumerator ShowStageName()
@@ -132,4 +161,6 @@ public enum Stage
     Stage1,
     Stage2,
     Stage3,
+    Start,
+    Upgrade
 }
