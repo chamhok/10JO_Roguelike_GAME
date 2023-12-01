@@ -17,11 +17,16 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        //Destroy(gameObject, _lifeTime);
+        Destroy(gameObject, _lifeTime);
     }
 
     public void SetVelocity(Vector2 velocity)
     {
         _rigidbody2D.velocity = velocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }
