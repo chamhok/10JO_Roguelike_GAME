@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ae8a61e7e2d0534db96692e9dbeafe1
+guid: d55d808b5091eda40aa5bff3127362d0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_run_0
+      name: Monster_run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 38
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d3acc0d952833a4a967c1adb3bc2eea
+      internalID: 1954536822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_run_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 38
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327cff8b44bc95c42af8d27fbb79ea89
+      internalID: -1069999238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_run_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 38
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181d25273b36389448e4260a95c2fc8b
+      internalID: -1622111517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_run_3
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f737bf4d55ec3cf40a3c033e48ed2a7d
-      internalID: 89703154
+      spriteID: c5884481216610748a3cb9f2ead97a3f
+      internalID: 1694096152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_run_1
+      name: Monster_run_4
       rect:
         serializedVersion: 2
         x: 19
@@ -145,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a54dd807c45c16b47b848a6229bb7034
-      internalID: 2068636719
+      spriteID: 5aa423c1e4e72814cbd812dd72e26251
+      internalID: -1812106508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_run_2
+      name: Monster_run_5
       rect:
         serializedVersion: 2
         x: 38
@@ -166,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 455b1a2dd53181b4fb7ac0a6e0dcbdfc
-      internalID: 1401808700
+      spriteID: 8a61b41bb95bb474fbea0bf009105d32
+      internalID: 1728964024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Hit_0
+      name: Monster_Hit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac5241e58eccfa4a9f6f609ce2cc280
-      internalID: 828360418
+      spriteID: f9bfadfbfba9ff14194c15d6c98a7734
+      internalID: 227425237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Hit_1
+      name: Monster_Dead_0
       rect:
         serializedVersion: 2
         x: 19
@@ -208,29 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9bcfc37517d2204bb9c7b3737b55625
-      internalID: -248130955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_daed
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 0
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79d4ffec5e709ff4d98dffa940ac8e1a
-      internalID: 1796227435
+      spriteID: 2064f3f2359acfe46a4ac2edce46312f
+      internalID: -584513509
       vertices: []
       indices: 
       edges: []
@@ -239,19 +281,21 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_Hit_0: 828360418
-      Enemy_Hit_1: -248130955
-      Enemy_daed: 1796227435
-      Enemy_run_0: 89703154
-      Enemy_run_1: 2068636719
-      Enemy_run_2: 1401808700
+      Monster_Dead_0: -584513509
+      Monster_Hit_0: 227425237
+      Monster_run_0: 1954536822
+      Monster_run_1: -1069999238
+      Monster_run_2: -1622111517
+      Monster_run_3: 1694096152
+      Monster_run_4: -1812106508
+      Monster_run_5: 1728964024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

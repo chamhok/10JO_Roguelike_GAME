@@ -115,12 +115,12 @@ public class GameManager : MonoBehaviour
 
         string path = "Prefab/Stage/" + $"Stage{stageCount:00}";
         nextStagePrefab = Resources.Load<GameObject>(path);
-        if (nextStagePrefab != null)
+      /*  if (nextStagePrefab != null)
             SceneManager.LoadScene("StageScene");
         else
         {
             stageCount = 0;
             SceneManager.LoadScene("GameStartScene");
-        }
+        }*/
     }
 }
