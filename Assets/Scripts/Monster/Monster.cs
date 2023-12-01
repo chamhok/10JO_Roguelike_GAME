@@ -69,7 +69,7 @@ public class Monster : MonoBehaviour
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-                if (!collision.CompareTag("Bullet") || !isLive) return;
+                if (!collision.CompareTag("Weapon") || !isLive) return;
 
                 //health -= collision.GetComponent<Bullet>().damage;
                 if (health > 0)

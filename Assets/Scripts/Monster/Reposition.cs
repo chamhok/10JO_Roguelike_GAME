@@ -20,7 +20,7 @@ public class Reposition : MonoBehaviour
 
                 switch (transform.tag)
                 {
-                        case "Enemy":
+                        case "Monster":
                                 if (coll.enabled)
                                 {
                                         Vector3 dist = playerPos - myPos;
