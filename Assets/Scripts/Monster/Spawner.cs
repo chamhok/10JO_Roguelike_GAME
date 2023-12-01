@@ -29,8 +29,8 @@ public class Spawner : MonoBehaviour
         }
 
         void Spawn()
-        {
-             /*   GameObject monster = GameManager.Instance.pool.Get(0);
+        {/*
+                GameObject monster = GameManager.Instance.pool.Get(0);
                 monster.transform.position = spqwnPoint[Random.Range(1, spqwnPoint.Length)].position;
                 monster.GetComponent<Monster>().Init(spawnData[level]);*/
         }

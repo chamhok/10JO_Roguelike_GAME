@@ -20,7 +20,6 @@ public class Monster : MonoBehaviour
 
         private void Awake()
         {
-               // target = targetObject.transform.GetComponent<Rigidbody2D>();
                 rigid = GetComponent<Rigidbody2D>();
                 spriter = GetComponent<SpriteRenderer>();
                 anim = GetComponent<Animator>();
@@ -72,7 +71,7 @@ public class Monster : MonoBehaviour
         {
                 if (!collision.CompareTag("Bullet") || !isLive) return;
 
-              //  health -= collision.GetComponent<Bullet>().damage;
+                //health -= collision.GetComponent<Bullet>().damage;
                 if (health > 0)
                 {
                         StartCoroutine(KnockBack());
