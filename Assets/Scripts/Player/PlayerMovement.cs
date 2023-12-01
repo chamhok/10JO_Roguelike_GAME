@@ -7,7 +7,6 @@ public class PlayerMovement : Player
     private PlayerCharacterController _controller;
 
     private Vector2 _movementDirection = Vector2.zero;
-    private Rigidbody2D _rigidbody;
 
     private void Awake()
     {
@@ -18,6 +17,7 @@ public class PlayerMovement : Player
     private void Start()
     {
         _controller.OnMoveEvent += Move;
+        _controller.OnLookEvent += OnAim;
     }
 
     private void FixedUpdate()
@@ -34,5 +34,19 @@ public class PlayerMovement : Player
     {
         direction = direction * 5;
         _rigidbody.velocity = direction;
+    }
+
+    public void OnAim(Vector2 direction)
+    {
+        float rotZ = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
+
+        if(Mathf.Abs(rotZ) > 90f == false)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }
