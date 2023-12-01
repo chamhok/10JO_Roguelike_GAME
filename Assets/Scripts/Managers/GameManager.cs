@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnStageClear;
     public UnityEvent OnStageFail;
 
+    [Header("Prefabs")]
+    public GameObject poolManagerPrefab;
+    public GameObject UIManagerPrefab;
+
     public static GameManager Instance
     {
         get
@@ -101,13 +105,16 @@ public class GameManager : MonoBehaviour
 
     void StageInstantiate()
     {
-        //Instantiate(nextStagePrefab);
+        if (nextStagePrefab != null)
+            Instantiate(nextStagePrefab);
     }
 
     private void LoadStage()
     {
         StageInstantiate();
         PlayerInstatiate();
+        poolManager = Instantiate(poolManagerPrefab).GetComponent<PoolManager>();
+        Instantiate(UIManagerPrefab);
         Resources.UnloadUnusedAssets();
     }
 
@@ -115,14 +122,14 @@ public class GameManager : MonoBehaviour
     {
         stageCount++;
 
-        string path = "Prefab/Stage/" + $"Stage{stageCount:00}";
+        string path = "Prefab/Stage/" + $"Stage{stageCount}Grid";
         nextStagePrefab = Resources.Load<GameObject>(path);
-      /*  if (nextStagePrefab != null)
+        if (nextStagePrefab != null)
             SceneManager.LoadScene("StageScene");
         else
         {
             stageCount = 0;
             SceneManager.LoadScene("GameStartScene");
-        }*/
+        }
     }
 }

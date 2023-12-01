@@ -7,23 +7,23 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private GameObject[] StageGrid;
+    //private GameObject[] StageGrid;
     private Canvas StageUI;
     private Canvas curUI;
-    private GameObject curStageGrid;
+    //private GameObject curStageGrid;
 
     private Stage currentStage = Stage.Stage1;
 
     private void Awake()
     {
-        StageGrid = Resources.LoadAll<GameObject>("UI\\Stage");
+        //StageGrid = Resources.LoadAll<GameObject>("UI\\Stage");
         StageUI = Resources.Load<Canvas>("UI\\StageUI");
     }
 
     private void Start()
     {
         curUI = Instantiate(StageUI);
-        curStageGrid = Instantiate(StageGrid[(int)currentStage]);
+        //curStageGrid = Instantiate(StageGrid[(int)currentStage]);
 
         StartCoroutine(ShowStageName());
     }
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeStageName()
     {
-        switch (currentStage)   //GameManager의 변수 Static이라서 접근 불가..
+        switch ((Stage)GameManager.stageCount)
         {
             case Stage.Stage1:
                 curUI.GetComponentInChildren<TMP_Text>().text = "검수지옥";
@@ -101,7 +101,6 @@ public class UIManager : MonoBehaviour
     private void SelectItem()
     {
         Time.timeScale = 0;
-
     }
 
     private IEnumerator ShowStageName()
@@ -127,10 +126,10 @@ public class UIManager : MonoBehaviour
     }
 }
 
-enum Stage
+public enum Stage
 {
+    Start,
     Stage1,
     Stage2,
     Stage3,
-    Start
 }
