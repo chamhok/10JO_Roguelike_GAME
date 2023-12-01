@@ -19,17 +19,19 @@ public class Weapon : MonoBehaviour
     {
         _weaponCollider = GetComponent<CircleCollider2D>();
         if(_weaponCollider == null) _weaponCollider = gameObject.AddComponent<CircleCollider2D>();
+        _weaponCollider.isTrigger = true;
+        _weaponCollider.radius = _colliderRadius;
     }
 
     private void Start()
     {
-        _weaponCollider.isTrigger = true;
-        _weaponCollider.radius = _colliderRadius;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // if( collision.gameObject.tag.Compare() )
         // monster.ApplyDamage();
+        Debug.Log($"{gameObject.name} Hit {collision.gameObject.name}");
     }
 }

@@ -9,6 +9,9 @@ public class Define// : MonoBehaviour
         Moon,
         Turtle,
         Stone,
+        Sun,
+        PineCone,
+        Water,
         Max,
     }
 }
