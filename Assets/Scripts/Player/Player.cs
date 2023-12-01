@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Image hpBar;
     public Rigidbody2D _rigidbody;
     public SpriteRenderer _sprite;
-    Animator anim;          //이동 애니메이션 추가 예정
+    Animator anim;          //이동 애니메이션 추가 예정 
     
     public int maxHp;      //최대체력
     public int hp;        //체력
