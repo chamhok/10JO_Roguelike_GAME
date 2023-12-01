@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-class StoneThrower : Item
+class PineConeThrower : Item
 {
+    GameObject _pineConePrefab;
     GameObject _stoneSpawnPosition;
     float _armLength = 1.0f;
-    // µÙ∑π¿Ã
     Vector3 _shootingDirection;
     float _projectileSpeed = 1.0f;
     bool _bFire = false;
@@ -15,6 +14,7 @@ class StoneThrower : Item
 
     private void Awake()
     {
+        _pineConePrefab = Resources.Load<GameObject>("Item/PineCone");
         _stoneSpawnPosition = new GameObject("StoneSpawnPosition");
         _stoneSpawnPosition.transform.parent = this.transform;
         _stoneSpawnPosition.transform.localPosition = Vector2.right * _armLength;
@@ -22,7 +22,7 @@ class StoneThrower : Item
 
     private void Start()
     {
-        StartCoroutine(IFire());
+        //Upgrade();
     }
 
     private void Update()
@@ -41,23 +41,29 @@ class StoneThrower : Item
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
+
     public override void Upgrade()
     {
-        _bFire = true;
-    }
-
-    private void SpawnStone()
-    {
-        var go_Stone = Instantiate(Resources.Load<GameObject>("Item/Stone"), _stoneSpawnPosition.transform.position, transform.rotation);
-        go_Stone.GetComponent<Projectile>().SetVelocity(_shootingDirection  * _projectileSpeed);
+        ++Lv;
+        if(1 == Lv)
+        {
+            _bFire = true;
+            StartCoroutine(IFire());
+        }
     }
 
     IEnumerator IFire()
     {
-        while(_bFire)
+        while (_bFire)
         {
             yield return new WaitForSeconds(_fireDelay);
-            SpawnStone();
+            SpawnPineCone();
         }
+    }
+
+    void SpawnPineCone()
+    {
+        var go_PineCone = Instantiate(_pineConePrefab, _stoneSpawnPosition.transform.position, transform.rotation);
+        go_PineCone.GetComponent<Projectile>().SetVelocity(_shootingDirection * _projectileSpeed);
     }
 }
