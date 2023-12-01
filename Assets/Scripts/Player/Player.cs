@@ -11,13 +11,13 @@ public class Player : MonoBehaviour
     public SpriteRenderer _sprite;
     Animator anim;          //이동 애니메이션 추가 예정 
     
-    public int maxHp;      //최대체력
-    public int hp;        //체력
-    public int atk; //공격력 배율
-    public int speed;//이동속도 배율
-    public int level;     //레벨
-    public int exp;        //경험치   
-    public int money;     //돈
+    public float maxHp;     //최대체력
+    public float hp;        //체력
+    public float atk;       //공격력 배율
+    public float speed;     //이동속도 배율
+    public int level;       //레벨
+    public int exp;         //경험치   
+    public int money;       //돈
     public bool isDead;
 
     public Player()
@@ -54,9 +54,9 @@ public class Player : MonoBehaviour
         ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
     }
 
-    private void ChangeHpBar(int hp) //현재 체력 체력바에 표시
+    private void ChangeHpBar(float hp) //현재 체력 체력바에 표시
     {
-        hpBar.fillAmount = (float)hp / maxHp;
+        hpBar.fillAmount = hp / maxHp;
     }
 
     private void OnCollisionStay2D(Collision2D collision) //적과 접촉 시 데미지 적용
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("isDead");
             GameManager.Instance.GameOver();
         }
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Monster")
         {
             OnDamage();
         }
@@ -80,10 +80,20 @@ public class Player : MonoBehaviour
         _sprite.color = new Color(1, 1, 1, 0.4f);
         GameManager.Instance.player.hp -= (int)(Time.deltaTime * 10);
         Invoke("OffDamage", 1);
-    }
+    }//데미지를 입은 경우
 
     void OffDamage()
     {
         _sprite.color = new Color(1, 1, 1, 1);
     }
+
+    public void GetExp(int _exp)
+    {
+        exp += _exp;
+        if(exp > level*5)
+        {
+            level++;
+            exp -= level * 5;
+        }
+    }//경험치 획득 시
 }
