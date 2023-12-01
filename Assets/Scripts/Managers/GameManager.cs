@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     void StageInstantiate()
     {
-        Instantiate(nextStagePrefab);
+        //Instantiate(nextStagePrefab);
     }
 
     private void LoadStage()
