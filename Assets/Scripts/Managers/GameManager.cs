@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -9,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     protected static GameManager instance;
-    public static int stageCount;
+    public static int stageCount = 0;
+    private static GameObject nextStagePrefab = null;
 
     public float stageLapseTime;
 
@@ -64,8 +64,7 @@ public class GameManager : MonoBehaviour
     private void Initialize()
     {
         Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
-        OnGameStart.AddListener(StageInstantiate);
-        OnGameStart.AddListener(PlayerInstantiate);
+        OnGameStart.AddListener(LoadStage);
         OnStageClear.AddListener(ToNextStage);
     }
 
@@ -92,25 +91,36 @@ public class GameManager : MonoBehaviour
         else OnStageFail?.Invoke();
     }
 
-    void StageInstantiate()
+    void PlayerInstatiate()
     {
-        string path = "Prefab/Stage/" + $"Stage{stageCount:00}";
-        var obj = Resources.Load<GameObject>(path);
-        if (obj != null)
-            Instantiate(obj);
-        else
-            SceneManager.LoadScene("GameStartScene");
-    }
-
-    void PlayerInstantiate()
-    {
-        var obj = Resources.Load("Player");
+        var obj = Resources.Load<GameObject>("Player");
         player = Instantiate(obj).GetComponent<Player>();
     }
 
-    void ToNextStage()
+    void StageInstantiate()
+    {
+        Instantiate(nextStagePrefab);
+    }
+
+    private void LoadStage()
+    {
+        StageInstantiate();
+        PlayerInstatiate();
+        Resources.UnloadUnusedAssets();
+    }
+
+    public static void ToNextStage()
     {
         stageCount++;
-        SceneManager.LoadScene("StageScene");
+
+        string path = "Prefab/Stage/" + $"Stage{stageCount:00}";
+        nextStagePrefab = Resources.Load<GameObject>(path);
+        if (nextStagePrefab != null)
+            SceneManager.LoadScene("StageScene");
+        else
+        {
+            stageCount = 0;
+            SceneManager.LoadScene("GameStartScene");
+        }
     }
 }
