@@ -33,8 +33,8 @@ public class PlayerCharacterController : Player
     }
     public void CallMoveEvent(Vector2 direction)
     {
-        int speed = 1;
-        OnMoveEvent?.Invoke(direction*speed);
+        float _speed = speed;
+        OnMoveEvent?.Invoke(direction*_speed);
     }
 
     public void CallLookEvent(Vector2 direction)
