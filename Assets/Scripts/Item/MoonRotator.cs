@@ -12,6 +12,8 @@ class MoonRotator : Item
 
     private void Awake()
     {
+        Type = Define.EItemType.Moon;
+
         // 자신의 상 하 좌 우 위치에 인스턴스 생성 및 보관
         for (int i = 0; i < 4; ++i)
         {

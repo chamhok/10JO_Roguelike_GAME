@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D;
-
+    [SerializeField] float _speed = 10.0f;
     [SerializeField] float _lifeTime;
 
     private void Awake()
@@ -20,9 +20,9 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, _lifeTime);
     }
 
-    public void SetVelocity(Vector2 velocity)
+    public void SetForward(Vector2 forward)
     {
-        _rigidbody2D.velocity = velocity;
+        _rigidbody2D.velocity = forward * _speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

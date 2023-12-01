@@ -12,6 +12,10 @@ public class Define// : MonoBehaviour
         Sun,
         PineCone,
         Water,
+        ElixirHerbs,
+        Crane,
+        Mountine,
+        Deer,
         Max,
     }
 }

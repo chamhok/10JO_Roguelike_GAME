@@ -7,12 +7,16 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     Dictionary<string, Item> _items = new Dictionary<string, Item>();
+    Player _player;
 
     private void Awake()
     {
+        _player = GetComponent<Player>();
+
         for(int i = 0; i < (int)Define.EItemType.Max; ++i)
         {
-            AddItem((Define.EItemType)i);
+            var item = AddItem((Define.EItemType)i);
+            item.Player = _player;
         }
     }
 
@@ -20,15 +24,24 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         // Test Code
-        AddOrUpgradeItem(Define.EItemType.PineCone);
+        AddOrUpgradeItem(Define.EItemType.Stone);
+        AddOrUpgradeItem(Define.EItemType.Sun);
     }
 
+    /// <summary>
+    /// 아이템 타입을 int 형으로 사용해서 Add Or Upgrade Item 함수를 호출합니다.
+    /// </summary>
+    /// <param name="type"></param>
     public void AddOrUpgradeItem(int type)
     {
         Define.EItemType itemType = (Define.EItemType)type;
         AddOrUpgradeItem(itemType);
     }
 
+    /// <summary>
+    /// 아이템을 추가하거나 업그레이드 할 때 사용합니다.
+    /// </summary>
+    /// <param name="itemType"></param>
     public void AddOrUpgradeItem(Define.EItemType itemType)
     {
         if(_items.ContainsKey(itemType.ToString()))
@@ -41,10 +54,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private void AddItem(Define.EItemType itemType)
+    private Item AddItem(Define.EItemType itemType)
     {
-        GameObject go_Item = new GameObject(itemType.ToString());
+        GameObject go_Item = new GameObject(itemType.ToString() + "Item");
         go_Item.transform.parent = transform;
+        go_Item.transform.localPosition = Vector3.zero;
         Item item = null;
         
         switch(itemType)
@@ -59,27 +73,62 @@ public class ItemManager : MonoBehaviour
                 break;
 
             case Define.EItemType.Stone:
-                item = go_Item.AddComponent<StoneThrower>();
+                item = go_Item.AddComponent<StoneItem>();
                 break;
 
             case Define.EItemType.Sun:
-                item = go_Item.AddComponent<SunDropper>();
+                item = go_Item.AddComponent<SunItem>();
                 break;
 
             case Define.EItemType.PineCone:
-                item = go_Item.AddComponent<PineConeThrower>();
+                item = go_Item.AddComponent<PineConeItem>();
                 break;
 
             case Define.EItemType.Water:
                 item = go_Item.AddComponent<WaterRayzer>();
                 break;
+
+            case Define.EItemType.ElixirHerbs:
+                item = go_Item.AddComponent<Recovery>();
+                break;
+
+            case Define.EItemType.Crane:
+                item = go_Item.AddComponent<Haste>();
+                break;
+
+            case Define.EItemType.Mountine:
+                item = go_Item.AddComponent<Gift>();
+                break;
+
+            case Define.EItemType.Deer:
+                item = go_Item.AddComponent<HornThrower>();
+                break;
         }
 
         _items.Add(itemType.ToString(), item);
+        return item;
     }
 
     private void UpgradeItem(Define.EItemType itemType)
     {
         _items[itemType.ToString()].Upgrade();
+    }
+
+    /// <summary>
+    /// 최대 레벨이 되지 않은 아이템의 목록을 가져옵니다.
+    /// </summary>
+    /// <returns></returns>
+    public Define.EItemType[] GetUpgradableItems()
+    {
+        List<Define.EItemType> items = new List<Define.EItemType>();
+
+        foreach(var item in _items)
+        {
+            if(item.Value.Lv < Item.MaxLevel)
+            {
+                items.Add(item.Value.Type);
+            }
+        }
+        return items.ToArray();
     }
 }

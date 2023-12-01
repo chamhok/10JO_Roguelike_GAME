@@ -15,6 +15,8 @@ class StoneThrower : Item
 
     private void Awake()
     {
+        Type = Define.EItemType.Stone;
+
         _stoneSpawnPosition = new GameObject("StoneSpawnPosition");
         _stoneSpawnPosition.transform.parent = this.transform;
         _stoneSpawnPosition.transform.localPosition = Vector2.right * _armLength;
@@ -50,7 +52,7 @@ class StoneThrower : Item
     private void SpawnStone()
     {
         var go_Stone = Instantiate(Resources.Load<GameObject>("Item/Stone"), _stoneSpawnPosition.transform.position, transform.rotation);
-        go_Stone.GetComponent<Projectile>().SetVelocity(_shootingDirection  * _projectileSpeed);
+        go_Stone.GetComponent<Projectile>().SetForward(_shootingDirection  * _projectileSpeed);
     }
 
     IEnumerator IFire()

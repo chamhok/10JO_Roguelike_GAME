@@ -9,6 +9,8 @@ class SunDropper : Item
 
     private void Awake()
     {
+        Type = Define.EItemType.Sun;
+
         _sunPrefab = Resources.Load<GameObject>("Item/Sun");
     }
 
