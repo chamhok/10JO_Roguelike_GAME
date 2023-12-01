@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public List<GameObject> items;
 
+    public PoolManager poolManager;
+
     [Header("Events")]
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;

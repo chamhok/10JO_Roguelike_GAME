@@ -473,6 +473,7 @@ MonoBehaviour:
   player: {fileID: 0}
   monsters: []
   items: []
+  poolManager: {fileID: 1653847650}
   OnGameStart:
     m_PersistentCalls:
       m_Calls: []
