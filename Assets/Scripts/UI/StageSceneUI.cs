@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,60 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class StageSceneUI : MonoBehaviour
 {
-    private Canvas CurrentUI;
+    Stage currentStage;
     private Canvas curUI;
-
-    private Stage currentStage = Stage.Stage1;
-
-    private void Awake()
-    {
-        
-        if (currentStage == Stage.Start)
-        {
-            CurrentUI = Resources.Load<Canvas>("UI\\StartSceneUI");
-        }
-        else if (currentStage == Stage.Upgrade)
-        {
-            CurrentUI = Resources.Load<Canvas>("UI\\UpgradeUI");
-        }
-        else
-        {
-            CurrentUI = Resources.Load<Canvas>("UI\\StageUI");
-        }
-    }
-
-    private void Start()
-    {
-        curUI = Instantiate(CurrentUI); 
-        if (currentStage == Stage.Start)
-        {
-
-        }
-        else if (currentStage == Stage.Upgrade)
-        {
-            
-        }
-        else
-        {
-            StartCoroutine(ShowStageName());
-        }
-    }
-
-    private void Update()
-    {
-        if (currentStage != Stage.Start)
-        {
-            ShowStageData();
-        }
-        else if (currentStage == Stage.Start)
-        {
-            ShowStartData();
-        }
-    }
-
-    private void ShowStageData()
+    public void ShowData()
     {
         ChangeStageName();
         ShowTime();
@@ -66,12 +18,6 @@ public class UIManager : MonoBehaviour
         ShowGold();
         ShowLevel();
     }
-
-    private void ShowStartData()
-    {
-        ShowGold();
-    }
-
     public void ChangeStageName()
     {
         switch (currentStage)   //GameManager의 변수 Static이라서 접근 불가..
@@ -123,42 +69,4 @@ public class UIManager : MonoBehaviour
         }
 
     }
-
-    //레벨업시 아이템 선택창 출력
-    private void SelectItem()
-    {
-        Time.timeScale = 0;
-        curUI.transform.Find("SelectItem").gameObject.SetActive(true);
-    }
-
-    private IEnumerator ShowStageName()
-    {
-        if (curUI != null)
-        {
-            TMP_Text StageName = curUI.GetComponentInChildren<TMP_Text>();
-            if (StageName != null)
-            {
-                yield return new WaitForSecondsRealtime(2f);
-
-                StageName.gameObject.SetActive(false);
-            }
-            else
-            {
-                Debug.LogError("Text 못찾음");
-            }
-        }
-        else
-        {
-            Debug.LogError("curUI is null.");
-        }
-    }
-}
-
-enum Stage
-{
-    Stage1,
-    Stage2,
-    Stage3,
-    Start,
-    Upgrade
 }
