@@ -10,6 +10,7 @@ class WaterRayzer : Item
     [SerializeField] float _armLength = 1.0f;
     Vector3 _shootingDirection;
 
+    float _spriteWidth;
     // 지속시간
 
     // 딜레이
@@ -17,6 +18,8 @@ class WaterRayzer : Item
 
     private void Awake()
     {
+        Type = Define.EItemType.Water;
+
         _spawnWaterPosition = new GameObject("Spawn Water Position");
         _spawnWaterPosition.transform.parent = transform;
         _spawnWaterPosition.transform.localPosition = Vector2.right * _armLength;
@@ -25,13 +28,14 @@ class WaterRayzer : Item
         _waterPrefab.SetActive(false);
 
         // Test // Can get with of sprite
+        _spriteWidth = (float)_waterPrefab.GetComponent<SpriteRenderer>().sprite.texture.width / 100;
         Debug.Log("Water Width : " + _waterPrefab.GetComponent<SpriteRenderer>().sprite.texture.width);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Upgrade();
+        //Upgrade();
     }
 
     // Update is called once per frame
@@ -47,6 +51,11 @@ class WaterRayzer : Item
 
         //armRenderer.flipY = Mathf.Abs(rotZ) > 90f;        
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+        float dist = Vector2.Distance(mousePosition, _spawnWaterPosition.transform.position);
+        //Debug.Log("Dist : " + dist);
+
+        _waterPrefab.transform.localScale = new Vector3((float)dist / _spriteWidth, 1, 1);
     }
 
     public override void Upgrade()
@@ -64,8 +73,9 @@ class WaterRayzer : Item
         while (_bFire)
         {
             _waterPrefab.SetActive(true);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f);            
             _waterPrefab.SetActive(false);
+            yield return new WaitForSeconds(1.0f);
         }
     }
 }

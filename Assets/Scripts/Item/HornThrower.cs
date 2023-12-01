@@ -1,36 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
-class PineConeThrower : Item
+class HornThrower : Item
 {
-    GameObject _pineConePrefab;
-    GameObject _stoneSpawnPosition;
+    GameObject _spawnPosition;
+    bool _bFire;
+    GameObject _hornPrefab;
     float _armLength = 1.0f;
     Vector3 _shootingDirection;
     float _projectileSpeed = 1.0f;
-    bool _bFire = false;
-    float _fireDelay = 1.0f;
 
     private void Awake()
     {
-        Type = Define.EItemType.PineCone;
+        Type = Define.EItemType.Deer;
+        _hornPrefab = Resources.Load<GameObject>("Item/Horn");
 
-        _pineConePrefab = Resources.Load<GameObject>("Item/PineCone");
-        _stoneSpawnPosition = new GameObject("StoneSpawnPosition");
-        _stoneSpawnPosition.transform.parent = this.transform;
-        _stoneSpawnPosition.transform.localPosition = Vector2.right * _armLength;
-    }
-
-    private void Start()
-    {
-        //Upgrade();
+        _spawnPosition = new GameObject();
+        _spawnPosition.transform.parent = transform;
+        _spawnPosition.transform.localPosition = Vector3.right * _armLength;
     }
 
     private void Update()
     {
-        // PlayerInput ¾µ·Á³ª.
-
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _shootingDirection = mousePosition - transform.position;
         _shootingDirection.z = 0;
@@ -42,7 +35,6 @@ class PineConeThrower : Item
         //armRenderer.flipY = Mathf.Abs(rotZ) > 90f;        
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
-
 
     public override void Upgrade()
     {
@@ -56,16 +48,11 @@ class PineConeThrower : Item
 
     IEnumerator IFire()
     {
-        while (_bFire)
+        while(_bFire)
         {
-            yield return new WaitForSeconds(_fireDelay);
-            SpawnPineCone();
+            yield return new WaitForSeconds(1.0f);
+            var go_Horn = Instantiate(_hornPrefab, _spawnPosition.transform.position, _spawnPosition.transform.rotation);
+            go_Horn.GetComponent<Projectile>().SetVelocity(_shootingDirection * _projectileSpeed);
         }
-    }
-
-    void SpawnPineCone()
-    {
-        var go_PineCone = Instantiate(_pineConePrefab, _stoneSpawnPosition.transform.position, transform.rotation);
-        go_PineCone.GetComponent<Projectile>().SetVelocity(_shootingDirection * _projectileSpeed);
     }
 }

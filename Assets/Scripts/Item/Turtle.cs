@@ -11,6 +11,8 @@ class Turtle : Item
     GameObject _turtle;
     private void Awake()
     {
+        Type = Define.EItemType.Turtle;
+
         _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
         if(_circleCollider2D == null) _circleCollider2D = gameObject.AddComponent<CircleCollider2D>();
 
