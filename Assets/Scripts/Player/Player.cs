@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Image hpBar;
-
+    public Rigidbody2D _rigidbody;
+    public SpriteRenderer _sprite;
+    Animator anim;          //이동 애니메이션 추가 예정
+    
     public int maxHp;      //최대체력
     public int hp;        //체력
     public int atk; //공격력 배율
@@ -15,6 +18,7 @@ public class Player : MonoBehaviour
     public int level;     //레벨
     public int exp;        //경험치   
     public int money;     //돈
+    public bool isDead;
 
     public Player()
     {
@@ -26,6 +30,7 @@ public class Player : MonoBehaviour
         exp = 0;     //현재 exp(게임 오버, 게임 클리어 시 초기화 - 스테이지 클리어 아님)
         money = 0;   //현재 gold(메인화면, 스테이터스 강화 화면에서 사용하는 것으로 maxHp, atk, speed를 영구적으로 증가)
                      //증가할때 마다 필요한 money 증가
+        isDead = false;
     }
 
     public Player(PlayerData playerData)
@@ -36,15 +41,49 @@ public class Player : MonoBehaviour
         level = playerData.level;
         exp = playerData.currentExp;
         money = playerData.money;
+        isDead = false;
     }
 
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
     private void Update()
     {
-        ChangeHpBar(hp);
+        ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
     }
 
     private void ChangeHpBar(int hp) //현재 체력 체력바에 표시
     {
         hpBar.fillAmount = (float)hp / maxHp;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) //적과 접촉 시 데미지 적용
+    {
+        if (!GameManager.Instance.player.isDead)
+            return;
+        if (GameManager.Instance.player.hp <= 0)
+        {
+            isDead = true;
+            anim.SetTrigger("isDead");
+            GameManager.Instance.GameOver();
+        }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            OnDamage();
+        }
+    }
+
+    void OnDamage()
+    {
+        _sprite.color = new Color(1, 1, 1, 0.4f);
+        GameManager.Instance.player.hp -= (int)(Time.deltaTime * 10);
+        Invoke("OffDamage", 1);
+    }
+
+    void OffDamage()
+    {
+        _sprite.color = new Color(1, 1, 1, 1);
     }
 }
