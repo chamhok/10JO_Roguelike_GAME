@@ -5,7 +5,7 @@ using UnityEngine;
 
 class Haste : Item
 {
-    int _defaultPlayerSpeed;
+    float _defaultPlayerSpeed;
     //float _speedWeight;
 
     private void Awake()
