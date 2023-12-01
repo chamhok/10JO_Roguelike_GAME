@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,10 +16,10 @@ public class Spawner : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-                if (!GameManager.instance.isLive) return;
+                //if (!GameManager.Instance.player.isLive) return;
 
                 timer += Time.deltaTime;
-                level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
+                level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 10f), spawnData.Length - 1);
 
                 if (timer > spawnData[level].spawnTime)
                 {
@@ -30,9 +30,9 @@ public class Spawner : MonoBehaviour
 
         void Spawn()
         {
-                GameObject enemy = GameManager.instance.pool.Get(0);
-                enemy.transform.position = spqwnPoint[Random.Range(1, spqwnPoint.Length)].position;
-                enemy.GetComponent<Monster>().Init(spawnData[level]);
+                GameObject monster = GameManager.Instance.pool.Get(0);
+                monster.transform.position = spqwnPoint[Random.Range(1, spqwnPoint.Length)].position;
+                monster.GetComponent<Monster>().Init(spawnData[level]);
         }
 }
 
@@ -43,4 +43,4 @@ public class SpawnData
         public float spawnTime;
         public int health;
         public float speed;
-}*/
+}
