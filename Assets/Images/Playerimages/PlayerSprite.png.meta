@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_0"
+      name: WalkingPlayer_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_1"
+      name: WalkingPlayer_1
       rect:
         serializedVersion: 2
         x: 99
@@ -152,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_2"
+      name: WalkingPlayer_2
       rect:
         serializedVersion: 2
         x: 198
@@ -173,11 +186,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_3"
+      name: WalkingPlayer_3
       rect:
         serializedVersion: 2
         x: 297
-        y: 160
+        y: 159
         width: 90
         height: 130
       alignment: 0
@@ -194,7 +207,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_4"
+      name: WalkingPlayer_4
       rect:
         serializedVersion: 2
         x: 396
@@ -215,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_5"
+      name: WalkingPlayer_5
       rect:
         serializedVersion: 2
         x: 495
@@ -236,7 +249,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: s1
+      name: WalkingPlayer_6
       rect:
         serializedVersion: 2
         x: 604
@@ -257,7 +270,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_7"
+      name: WalkingPlayer_7
       rect:
         serializedVersion: 2
         x: 693
@@ -278,7 +291,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_8"
+      name: RuningPlayer0
       rect:
         serializedVersion: 2
         x: 0
@@ -299,15 +312,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_9"
+      name: RuningPlayer1
       rect:
         serializedVersion: 2
-        x: 99
+        x: 87
         y: 0
         width: 90
         height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5202838, y: 0.50468093}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,10 +333,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_10"
+      name: RuningPlayer2
       rect:
         serializedVersion: 2
-        x: 198
+        x: 183
         y: 0
         width: 90
         height: 130
@@ -341,12 +354,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_11"
+      name: RuningPlayer3
       rect:
         serializedVersion: 2
-        x: 297
+        x: 280
         y: 0
-        width: 90
+        width: 103
         height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -362,12 +375,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_12"
+      name: RuningPlayer4
       rect:
         serializedVersion: 2
-        x: 396
+        x: 392
         y: 0
-        width: 90
+        width: 97
         height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -383,13 +396,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: s3
+      name: RuningPlayer5
       rect:
         serializedVersion: 2
-        x: 529
-        y: 5
+        x: 518
+        y: 3
         width: 90
-        height: 130
+        height: 137
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,13 +417,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: s2
+      name: RuningPlayer6
       rect:
         serializedVersion: 2
-        x: 607
-        y: 5
+        x: 606
+        y: 3
         width: 90
-        height: 130
+        height: 137
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,13 +438,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_15"
+      name: RuningPlayer7
       rect:
         serializedVersion: 2
         x: 693
         y: 0
         width: 90
-        height: 130
+        height: 137
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,22 +469,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      s1: 1035400641
-      s2: -1786587013
-      s3: -879567976
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_0": 941077739
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_1": -2035807149
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_10": -159530438
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_11": 591815899
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_12": -2052845686
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_15": 1641895289
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_2": -2136631004
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_3": 979725447
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_4": -677695506
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_5": -2061997154
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_7": 265086271
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_8": 671194349
-      "\u3141\u3134\u3147\u3134\u3141\u3147\u3134_9": -1022860416
+      RuningPlayer0: 671194349
+      RuningPlayer1: -1022860416
+      RuningPlayer2: -159530438
+      RuningPlayer3: 591815899
+      RuningPlayer4: -2052845686
+      RuningPlayer5: -879567976
+      RuningPlayer6: -1786587013
+      RuningPlayer7: 1641895289
+      WalkingPlayer_0: 941077739
+      WalkingPlayer_1: -2035807149
+      WalkingPlayer_2: -2136631004
+      WalkingPlayer_3: 979725447
+      WalkingPlayer_4: -677695506
+      WalkingPlayer_5: -2061997154
+      WalkingPlayer_6: 1035400641
+      WalkingPlayer_7: 265086271
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public int money;       //돈
     public bool isDead;
 
+    int layer_name;
+
     public Player()
     {
         maxHp = 100; //기본 최대 HP
@@ -46,9 +48,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        layer_name = LayerMask.NameToLayer("Player");
+        this.gameObject.layer = layer_name;
         _rigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+
     private void Update()
     {
         ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
@@ -61,24 +66,32 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision) //적과 접촉 시 데미지 적용
     {
-        if (!GameManager.Instance.player.isDead)
+        Debug.Log("OnTouch");
+        layer_name = LayerMask.NameToLayer("Monster");
+        if (GameManager.Instance.player.isDead)
             return;
-        if (GameManager.Instance.player.hp <= 0)
+        else
         {
-            isDead = true;
-            anim.SetTrigger("isDead");
-            GameManager.Instance.GameOver();
-        }
-        if(collision.gameObject.tag == "Monster")
-        {
-            OnDamage();
+            if (GameManager.Instance.player.hp <= 0)
+            {
+                isDead = true;
+                anim.SetTrigger("isDead");
+                GameManager.Instance.GameOver();
+            }
+            if (collision.gameObject.layer == layer_name)
+            {
+                Debug.Log("OnDamage");
+                OnDamage();
+
+            }
         }
     }
 
     void OnDamage()
     {
-        _sprite.color = new Color(1, 1, 1, 0.4f);
-        GameManager.Instance.player.hp -= (int)(Time.deltaTime * 10);
+
+        _sprite.color = new Color(1, 1 , 1, 0.4f);
+        GameManager.Instance.player.hp -= Time.deltaTime * 10;
         Invoke("OffDamage", 1);
     }//데미지를 입은 경우
 
