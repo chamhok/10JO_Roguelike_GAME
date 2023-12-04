@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     private int currentStage;
     private int LvFlag;
     private bool isAlive = true;
+    private GameObject square;
     private string[] itemNames = new string[] { " ", "돌", "사슴", "해", "달", "두루미", "소나무", "물", "거북이", "불로초", "산" };
     private void Awake()
     {
@@ -34,7 +35,12 @@ public class UIManager : MonoBehaviour
         else
         {
             CurrentUI = Resources.Load<Canvas>("UI\\StageUI");
+            if(currentStage == 2)
+            {
+                square = Instantiate((GameObject)Resources.Load("UI\\Square"));
+            }
         }
+
     }
 
     private void Start()
@@ -77,6 +83,11 @@ public class UIManager : MonoBehaviour
                 SelectItem();
             }
 
+            if(currentStage == 2)
+            {
+                square.transform.Rotate(Vector3.back, 10f * Time.deltaTime);
+            }
+
             if (GameManager.Instance.player.hp <= 0&&isAlive == true)
             {
                 isAlive = false;
@@ -91,6 +102,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    #region StartScene
+    private void ShowStartData()
+    {
+        ShowGold();
+    }
+    #endregion
+
+    #region UpgradeScene
+    private void ShowUpgradeData()
+    {
+        ShowGold();
+        ShowUpgradeLevel();
+    }
+    
+    //업그레이드 레벨 슬라이더 조정
+    private void ShowUpgradeLevel()
+    {
+        //데이터매니저에서 만들어지면 추가 가능.
+        //curUI.GetComponentsInChildren<Slider>()[0].value = DataManager.Instance.playerData.UpgradeLv[0];
+    }
+    #endregion
+
+    #region StageScene
     private void ShowStageData()
     {
         ChangeStageName();
@@ -101,17 +135,7 @@ public class UIManager : MonoBehaviour
         ShowItem();
     }
 
-    private void ShowStartData()
-    {
-        ShowGold();
-    }
-
-    private void ShowUpgradeData()
-    {
-        ShowGold();
-        ShowUpgradeLevel();
-    }
-
+    //스테이지 이름 출력
     public void ChangeStageName()
     {
         switch (GameManager.stageCount)
@@ -129,16 +153,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //업그레이드 레벨 슬라이더 조정
-    private void ShowUpgradeLevel()
-    {
-        //데이터매니저에서 만들어지면 추가 가능.
-        //curUI.GetComponentsInChildren<Slider>()[0].value = DataManager.Instance.playerData.UpgradeLv[0];
-    }
-
     //시간 표시
     private void ShowTime()
     {
+        //2분을 시작으로 줄어들도록 설정
         int remainedtime = (int)(120f - GameManager.Instance.stageLapseTime);
         curUI.transform.Find("Timer").GetComponent<TMP_Text>().text = (remainedtime / 60).ToSafeString() + " : " + (remainedtime % 60).ToSafeString();
     }
@@ -241,11 +259,13 @@ public class UIManager : MonoBehaviour
         curUI.transform.Find("SelectItem").gameObject.SetActive(false);
     }
 
+    //게임오버 판넬
     private void ShowGameOver()
     {
         Time.timeScale = 0;
         curUI.transform.Find("GameOver").gameObject.SetActive(true);
     }
+
     private IEnumerator ShowStageName()
     {
         if (curUI != null)
@@ -267,5 +287,6 @@ public class UIManager : MonoBehaviour
             Debug.LogError("curUI is null.");
         }
     }
+    #endregion
 }
 
