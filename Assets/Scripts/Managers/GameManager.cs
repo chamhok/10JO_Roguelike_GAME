@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
     private static GameObject nextStagePrefab = null;
 
     public float stageLapseTime;
+        public float bossZenTime = 5f;
+        public bool bossZen = false;
 
-    /// <summary>
-    /// player 객체 참조 <br/>
-    /// 추후에 자료형을 플레이어 클래스로 바꿔야함.
-    /// </summary>
-    public Player player;
+        /// <summary>
+        /// player 객체 참조 <br/>
+        /// 추후에 자료형을 플레이어 클래스로 바꿔야함.
+        /// </summary>
+        public Player player;
 
     /// <summary>
     /// stage에 생성된 monster들을 담을 리스트 <br/>
@@ -116,7 +118,8 @@ public class GameManager : MonoBehaviour
         poolManager = Instantiate(poolManagerPrefab).GetComponent<PoolManager>();
         Instantiate(UIManagerPrefab);
         Resources.UnloadUnusedAssets();
-    }
+        bossZen = false;
+     }
 
     public static void ToNextStage()
     {

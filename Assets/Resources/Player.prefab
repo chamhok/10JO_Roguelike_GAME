@@ -117,7 +117,7 @@ MonoBehaviour:
   _sprite: {fileID: 0}
   maxHp: 100
   hp: 100
-  atk: 1
+  atk: 10
   speed: 1
   level: 1
   exp: 0
@@ -932,14 +932,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: spawnData.Array.size
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: spawnData.Array.data[5].speed
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: spawnData.Array.data[6].speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: spawnData.Array.data[5].health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: spawnData.Array.data[6].health
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
@@ -963,8 +983,164 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: spawnData.Array.data[6].spawnTime
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: spawnData.Array.data[5].spriteType
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: spawnData.Array.data[6].spriteType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[0].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[1].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[2].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[3].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[4].speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[0].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[1].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[2].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[3].speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[0].health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[1].health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[2].health
+      value: 1100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[3].health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[4].health
+      value: 100100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[0].health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[1].health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[2].health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[3].health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[0].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[0].health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[0].spawnTime
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[1].spawnTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[2].spawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[3].spawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[4].spawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[0].spawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[1].spawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[2].spawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[3].spawnTime
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[1].spriteType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[2].spriteType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[3].spriteType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[4].spriteType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[1].spriteType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[2].spriteType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTowSpawnData.Array.data[3].spriteType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[0].spawnTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
