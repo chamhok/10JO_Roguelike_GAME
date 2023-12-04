@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Player
+public class PlayerMovement : MonoBehaviour
 {
     private PlayerCharacterController _controller;
+    private Rigidbody2D _rigidbody;
 
     private Vector2 _movementDirection = Vector2.zero;
 

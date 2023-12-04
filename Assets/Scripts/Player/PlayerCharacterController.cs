@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCharacterController : Player
+public class PlayerCharacterController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
@@ -33,7 +33,7 @@ public class PlayerCharacterController : Player
     }
     public void CallMoveEvent(Vector2 direction)
     {
-        float _speed = speed;
+        float _speed = GameManager.Instance.player.speed;
         OnMoveEvent?.Invoke(direction*_speed);
     }
 
