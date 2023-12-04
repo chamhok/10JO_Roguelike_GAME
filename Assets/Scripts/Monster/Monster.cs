@@ -71,7 +71,7 @@ public class Monster : MonoBehaviour
         {
                 if (!collision.CompareTag("Weapon") || !isLive) return;
 
-                //health -= collision.GetComponent<Bullet>().damage;
+                health -= collision.GetComponent<Weapon>().Damage;
                 if (health > 0)
                 {
                         StartCoroutine(KnockBack());

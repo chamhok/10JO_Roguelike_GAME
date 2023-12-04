@@ -55,8 +55,12 @@ public class Thrower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start");
         _muzzle.transform.localPosition = _offset * ArmLength;
+    }
 
+    private void LoadPrefab()
+    {
         string path = "Item/" + ProjectilePrefabName;
         ProjectilePrefab = Resources.Load<GameObject>(path);
     }
@@ -84,6 +88,8 @@ public class Thrower : MonoBehaviour
     public void ThrowObject()
     {
         _bFire = true;
+        LoadPrefab();
+
         StartCoroutine(IFire());
     }
 
