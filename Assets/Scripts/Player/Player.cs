@@ -81,7 +81,6 @@ public class Player : MonoBehaviour
             if (collision.gameObject.layer == layer_name)
             {
                 OnDamage();
-
             }
         }
     }
