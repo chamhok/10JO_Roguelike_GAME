@@ -94,7 +94,15 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 22bc7749-c55c-4564-b662-f3798cfb0791
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a83ee03a-afa9-48cd-b58a-3dd01f908787
+    m_ActionName: Player/Look[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -147,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2800a9b0fdc6e438b7e0a5b100ba3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ani: {fileID: 8833572873746602021}
 --- !u!114 &6374973353213060512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +198,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1191139964158924784}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a8dd4dde8bff6ea4b8226f4704ee4235, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

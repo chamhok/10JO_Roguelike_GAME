@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerCharacterController _controller;
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _sprite;
+    public Animator _ani;
 
     private Vector2 _movementDirection = Vector2.zero;
 
@@ -24,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_movementDirection == Vector2.zero)
+        {
+            _ani.SetBool("isRunning", false);
+        }
+        else
+            _ani.SetBool("isRunning", true);
         ApplyMovement(_movementDirection);
     }
 

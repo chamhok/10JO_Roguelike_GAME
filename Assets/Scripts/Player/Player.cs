@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision) //적과 접촉 시 데미지 적용
     {
-        Debug.Log("OnTouch");
         layer_name = LayerMask.NameToLayer("Monster");
         if (GameManager.Instance.player.isDead)
             return;
@@ -76,11 +75,11 @@ public class Player : MonoBehaviour
             {
                 isDead = true;
                 anim.SetTrigger("isDead");
+                OnDestroy();
                 GameManager.Instance.GameOver();
             }
             if (collision.gameObject.layer == layer_name)
             {
-                Debug.Log("OnDamage");
                 OnDamage();
 
             }
@@ -89,7 +88,6 @@ public class Player : MonoBehaviour
 
     void OnDamage()
     {
-
         _sprite.color = new Color(1, 1 , 1, 0.4f);
         GameManager.Instance.player.hp -= Time.deltaTime * 10;
         Invoke("OffDamage", 1);
@@ -109,4 +107,9 @@ public class Player : MonoBehaviour
             exp -= level * 5;
         }
     }//경험치 획득 시
+
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
 }
