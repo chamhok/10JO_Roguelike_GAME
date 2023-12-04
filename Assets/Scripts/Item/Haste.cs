@@ -11,7 +11,10 @@ class Haste : Item
     private void Awake()
     {
         Type = Define.EItemType.Crane;
+    }
 
+    private void Start()
+    {
         if (Player)
         {
             _defaultPlayerSpeed = Player.speed;
@@ -20,8 +23,9 @@ class Haste : Item
 
     public override void Upgrade()
     {
+        if (IsMaxLevel()) return;
         ++Lv;
-        //Player.speed = _defaultPlayerSpeed * _speedWeight;
-        Player.speed += 1;
+
+        Player.speed += 0.1f;
     }
 }

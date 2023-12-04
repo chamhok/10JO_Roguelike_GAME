@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.EnhancedTouch;
 class StoneItem : Item
 {
     Thrower _thrower;
+    string[] _prefabNames = { "Stone", "DoubleStone", "TripleStone" };
+    int _nameIndex = 0;
     [SerializeField] string _throwingPrefabName = "Stone";
     [SerializeField] float _armLength = 1.0f;
     [SerializeField] float _throwingSpeed = 1.0f;
@@ -16,7 +18,7 @@ class StoneItem : Item
         Type = Define.EItemType.Stone;
 
         _thrower = gameObject.AddComponent<Thrower>();
-        _thrower.ProjectilePrefabName = _throwingPrefabName;
+        _thrower.ProjectilePrefabName = _prefabNames[_nameIndex++];
         _thrower.ArmLength = _armLength;
         _thrower.FireRate = _throwingSpeed;
     }
@@ -41,6 +43,7 @@ class StoneItem : Item
     {
         // 연사속도, 데미지, 수량
         int random = Random.Range(0, 3);
+        Debug.Log("Stone Upgrade : " + random);
         switch(random)
         {
             case 0: // 속도
@@ -72,6 +75,12 @@ class StoneItem : Item
 
     private void QuantityUp()
     {
-
+        if(_nameIndex == 3)
+        {
+            RandomUpgrade();
+            return;
+        }
+        _thrower.ProjectilePrefabName = _prefabNames[_nameIndex++];
+        _thrower.Init();
     }
 }
