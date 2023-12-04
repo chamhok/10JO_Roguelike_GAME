@@ -49,10 +49,15 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (instance == null)
+            if(!instance)
             {
-                // Data Manager면 몰라도 얘는 생성할 필요 없을 듯?
-                throw new NullReferenceException();
+                instance = FindObjectOfType(typeof(GameManager)) as GameManager;
+
+                if (instance == null)
+                {
+                    // Data Manager면 몰라도 얘는 생성할 필요 없을 듯?
+                    throw new NullReferenceException();
+                }
             }
             return instance;
         }
