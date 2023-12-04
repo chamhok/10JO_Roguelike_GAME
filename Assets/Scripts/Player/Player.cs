@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
             {
                 isDead = true;
                 anim.SetTrigger("isDead");
-                OnDestroy();
                 GameManager.Instance.GameOver();
             }
             if (collision.gameObject.layer == layer_name)
@@ -106,9 +105,4 @@ public class Player : MonoBehaviour
             exp -= level * 5;
         }
     }//°æÇèÄ¡ È¹µæ ½Ã
-
-    private void OnDestroy()
-    {
-        Destroy(gameObject);
-    }
 }
