@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
         public float maxHealth;
         public RuntimeAnimatorController[] animCon;
         public Rigidbody2D target;
-        //public GameObject targetObject;
+        
         bool isLive;
 
         Rigidbody2D rigid;
