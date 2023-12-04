@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
             if (instance == null)
             {
                 // Data Manager면 몰라도 얘는 생성할 필요 없을 듯?
-                throw new NullReferenceException();
             }
             return instance;
         }
