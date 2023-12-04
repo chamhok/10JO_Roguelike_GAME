@@ -30,6 +30,7 @@ public class DataManager : MonoBehaviour
             instance = this;
             instance.Initialize();
         }
+        playerData = new PlayerData(); 
     }
 
     private void Start()
@@ -107,12 +108,13 @@ public class DataManager : MonoBehaviour
 [System.Serializable]
 public class PlayerData
 {
-    public int maxHp;
-    public int atk;
-    public int speed;
+    public float maxHp;
+    public float atk;
+    public float speed;
     public int level;
     public int currentExp;
     public int money;
+    public int[] upgradeLevel = new int[3];
 
     public PlayerData()
     {

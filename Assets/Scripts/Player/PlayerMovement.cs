@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Player
+public class PlayerMovement : MonoBehaviour
 {
     private PlayerCharacterController _controller;
+    private Rigidbody2D _rigidbody;
+    private SpriteRenderer _sprite;
+    public Animator _ani;
 
     private Vector2 _movementDirection = Vector2.zero;
 
@@ -22,6 +25,12 @@ public class PlayerMovement : Player
 
     private void FixedUpdate()
     {
+        if (_movementDirection == Vector2.zero)
+        {
+            _ani.SetBool("isRunning", false);
+        }
+        else
+            _ani.SetBool("isRunning", true);
         ApplyMovement(_movementDirection);
     }
 
@@ -39,14 +48,13 @@ public class PlayerMovement : Player
     public void OnAim(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
-
-        if(Mathf.Abs(rotZ) > 90f == false)
+        _sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
+        if(Mathf.Abs(rotZ) > 90f)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            _sprite.flipX = true;
         }
         else
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
+            _sprite.flipX = false;
+
     }
 }
