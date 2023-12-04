@@ -7,8 +7,13 @@ public class WeaponDropper : MonoBehaviour
     public string weaponName;
     GameObject _weaponPrefab;
 
+    public Weapon DroppedWeapon
+    {
+        get { return _weaponPrefab.GetComponent<Weapon>(); }
+    }
     private void Awake()
     {
+        Debug.Log("Weap Drop Awake");
         string path = $"Item/{weaponName}";
         _weaponPrefab = Resources.Load<GameObject>(path);
     }

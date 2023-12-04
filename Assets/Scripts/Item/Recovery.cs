@@ -12,5 +12,6 @@ class Recovery : Item
     public override void Upgrade()
     {
         Player.hp = Player.maxHp;
+        Debug.Log("Player Recovery");
     }
 }

@@ -32,6 +32,6 @@ public class Weapon : MonoBehaviour
     {
         // if( collision.gameObject.tag.Compare() )
         // monster.ApplyDamage();
-        Debug.Log($"{gameObject.name} Hit {collision.gameObject.name}");
+        Debug.Log($"{gameObject.name} Hit {collision.gameObject.name} : {Damage}");
     }
 }

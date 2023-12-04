@@ -12,9 +12,14 @@ class WaterRayzer : Item
 
     float _spriteWidth;
     // 지속시간
+    float _coolTime = 10.0f;
+    float _activateTime = 1.0f;
 
     // 딜레이
     bool _bFire;
+
+    // 데미지 배율
+    float[] _weight = { 0.0f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
 
     private void Awake()
     {
@@ -60,12 +65,15 @@ class WaterRayzer : Item
 
     public override void Upgrade()
     {
+        if (IsMaxLevel()) return;
         ++Lv;
+
         if(1 == Lv)
         {
             _bFire = true;
             StartCoroutine(IFire());
         }
+        _waterPrefab.GetComponent<Rayzer>().Damage = Player.atk * _weight[Lv];
     }
 
     IEnumerator IFire()
@@ -73,9 +81,9 @@ class WaterRayzer : Item
         while (_bFire)
         {
             _waterPrefab.SetActive(true);
-            yield return new WaitForSeconds(1.0f);            
+            yield return new WaitForSeconds(_activateTime);            
             _waterPrefab.SetActive(false);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(_coolTime);
         }
     }
 }
