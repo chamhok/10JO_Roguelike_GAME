@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)  //적 투사체에 맞을 때 데미지 판정
     {
-        ApplyDamage.Play();
         layer_name = LayerMask.NameToLayer("Attack");
         if (GameManager.Instance.player.isDead)
             return;
@@ -82,6 +81,7 @@ public class Player : MonoBehaviour
             }
             if (collision.gameObject.layer == layer_name)
             {
+                ApplyDamage.Play();
                 OnDamage(collision.gameObject.layer); //몬스터 공격 데미지로 수정 예정
             }
         }
@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision) //적과 접촉 시 데미지 적용
     {
-        ApplyDamage.Play();
         layer_name = LayerMask.NameToLayer("Monster");
         if (GameManager.Instance.player.isDead)
             return;
@@ -102,6 +101,7 @@ public class Player : MonoBehaviour
             }
             if (collision.gameObject.layer == layer_name)
             {
+                ApplyDamage.Play();
                 OnDamage(10);
             }
         }
