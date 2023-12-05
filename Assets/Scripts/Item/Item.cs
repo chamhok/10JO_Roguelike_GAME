@@ -5,6 +5,7 @@ using UnityEngine;
 abstract class Item : MonoBehaviour
 {
     public static int MaxLevel = 5;
+
     public Define.EItemType Type
     {
         get;
@@ -21,6 +22,18 @@ abstract class Item : MonoBehaviour
     {
         get;
         set;
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnGameOver.AddListener(StopOperation);
+        GameManager.Instance.OnStageClear.AddListener(StopOperation);
+        GameManager.Instance.OnStageFail.AddListener(StopOperation);
+    }
+
+    private void StopOperation()
+    {
+        gameObject.SetActive(false);
     }
 
     public bool IsMaxLevel()

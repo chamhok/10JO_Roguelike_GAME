@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+abstract class Weapon : MonoBehaviour
 {
     [SerializeField] float _colliderRadius;
 

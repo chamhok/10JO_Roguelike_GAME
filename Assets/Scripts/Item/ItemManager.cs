@@ -24,14 +24,14 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         // Test Code
-        AddOrUpgradeItem(Define.EItemType.Stone);
+        AddOrUpgradeItem(Define.EItemType.Water);
     }
 
     private void Update()
     {
         // Test Code
         if (Input.GetKeyDown(KeyCode.I))
-            AddOrUpgradeItem(Define.EItemType.Turtle);
+            AddOrUpgradeItem(Define.EItemType.Water);
     }
 
     /// <summary>
@@ -71,7 +71,6 @@ public class ItemManager : MonoBehaviour
         {
             case Define.EItemType.Moon:
                 item = go_Item.AddComponent<MoonRotator>();
-                Debug.Log("Add Component - Moon");
                 break;
 
             case Define.EItemType.Turtle:
@@ -136,5 +135,17 @@ public class ItemManager : MonoBehaviour
             }
         }
         return items.ToArray();
+    }
+
+    /// <summary>
+    /// 쉴드를 가지고 있으면 True 를 반환 합니다. 반환과 동시에 1회 차감합니다.
+    /// </summary>
+    /// <returns></returns>
+    public bool HaveActivatedShield()
+    {
+        var shield = (Turtle)_items["Turtle"];
+        if (shield == null) return false;
+
+        return shield.Count > 0;
     }
 }

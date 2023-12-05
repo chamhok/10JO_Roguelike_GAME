@@ -8,7 +8,6 @@ class StoneItem : Item
     Thrower _thrower;
     string[] _prefabNames = { "Stone", "DoubleStone", "TripleStone" };
     int _nameIndex = 0;
-    [SerializeField] string _throwingPrefabName = "Stone";
     [SerializeField] float _armLength = 1.0f;
     [SerializeField] float _throwingSpeed = 1.0f;
     [SerializeField] float _power = 1.0f;

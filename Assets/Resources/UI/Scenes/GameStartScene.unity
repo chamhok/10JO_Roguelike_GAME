@@ -159,6 +159,7 @@ MonoBehaviour:
     level: 1
     currentExp: 0
     money: 0
+    upgradeLevel: 000000000000000000000000
 --- !u!4 &129369244
 Transform:
   m_ObjectHideFlags: 0

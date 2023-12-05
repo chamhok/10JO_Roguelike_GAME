@@ -24,6 +24,7 @@ public class Bomb : MonoBehaviour
 
     private void OnDestroy()
     {
+        Instantiate(Resources.Load<GameObject>("Effect/Bomb"), transform.position, transform.rotation);
         var go = Instantiate(_prefabBomb, transform.position, transform.rotation);
         go.GetComponent<Weapon>().Damage = _weapon.Damage * 2.0f;
     }
