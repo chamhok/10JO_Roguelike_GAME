@@ -836,7 +836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: spawnData.Array.data[5].health
@@ -1023,7 +1023,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[1].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[2].speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[0].health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[1].health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[2].health
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
@@ -1124,6 +1140,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[0].spawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[1].spawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[2].spawnTime
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
