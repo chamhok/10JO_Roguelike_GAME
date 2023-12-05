@@ -112,11 +112,12 @@ public class PlayerData
     public int money;
     public int[] upgradeLevel = new int[3] { 0, 0, 0 };
 
+
     public PlayerData()
     {
         maxHp = 100;
+        currentHp = 100;
         level = 1;
-        currentHp = 0;
         atk = 1;
         speed = 1;
         currentExp = 0;
