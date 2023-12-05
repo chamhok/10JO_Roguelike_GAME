@@ -4,69 +4,69 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-        public float speed;
-        public float health;
-        public float maxHealth;
-        public RuntimeAnimatorController[] animCon;
-        public Rigidbody2D target;
+    public float speed;
+    public float health;
+    public float maxHealth;
+    public RuntimeAnimatorController[] animCon;
+    public Rigidbody2D target;
 
-        bool isLive;
+    bool isLive;
 
-        Rigidbody2D rigid;
-        Collider2D coll;
-        Animator anim;
-        SpriteRenderer spriter;
-        WaitForFixedUpdate wait;
+    Rigidbody2D rigid;
+    Collider2D coll;
+    Animator anim;
+    SpriteRenderer spriter;
+    WaitForFixedUpdate wait;
 
-        private void Awake()
-        {
-                rigid = GetComponent<Rigidbody2D>();
-                spriter = GetComponent<SpriteRenderer>();
-                anim = GetComponent<Animator>();
-                wait = new WaitForFixedUpdate();
-                coll = GetComponent<Collider2D>();
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        wait = new WaitForFixedUpdate();
+        coll = GetComponent<Collider2D>();
 
-        }
+    }
 
-        void FixedUpdate()
-        {
-                if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) return;
-                Vector2 dirVec = target.position - rigid.position;
-                Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-                rigid.MovePosition(rigid.position + nextVec);
-                rigid.velocity = Vector2.zero;
-        }
+    void FixedUpdate()
+    {
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) return;
+        Vector2 dirVec = target.position - rigid.position;
+        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+        rigid.MovePosition(rigid.position + nextVec);
+        rigid.velocity = Vector2.zero;
+    }
 
-        private void LateUpdate()
-        {
-                if (GameManager.Instance.player.isDead) return;
+    private void LateUpdate()
+    {
+        if (GameManager.Instance.player.isDead) return;
 
-                if (!isLive) return;
-                spriter.flipX = target.position.x < rigid.position.x;
-        }
+        if (!isLive) return;
+        spriter.flipX = target.position.x < rigid.position.x;
+    }
 
-        private void OnEnable()
-        {
-                target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
-                isLive = true;
-                coll.enabled = true;
-                rigid.simulated = true;
-                spriter.sortingOrder = 2;
-                anim.SetBool("Dead", false);
-                health = maxHealth;
-        }
+    private void OnEnable()
+    {
+        target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
+        coll.enabled = true;
+        rigid.simulated = true;
+        spriter.sortingOrder = 2;
+        anim.SetBool("Dead", false);
+        health = maxHealth;
+    }
 
-        public void Init(SpawnData data)
-        {
-                anim.runtimeAnimatorController = animCon[data.spriteType];
-                speed = data.speed;
-                maxHealth = data.health;
-                health = data.health;
-        }
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
+    }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-                if (!collision.CompareTag("Weapon") || !isLive) return;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Weapon") || !isLive) return;
 
         if (collision.GetComponent<Weapon>() != null)
             health -= collision.GetComponent<Weapon>().Damage;
@@ -75,36 +75,33 @@ public class Monster : MonoBehaviour
         {
             StartCoroutine(KnockBack());
 
-                        anim.SetTrigger("Hit");
-                }
-                else
-                {
-                        isLive = false;
-                        coll.enabled = false;
-                        rigid.simulated = false;
-                        spriter.sortingOrder = 1;
-                        anim.SetBool("Dead", true);
-                        /*
-                                                GameManager.Instance.kill++;
-                                                GameManager.Instance.GetExp();*/
-                }
+            anim.SetTrigger("Hit");
         }
-
-        IEnumerator KnockBack()
+        else
         {
-                yield return wait; // 다음 하나의 물리 프레임까지 기다림
-                Vector3 playerPos = GameManager.Instance.player.transform.position;
-                Vector3 dirVec = transform.position - playerPos;
-                rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true);
         }
+    }
 
-        void Attack()
-        {
-                anim.SetTrigger("Attack");
-        }
+    IEnumerator KnockBack()
+    {
+        yield return wait; // 다음 하나의 물리 프레임까지 기다림
+        Vector3 playerPos = GameManager.Instance.player.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+    }
 
-        void Dead()
-        {
-                gameObject.SetActive(false);
-        }
+    void Attack()
+    {
+        anim.SetTrigger("Attack");
+    }
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
+    }
 }

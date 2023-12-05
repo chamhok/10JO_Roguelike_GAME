@@ -8,7 +8,7 @@ class MoonRotator : Item
     float _armLength = 1.4f;
     GameObject[] _satelite = new GameObject[4];
     int _index = 0;
-    public float speed = 10.0f;
+    public float speed = 200.0f;
 
     private void Awake()
     {

@@ -24,6 +24,7 @@ class Turtle : Item
 
         _turtle = Instantiate(Resources.Load<GameObject>("Item/Turtle"));
         _turtle.transform.parent = this.transform;
+        CheckDeffensable();
     }
 
     public override void Upgrade()

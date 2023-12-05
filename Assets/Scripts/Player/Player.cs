@@ -110,7 +110,12 @@ public class Player : MonoBehaviour
     void OnDamage(int damage)
     {
         Debug.Log("Attacked");
-        if (GetComponent<ItemManager>().HaveActivatedShield()) return;
+        if (GetComponent<ItemManager>().HaveActivatedShield())
+        {
+            gameObject.layer = 20;
+            Invoke("OffDamage", 1);
+            return;
+        }
         _sprite.color = new Color(1, 1 , 1, 0.4f);
         GameManager.Instance.player.hp -= damage;
         gameObject.layer = 20;
