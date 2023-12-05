@@ -17,10 +17,12 @@ public class UIManager : MonoBehaviour
     public static bool isUpgrade = false;
     private int currentStage;
     private int LvFlag;
-    private List<Define.EItemType> myItems = new List<Define.EItemType>() { Define.EItemType.Stone };
     private bool isAlive = true;
     private GameObject square;
+    private List<Define.EItemType> myItems = new List<Define.EItemType>() { Define.EItemType.Stone };
     private string[] itemNames = new string[] { "돌", "달", "거북이", "해", "소나무", "물", "두루미", "사슴", "불로초", "산" };
+
+    #region LifeCycle
     private void Awake()
     {
         currentStage = GameManager.stageCount;
@@ -104,6 +106,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region StartScene
     private void ShowStartData()
@@ -300,11 +303,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //신 전환 시 애니메이션?
-    private IEnumerator BetweenStartAndStage1()
-    {
-        yield return 0;
-    }
+ 
         
    
     #endregion
