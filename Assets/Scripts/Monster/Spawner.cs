@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
         /// </summary>
         private void SpawnMonsterIfTime()
         {
-                if (timer > StageSpawnDatas[GameManager.stageCount][level].spawnTime)
+                if (timer > StageSpawnDatas[GameManager.stageCount-1][level].spawnTime)
                 {
                         timer = 0;
                         Spawn();
@@ -50,11 +50,11 @@ public class Spawner : MonoBehaviour
         {
                 if (GameManager.Instance.stageLapseTime > GameManager.Instance.bossZenTime && !GameManager.Instance.bossZen)
                 {
-                        GameObject monster = GameManager.Instance.poolManager.Get(GameManager.stageCount);
+                        GameObject monster = GameManager.Instance.poolManager.Get(GameManager.stageCount-1);
                         monster.transform.localScale = new Vector3(10, 10, 1);
                         monster.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(1, 1);
                         monster.transform.position = SpawnPoint[Random.Range(1, SpawnPoint.Length)].position;
-                        monster.GetComponent<Monster>().Init(StageSpawnDatas[GameManager.stageCount][StageSpawnDatas[GameManager.stageCount].Length - 1]);
+                        monster.GetComponent<Monster>().Init(StageSpawnDatas[GameManager.stageCount-1][StageSpawnDatas[GameManager.stageCount-1].Length - 1]);
                         GameManager.Instance.bossZen = true;
                 }
         }
@@ -65,8 +65,8 @@ public class Spawner : MonoBehaviour
         private void UpdateTimerAndLevel()
         {
                 timer += Time.deltaTime;
-                level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 2f), StageSpawnDatas[GameManager.stageCount].Length - 1);
-                level = level == StageSpawnDatas[GameManager.stageCount].Length - 1 ? level - 1 : level;
+                level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 2f), StageSpawnDatas[GameManager.stageCount-1].Length - 1);
+                level = level == StageSpawnDatas[GameManager.stageCount-1].Length - 1 ? level - 1 : level;
         }
 
         /// <summary>
@@ -74,9 +74,9 @@ public class Spawner : MonoBehaviour
         /// </summary>        
         void Spawn()
         {
-                GameObject monster = GameManager.Instance.poolManager.Get(GameManager.stageCount);
+                GameObject monster = GameManager.Instance.poolManager.Get(GameManager.stageCount-1);
                 monster.transform.position = SpawnPoint[Random.Range(1, SpawnPoint.Length)].position;
-                monster.GetComponent<Monster>().Init(StageSpawnDatas[GameManager.stageCount][level]);
+                monster.GetComponent<Monster>().Init(StageSpawnDatas[GameManager.stageCount-1][level]);
         }
 }
 
