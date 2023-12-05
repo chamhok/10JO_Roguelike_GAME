@@ -75,7 +75,9 @@ public class DataManager : MonoBehaviour
         playerData = new();
         // Load data..
         var playerDataJson = PlayerPrefs.GetString(nameof(playerData));
-        playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
+        var loadedPlayerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
+        if (loadedPlayerData != null)
+            playerData = loadedPlayerData;
         Debug.Log($"{name} call {nameof(LoadData)} is success");
     }
 }
