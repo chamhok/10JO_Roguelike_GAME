@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviour
         Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
         OnGameStart.AddListener(LoadStage);
         OnStageClear.AddListener(LootAllItems);
-        //OnStageClear.AddListener(ToNextStage);
+        OnStageClear.AddListener(() => { StartCoroutine(WaitNextStage()); });
+        OnStageFail.AddListener(() => { Time.timeScale = 0; });
     }
 
     protected virtual void Start()
@@ -119,7 +120,13 @@ public class GameManager : MonoBehaviour
         Instantiate(UIManagerPrefab);
         Resources.UnloadUnusedAssets();
         bossZen = false;
-     }
+    }
+
+    IEnumerator WaitNextStage()
+    {
+        yield return new WaitForSeconds(3f);
+        ToNextStage();
+    }
 
     public static void ToNextStage()
     {

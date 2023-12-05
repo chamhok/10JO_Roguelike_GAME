@@ -41,6 +41,9 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        // [우진영] GameManager에게 이벤트 등록 ...
+        if (GameManager.Instance)
+            GameManager.Instance.OnStageFail.AddListener(ShowGameOver);
     }
 
     private void Start()
@@ -88,13 +91,14 @@ public class UIManager : MonoBehaviour
                 square.transform.Rotate(Vector3.back, 10f * Time.deltaTime);
             }
 
-            if (GameManager.Instance.player.hp <= 0&&isAlive == true)
-            {
-                isAlive = false;
-                ShowGameOver();
-            }
+            // [우진영] GameManager에서 띄우도록 변경
+            //if (GameManager.Instance.player.hp <= 0&&isAlive == true)
+            //{
+            //    isAlive = false;
+            //    ShowGameOver();
+            //}
 
-            if (Input.GetKeyDown(KeyCode.Escape) && isAlive == false)
+            if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.player.isDead)
             {
                 GameManager.stageCount = 0;
                 SceneManager.LoadScene("GameStartScene");
@@ -262,10 +266,9 @@ public class UIManager : MonoBehaviour
     //게임오버 판넬
     private void ShowGameOver()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         curUI.transform.Find("GameOver").gameObject.SetActive(true);
     }
-
     private IEnumerator ShowStageName()
     {
         if (curUI != null)
