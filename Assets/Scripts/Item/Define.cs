@@ -6,16 +6,16 @@ public class Define// : MonoBehaviour
 {
     public enum EItemType
     {
+        Stone,
         Moon,
         Turtle,
-        Stone,
         Sun,
         PineCone,
         Water,
-        ElixirHerbs,
         Crane,
-        Mountine,
         Deer,
+        ElixirHerbs,
+        Mountine,
         Max,
     }
 }

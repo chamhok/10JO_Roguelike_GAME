@@ -114,7 +114,7 @@ public class PlayerData
     public int level;
     public int currentExp;
     public int money;
-    public int[] upgradeLevel = new int[3];
+    public int[] upgradeLevel = new int[3] { 0, 0, 0 };
 
     public PlayerData()
     {
