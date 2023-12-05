@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
     private int currentStage;
     //private bool isAlive = true;
     private GameObject square;
-    private string[] itemNames = new string[] { " ", "돌", "사슴", "해", "달", "두루미", "소나무", "물", "거북이", "불로초", "산" };
 
     // [우진영] 레벨업을 한 번에 해서 아이템 선택을 연속적으로 할 수 있게 Count하는 용도로 바꿨습니다.
     public int LvFlag;
@@ -302,6 +301,7 @@ public class UIManager : MonoBehaviour
     {
         //Time.timeScale = 0;
         GameObject gameover = curUI.transform.Find("GameOver").gameObject;
+        gameover.SetActive(true);
     }
     private IEnumerator ShowStageName()
     {
