@@ -6,17 +6,22 @@ using UnityEngine;
 class Turtle : Item
 {
     int _deffensableCount = 0;
-    // int _maxDeffensableCount = 5;
-    CircleCollider2D _circleCollider2D;
+    public int Count
+    {
+        get         
+        {
+            if (_deffensableCount == 0) return 0;
+            int count = _deffensableCount--;
+            CheckDeffensable();
+            return count; 
+        }
+    }
+
     GameObject _turtle;
     private void Awake()
     {
         Type = Define.EItemType.Turtle;
 
-        _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-        if(_circleCollider2D == null) _circleCollider2D = gameObject.AddComponent<CircleCollider2D>();
-
-        _circleCollider2D.isTrigger = true;
         _turtle = Instantiate(Resources.Load<GameObject>("Item/Turtle"));
         _turtle.transform.parent = this.transform;
     }
@@ -29,15 +34,8 @@ class Turtle : Item
 
     private void CheckDeffensable()
     {
-        _circleCollider2D.enabled = _deffensableCount > 0;
+        Debug.Log($"Shield [{_deffensableCount}]");
+        //_circleCollider2D.enabled = _deffensableCount > 0;
         _turtle.SetActive(_deffensableCount > 0);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Turtle Trigger");
-        //if(collision.gameObject.tag.Compare())
-        --_deffensableCount;
-        CheckDeffensable();
     }
 }

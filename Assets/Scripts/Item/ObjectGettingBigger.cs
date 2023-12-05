@@ -13,6 +13,8 @@ public class ObjectGettingBigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localScale *= 1.1f;
+        transform.localScale += (Time.deltaTime * 20.0f * Vector3.one);
+        if (transform.localScale.x > 10.0f)
+            Destroy(gameObject);
     }
 }

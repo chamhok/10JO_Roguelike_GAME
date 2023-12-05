@@ -68,10 +68,12 @@ public class Monster : MonoBehaviour
         {
                 if (!collision.CompareTag("Weapon") || !isLive) return;
 
-                health -= collision.GetComponent<Weapon>().Damage;
-                if (health > 0)
-                {
-                        StartCoroutine(KnockBack());
+        if (collision.GetComponent<Weapon>() != null)
+            health -= collision.GetComponent<Weapon>().Damage;
+
+        if (health > 0)
+        {
+            StartCoroutine(KnockBack());
 
                         anim.SetTrigger("Hit");
                 }
