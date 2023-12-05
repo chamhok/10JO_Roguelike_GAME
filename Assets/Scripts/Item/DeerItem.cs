@@ -8,7 +8,7 @@ class DeerItem : Item
 
     [SerializeField] string _throwingPrefabName = "Horn";
     [SerializeField] float _armLength = 1.0f;
-    [SerializeField] float _throwingSpeed = 0.5f;
+    [SerializeField] float _throwingSpeed = 2.5f;
     [SerializeField] float _power = 0.2f;
 
     Vector3[] _offsets = new Vector3[3];

@@ -57,7 +57,7 @@ public class Spreader : MonoBehaviour
     {
         _muzzle.transform.localPosition = _offset * ArmLength;
         float rotZ = Mathf.Atan2(_offset.y, _offset.x) * Mathf.Rad2Deg;
-        _muzzle.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        _muzzle.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + Quaternion.Euler(0, 0, rotZ).eulerAngles);
     }
 
     private void LoadPrefab()

@@ -24,14 +24,58 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         // Test Code
-        AddOrUpgradeItem(Define.EItemType.PineCone);
+        AddOrUpgradeItem(Define.EItemType.Stone);
     }
 
     private void Update()
     {
         // Test Code
-        if (Input.GetKeyDown(KeyCode.I))
+        GetUpgradeInput();        
+    }
+
+    private void GetUpgradeInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            AddOrUpgradeItem(Define.EItemType.Moon);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            AddOrUpgradeItem(Define.EItemType.Turtle);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            AddOrUpgradeItem(Define.EItemType.Stone);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            AddOrUpgradeItem(Define.EItemType.Sun);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            AddOrUpgradeItem(Define.EItemType.PineCone);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            AddOrUpgradeItem(Define.EItemType.Water);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            AddOrUpgradeItem(Define.EItemType.ElixirHerbs);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
             AddOrUpgradeItem(Define.EItemType.Crane);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            AddOrUpgradeItem(Define.EItemType.Mountine);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            AddOrUpgradeItem(Define.EItemType.Deer);
+        }
+
     }
 
     /// <summary>

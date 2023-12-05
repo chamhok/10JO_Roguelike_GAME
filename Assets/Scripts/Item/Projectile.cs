@@ -22,7 +22,6 @@ public class Projectile : MonoBehaviour
 
     public void SetForward(Vector2 forward)
     {
-        Debug.Log("Get Forward : " + forward);
         _rigidbody2D.velocity = forward * _speed;
     }
 
