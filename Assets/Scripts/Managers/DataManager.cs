@@ -30,7 +30,6 @@ public class DataManager : MonoBehaviour
             instance = this;
             instance.Initialize();
         }
-        playerData = new PlayerData(); 
     }
 
     private void Start()
@@ -80,17 +79,13 @@ public class DataManager : MonoBehaviour
 
     public bool LoadData()
     {
-        try
-        {
-            // Load data..
-            var playerDataJson = PlayerPrefs.GetString(nameof(playerData));
-            playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-            return false;
-        }
+        // Set default data..
+        playerData = new();
+        // Load data..
+        var playerDataJson = PlayerPrefs.GetString(nameof(playerData));
+        var loadedPlayerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
+        if (loadedPlayerData != null)
+            playerData = loadedPlayerData;
         Debug.Log($"{name} call {nameof(LoadData)} is success");
         return true;
     }
@@ -109,6 +104,7 @@ public class DataManager : MonoBehaviour
 public class PlayerData
 {
     public float maxHp;
+    public float currentHp;
     public float atk;
     public float speed;
     public int level;
@@ -120,6 +116,7 @@ public class PlayerData
     {
         maxHp = 100;
         level = 1;
+        currentHp = 0;
         atk = 1;
         speed = 1;
         currentExp = 0;

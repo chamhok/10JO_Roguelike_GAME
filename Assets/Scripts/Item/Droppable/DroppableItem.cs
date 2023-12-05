@@ -30,6 +30,12 @@ public class DroppableItem : MonoBehaviour
         SetScale();
         target = GameManager.Instance?.player?.transform;
         StartCoroutine(DroppingProgress());
+        GameManager.Instance.items.Add(this);
+    }
+
+    protected virtual void OnDisable()
+    {
+        GameManager.Instance.items.Remove(this);
     }
 
     public virtual void SetScale() => transform.localScale = Vector3.one * _scale;
@@ -88,5 +94,11 @@ public class DroppableItem : MonoBehaviour
     protected virtual void OnLooting()
     {
 
+    }
+
+    public void AutoLooting()
+    {
+        target = GameManager.Instance.player.transform;
+        StartCoroutine(LootingProgress());
     }
 }

@@ -15,25 +15,23 @@ public class GameManager : MonoBehaviour
         public float bossZenTime = 5f;
         public bool bossZen = false;
 
-        /// <summary>
-        /// player 객체 참조 <br/>
-        /// 추후에 자료형을 플레이어 클래스로 바꿔야함.
-        /// </summary>
-        public Player player;
+    /// <summary>
+    /// player 객체 참조 <br/>
+    /// </summary>
+    public Player player;
 
-        /// <summary>
-        /// stage에 생성된 monster들을 담을 리스트 <br/>
-        /// 추후에 자료형을 몬스터들의 최상위 클래스로 바꿔야함.
-        /// </summary>
-        public List<Monster> monsters;
+    /// <summary>
+    /// stage에 생성된 monster들을 담을 리스트 <br/>
+    /// </summary>
+    public List<Monster> monsters;
 
-        /// <summary>
-        /// stage에 생성된 item들을 담을 리스트 <br/>
-        /// 추후에 자료형을 droppable item들의 상위 클래스로 바꿔야함.
-        /// </summary>
-        public List<DroppableItem> items;
+    /// <summary>
+    /// stage에 생성된 item들을 담을 리스트 <br/>
+    /// </summary>
+    public List<DroppableItem> items;
 
-        public PoolManager poolManager;
+    public PoolManager poolManager;
+    public UIManager uiManager;
 
         [Header("Events")]
         public UnityEvent OnGameStart;
@@ -68,12 +66,15 @@ public class GameManager : MonoBehaviour
                 }
         }
 
-        private void Initialize()
-        {
-                Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
-                OnGameStart.AddListener(LoadStage);
-                OnStageClear.AddListener(ToNextStage);
-        }
+    private void Initialize()
+    {
+        Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
+        OnGameStart.AddListener(LoadStage);
+        OnGameOver.AddListener(SavePlayerData);
+        OnStageClear.AddListener(LootAllItems);
+        OnStageClear.AddListener(() => { StartCoroutine(WaitNextStage()); });
+        OnStageFail.AddListener(() => { Time.timeScale = 0; });
+    }
 
         protected virtual void Start()
         {
@@ -90,19 +91,26 @@ public class GameManager : MonoBehaviour
                         GameOver(true);
         }
 
-        public virtual void GameOver(bool isGameClear = false)
-        {
-                Time.timeScale = 0f;
-                OnGameOver?.Invoke();
-                if (isGameClear) OnStageClear?.Invoke();
-                else OnStageFail?.Invoke();
-        }
+    public virtual void GameOver(bool isGameClear = false)
+    {
+        //Time.timeScale = 0f;
+        OnGameOver?.Invoke();
+        if (isGameClear) OnStageClear?.Invoke();
+        else OnStageFail?.Invoke();
+    }
 
-        void PlayerInstatiate()
-        {
-                var obj = Resources.Load<GameObject>("Player");
-                player = Instantiate(obj).GetComponent<Player>();
-        }
+    void PlayerInstatiate()
+    {
+        var obj = Resources.Load<GameObject>("Player");
+        player = Instantiate(obj).GetComponent<Player>();
+
+        player.level = DataManager.Instance.playerData.level;
+        player.exp = DataManager.Instance.playerData.currentExp;
+        player.money = DataManager.Instance.playerData.money;
+        player.hp = DataManager.Instance.playerData.currentHp;
+
+        // TODO: ItemManager item list도 다음 스테이지로 넘길 수 있어야함.
+    }
 
         void StageInstantiate()
         {
@@ -110,32 +118,51 @@ public class GameManager : MonoBehaviour
                         Instantiate(nextStagePrefab);
         }
 
-        private void LoadStage()
+    private void LoadStage()
+    {
+        StageInstantiate();
+        PlayerInstatiate();
+        poolManager = Instantiate(poolManagerPrefab).GetComponent<PoolManager>();
+        uiManager = Instantiate(UIManagerPrefab).GetComponent<UIManager>();
+        Resources.UnloadUnusedAssets();
+        bossZen = false;
+    }
+
+    IEnumerator WaitNextStage()
+    {
+        yield return new WaitForSeconds(3f);
+        ToNextStage();
+    }
+
+    public static void ToNextStage()
+    {
+        stageCount++;
+
+        string path = "Prefab/Stage/" + $"Stage{stageCount}Grid";
+        nextStagePrefab = Resources.Load<GameObject>(path);
+        if (nextStagePrefab != null)
+            SceneManager.LoadScene("StageScene");
+        else
         {
-                StageInstantiate();
-                PlayerInstatiate();
-                if (stageCount > 0)
-                {
-                        poolManager = Instantiate(poolManagerPrefab).GetComponent<PoolManager>();
-                }
-
-                Instantiate(UIManagerPrefab);
-                Resources.UnloadUnusedAssets();
-                bossZen = false;
+            stageCount = 0;
+            SceneManager.LoadScene("GameStartScene");
         }
+    }
 
-        public static void ToNextStage()
+    public void SavePlayerData()
+    {
+        DataManager.Instance.playerData.level = player.level;
+        DataManager.Instance.playerData.currentExp = player.exp;
+        DataManager.Instance.playerData.money = player.money;
+        DataManager.Instance.playerData.currentHp = player.hp;
+    }
+
+    public void LootAllItems()
+    {
+        for (int i = 0; i < items.Count; i++)
         {
-                stageCount++;
-
-                string path = "Prefab/Stage/" + $"Stage{stageCount}Grid";
-                nextStagePrefab = Resources.Load<GameObject>(path);
-                if (nextStagePrefab != null)
-                        SceneManager.LoadScene("StageScene");
-                else
-                {
-                        stageCount = 0;
-                        SceneManager.LoadScene("GameStartScene");
-                }
+            if (items[i] != null)
+                items[i].AutoLooting();
         }
+    }
 }

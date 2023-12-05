@@ -59,7 +59,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
+        //ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
+
+        // [우진영] 대량의 경험치 획득 시 연속적으로 아이템 선택을 위해 Update로 옮겼습니다.
+        if (exp > level * 5)
+        {
+            GameManager.Instance.uiManager.LvFlag++;
+            level++;
+            exp -= level * 5;
+            Debug.Log($"player level up, LvFlag: {GameManager.Instance.uiManager.LvFlag}");
+        }
     }
 
     private void ChangeHpBar(float hp) //현재 체력 체력바에 표시
@@ -120,6 +129,9 @@ public class Player : MonoBehaviour
         GameManager.Instance.player.hp -= damage;
         gameObject.layer = 20;
         Invoke("OffDamage", 1);
+
+        // [우진영] 데미지를 입었을 때 체력바를 갱신하게 변경
+        ChangeHpBar(hp);
     }//데미지를 입은 경우
 
     void OffDamage()
@@ -131,10 +143,5 @@ public class Player : MonoBehaviour
     public void GetExp(int _exp)
     {
         exp += _exp;
-        if(exp > level*5)
-        {
-            level++;
-            exp -= level * 5;
-        }
     }//경험치 획득 시
 }

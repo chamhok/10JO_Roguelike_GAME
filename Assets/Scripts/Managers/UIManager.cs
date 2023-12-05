@@ -16,9 +16,14 @@ public class UIManager : MonoBehaviour
     private Canvas curUI;
     public static bool isUpgrade = false;
     private int currentStage;
-    private int LvFlag;
-    private bool isAlive = true;
+    //private bool isAlive = true;
     private GameObject square;
+    private string[] itemNames = new string[] { " ", "돌", "사슴", "해", "달", "두루미", "소나무", "물", "거북이", "불로초", "산" };
+
+    // [우진영] 레벨업을 한 번에 해서 아이템 선택을 연속적으로 할 수 있게 Count하는 용도로 바꿨습니다.
+    public int LvFlag;
+    private GameObject itemSelectWindow;
+
     private List<Define.EItemType> myItems = new List<Define.EItemType>() { Define.EItemType.Stone };
     private string[] itemNames = new string[] { "돌", "달", "거북이", "해", "소나무", "물", "두루미", "사슴", "불로초", "산" };
 
@@ -46,6 +51,9 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        // [우진영] GameManager에게 이벤트 등록 ...
+        if (GameManager.Instance)
+            GameManager.Instance.OnStageFail.AddListener(ShowGameOver);
     }
 
     private void Start()
@@ -58,11 +66,12 @@ public class UIManager : MonoBehaviour
         else
         {
             StartCoroutine(ShowStageName());
+            itemSelectWindow = curUI.transform.Find("SelectItem").gameObject;
         }
-        if (currentStage > 0)
-        {
-            LvFlag = GameManager.Instance.player.level;
-        }
+        //if (currentStage > 0)
+        //{
+        //    LvFlag = GameManager.Instance.player.level;
+        //}
     }
 
     private void Update()
@@ -82,9 +91,16 @@ public class UIManager : MonoBehaviour
         {
             ShowStageData();
 
-            if (LvFlag != GameManager.Instance.player.level)
+
+            //if (LvFlag != GameManager.Instance.player.level)
+            //{
+            //    LvFlag = GameManager.Instance.player.level;
+            //    SelectItem();
+            //}
+
+            if (LvFlag > 0 && !itemSelectWindow.activeSelf)
             {
-                LvFlag = GameManager.Instance.player.level;
+                Debug.Log($"open select window, LvFlag: {LvFlag}");
                 SelectItem();
             }
 
@@ -93,13 +109,14 @@ public class UIManager : MonoBehaviour
                 square.transform.Rotate(Vector3.back, 10f * Time.deltaTime);
             }
 
-            if (GameManager.Instance.player.hp <= 0 && isAlive == true)
-            {
-                isAlive = false;
-                ShowGameOver();
-            }
+            // [우진영] GameManager에서 띄우도록 변경
+            //if (GameManager.Instance.player.hp <= 0&&isAlive == true)
+            //{
+            //    isAlive = false;
+            //    ShowGameOver();
+            //}
 
-            if (Input.GetKeyDown(KeyCode.Escape) && isAlive == false)
+            if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.player.isDead)
             {
                 GameManager.stageCount = 0;
                 SceneManager.LoadScene("GameStartScene");
@@ -229,7 +246,7 @@ public class UIManager : MonoBehaviour
     private void SelectItem()
     {
         Time.timeScale = 0;
-        curUI.transform.Find("SelectItem").gameObject.SetActive(true);
+        itemSelectWindow.SetActive(true);
 
         //업그레이드 가능한 아이템 배열 가져오기
         Define.EItemType[] upitems = GameManager.Instance.player.GetComponent<ItemManager>().GetUpgradableItems();
@@ -256,7 +273,10 @@ public class UIManager : MonoBehaviour
             //선택한 아이템 장착
             Button selectButton = select.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
             int index = i;
+            // [우진영] 창이 열릴 때마다 이벤트가 등록돼서, 기존에 등록된 리스너 Remove하도록 변경
+            selectButton.onClick.RemoveAllListeners();
             selectButton.onClick.AddListener(() => ChoiceItem(upitems[index]));
+            //선택하면 창 닫히도록
         }
     }
 
@@ -264,6 +284,9 @@ public class UIManager : MonoBehaviour
     private void ChoiceItem(Define.EItemType item)
     {
         Time.timeScale = 1;
+        LvFlag--;
+        Debug.Log($"select item, LvFlag: {LvFlag}");
+        itemSelectWindow.SetActive(false);
         curUI.transform.Find("SelectItem").gameObject.SetActive(false);
         //아이템 장착
         GameManager.Instance.player.GetComponent<ItemManager>().AddOrUpgradeItem(item);
@@ -277,10 +300,9 @@ public class UIManager : MonoBehaviour
     //게임오버 판넬
     private void ShowGameOver()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         GameObject gameover = curUI.transform.Find("GameOver").gameObject;
     }
-
     private IEnumerator ShowStageName()
     {
         if (curUI != null)

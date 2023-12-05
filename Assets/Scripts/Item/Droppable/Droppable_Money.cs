@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Droppable_Money : DroppableItem
 {
-    int value = 1;
+    public int value = 1;
     float spinTime;
     Transform sprite;
     TrailRenderer trail;
@@ -36,6 +36,6 @@ public class Droppable_Money : DroppableItem
 
     protected override void OnLooting()
     {
-
+        DataManager.Instance.playerData.money += value;
     }
 }

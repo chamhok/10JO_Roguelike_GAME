@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Droppable_EXP : DroppableItem
 {
-    int value = 1;
+    public int value = 1;
     float colorTime;
     SpriteRenderer bigCircle;
     SpriteRenderer smallCircle;
@@ -35,6 +35,6 @@ public class Droppable_EXP : DroppableItem
 
     protected override void OnLooting()
     {
-
+        GameManager.Instance.player.GetExp(value);
     }
 }

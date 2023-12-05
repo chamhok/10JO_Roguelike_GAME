@@ -18,6 +18,13 @@ public class Monster : MonoBehaviour
     SpriteRenderer spriter;
     WaitForFixedUpdate wait;
 
+    // [우진영] 드랍 아이템 연결을 위해 추가
+    public int exp;
+    public int money;
+    GameObject expPrefab;
+    GameObject moneyPrefab;
+
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -26,6 +33,8 @@ public class Monster : MonoBehaviour
         wait = new WaitForFixedUpdate();
         coll = GetComponent<Collider2D>();
 
+        expPrefab = Resources.Load<GameObject>("Item/Droppable/Droppable Exp");
+        moneyPrefab = Resources.Load<GameObject>("Item/Droppable/Droppable Money");
     }
 
     void FixedUpdate()
@@ -103,5 +112,9 @@ public class Monster : MonoBehaviour
     void Dead()
     {
         gameObject.SetActive(false);
+        var expObj = Instantiate(expPrefab, transform.position, Quaternion.identity).GetComponent<Droppable_EXP>();
+        var moneyObj = Instantiate(moneyPrefab, transform.position, Quaternion.identity).GetComponent<Droppable_Money>();
+        expObj.value = exp;
+        moneyObj.value = money;
     }
 }
