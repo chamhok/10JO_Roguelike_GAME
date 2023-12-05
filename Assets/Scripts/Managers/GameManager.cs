@@ -17,19 +17,16 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// player 객체 참조 <br/>
-    /// 추후에 자료형을 플레이어 클래스로 바꿔야함.
     /// </summary>
     public Player player;
 
     /// <summary>
     /// stage에 생성된 monster들을 담을 리스트 <br/>
-    /// 추후에 자료형을 몬스터들의 최상위 클래스로 바꿔야함.
     /// </summary>
     public List<Monster> monsters;
 
     /// <summary>
     /// stage에 생성된 item들을 담을 리스트 <br/>
-    /// 추후에 자료형을 droppable item들의 상위 클래스로 바꿔야함.
     /// </summary>
     public List<DroppableItem> items;
 
@@ -73,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
         OnGameStart.AddListener(LoadStage);
+        OnGameOver.AddListener(SavePlayerData);
         OnStageClear.AddListener(LootAllItems);
         OnStageClear.AddListener(() => { StartCoroutine(WaitNextStage()); });
         OnStageFail.AddListener(() => { Time.timeScale = 0; });
@@ -105,6 +103,13 @@ public class GameManager : MonoBehaviour
     {
         var obj = Resources.Load<GameObject>("Player");
         player = Instantiate(obj).GetComponent<Player>();
+
+        player.level = DataManager.Instance.playerData.level;
+        player.exp = DataManager.Instance.playerData.currentExp;
+        player.money = DataManager.Instance.playerData.money;
+        player.hp = DataManager.Instance.playerData.currentHp;
+
+        // TODO: ItemManager item list도 다음 스테이지로 넘길 수 있어야함.
     }
 
     void StageInstantiate()
@@ -142,6 +147,14 @@ public class GameManager : MonoBehaviour
             stageCount = 0;
             SceneManager.LoadScene("GameStartScene");
         }
+    }
+
+    public void SavePlayerData()
+    {
+        DataManager.Instance.playerData.level = player.level;
+        DataManager.Instance.playerData.currentExp = player.exp;
+        DataManager.Instance.playerData.money = player.money;
+        DataManager.Instance.playerData.currentHp = player.hp;
     }
 
     public void LootAllItems()
