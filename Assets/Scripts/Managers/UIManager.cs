@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -15,9 +17,10 @@ public class UIManager : MonoBehaviour
     public static bool isUpgrade = false;
     private int currentStage;
     private int LvFlag;
+    private List<Define.EItemType> myItems = new List<Define.EItemType>() { Define.EItemType.Stone };
     private bool isAlive = true;
     private GameObject square;
-    private string[] itemNames = new string[] { " ", "돌", "사슴", "해", "달", "두루미", "소나무", "물", "거북이", "불로초", "산" };
+    private string[] itemNames = new string[] { "돌", "달", "거북이", "해", "소나무", "물", "두루미", "사슴", "불로초", "산" };
     private void Awake()
     {
         currentStage = GameManager.stageCount;
@@ -35,7 +38,7 @@ public class UIManager : MonoBehaviour
         else
         {
             CurrentUI = Resources.Load<Canvas>("UI\\StageUI");
-            if(currentStage == 2)
+            if (currentStage == 2)
             {
                 square = Instantiate((GameObject)Resources.Load("UI\\Square"));
             }
@@ -83,12 +86,12 @@ public class UIManager : MonoBehaviour
                 SelectItem();
             }
 
-            if(currentStage == 2)
+            if (currentStage == 2)
             {
                 square.transform.Rotate(Vector3.back, 10f * Time.deltaTime);
             }
 
-            if (GameManager.Instance.player.hp <= 0&&isAlive == true)
+            if (GameManager.Instance.player.hp <= 0 && isAlive == true)
             {
                 isAlive = false;
                 ShowGameOver();
@@ -115,12 +118,29 @@ public class UIManager : MonoBehaviour
         ShowGold();
         ShowUpgradeLevel();
     }
-    
+
     //업그레이드 레벨 슬라이더 조정
     private void ShowUpgradeLevel()
     {
-        //데이터매니저에서 만들어지면 추가 가능.
-        //curUI.GetComponentsInChildren<Slider>()[0].value = DataManager.Instance.playerData.UpgradeLv[0];
+        Slider[] upgrade = curUI.GetComponentsInChildren<Slider>();
+
+        for (int i = 0; i < upgrade.Length; i++)
+        {
+            if (upgrade[i] != null)
+            {
+                upgrade[i].value = DataManager.Instance.playerData.upgradeLevel[i];
+            }
+            else
+            {
+                Debug.Log("is Null");
+            }
+
+            TMP_Text[] info = upgrade[i].GetComponentsInChildren<TMP_Text>();
+            info[0].text = "LV." + DataManager.Instance.playerData.upgradeLevel[i].ToString();
+            info[2].text = ((DataManager.Instance.playerData.upgradeLevel[i] + 1) * 100).ToString();
+        }
+
+
     }
     #endregion
 
@@ -158,6 +178,7 @@ public class UIManager : MonoBehaviour
     {
         //2분을 시작으로 줄어들도록 설정
         int remainedtime = (int)(120f - GameManager.Instance.stageLapseTime);
+        remainedtime = remainedtime <= 0 ? 0 : remainedtime;
         curUI.transform.Find("Timer").GetComponent<TMP_Text>().text = (remainedtime / 60).ToSafeString() + " : " + (remainedtime % 60).ToSafeString();
     }
 
@@ -170,7 +191,8 @@ public class UIManager : MonoBehaviour
     //경험치 표시, 최대 경험치 필요함. 일단 10으로 가정.
     private void ShowExp()
     {
-        curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.exp / GameManager.Instance.player.level * 5;
+        curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.exp;
+        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.level * 5;
     }
 
     //골드 표시
@@ -193,22 +215,10 @@ public class UIManager : MonoBehaviour
     private void ShowItem()
     {
         GameObject item = curUI.transform.Find("Items").gameObject;
-
-        //foreach(Define.EItemType i in GameManager.Instance.items)
-        //{
-        //    Image nitem = item.transform.Find($"Item{(int)i}").GetComponent<Image>();
-        //    nitem.transform.Find("ItemImage").gameObject.SetActive(true);
-        //}
-
-        for (int i = 1; i < 9; i++)
+        foreach (Define.EItemType i in myItems)
         {
-            Image nitem = item.transform.Find($"Item{i}").GetComponent<Image>();
-            var obj = nitem.transform.Find("ItemImage").gameObject;
-            if (obj != null)
-            {
-                obj.SetActive(true);
-            }
-            else Debug.Log($"{i}번째에서 문제 발생");
+            Image nitem = item.transform.Find($"Item{(int)i + 1}").GetComponent<Image>();
+            nitem.transform.Find("ItemImage").gameObject.SetActive(true);
         }
     }
 
@@ -218,45 +228,47 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
         curUI.transform.Find("SelectItem").gameObject.SetActive(true);
 
-        //랜덤 아이템 3개 생성을 위한 숫자 생성
-        int[] randomItemNum = new int[3];
-        int index = 0;
-        while (index < 3)
-        {
-            int rnum = UnityEngine.Random.Range(1, 11);
-            if (Array.IndexOf(randomItemNum, rnum) == -1)
-            {
-                randomItemNum[index] = rnum;
-                index++;
-            }
-        }
+        //업그레이드 가능한 아이템 배열 가져오기
+        Define.EItemType[] upitems = GameManager.Instance.player.GetComponent<ItemManager>().GetUpgradableItems();
+
+        //랜덤 아이템 3개 생성
+        System.Random random = new System.Random();
+        upitems = upitems.OrderBy(x => random.Next()).Take(3).ToArray();
 
         var select = curUI.transform.Find("SelectItem").gameObject;
-        for (int i = 1; i < 4; i++)
+        for (int i = 0; i < upitems.Length; i++)
         {
             //아이템 이미지 변경
-            Image selectItem = select.transform.Find($"Item{i}Border").GetComponent<Image>();
+            Image selectItem = select.transform.Find($"Item{i + 1}Border").GetComponent<Image>();
             var obj = selectItem.transform.Find("ItemImage").gameObject.GetComponent<Image>();
             if (obj != null)
             {
-                obj.sprite = Resources.Load<Sprite>($"UI\\Item\\Item{randomItemNum[i - 1]}");
+                obj.sprite = Resources.Load<Sprite>($"UI\\Item\\Item{(int)upitems[i] + 1}");
             }
 
             //아이템 이름 변경
             TMP_Text itemName = selectItem.transform.Find("ItemText").GetComponent<TMP_Text>();
-            itemName.text = itemNames[randomItemNum[i-1]];
+            itemName.text = itemNames[(int)upitems[i]];
 
-            //선택하면 창 닫히도록
-            Button selectButton = select.transform.Find($"Item{i}Border").GetComponent<Button>();
-            selectButton.onClick.AddListener(ChoiceItem);
+            //선택한 아이템 장착
+            Button selectButton = select.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
+            int index = i;
+            selectButton.onClick.AddListener(() => ChoiceItem(upitems[index]));
         }
     }
 
     //선택시 아이템 장착, 창 닫음
-    private void ChoiceItem()
+    private void ChoiceItem(Define.EItemType item)
     {
         Time.timeScale = 1;
         curUI.transform.Find("SelectItem").gameObject.SetActive(false);
+        //아이템 장착
+        GameManager.Instance.player.GetComponent<ItemManager>().AddOrUpgradeItem(item);
+        if (!myItems.Contains(item) && (int)item < 8)
+        {
+            myItems.Add(item);
+        }
+
     }
 
     //게임오버 판넬
