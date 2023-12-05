@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData:
     maxHp: 100
+    currentHp: 100
     atk: 0
     speed: 0
     level: 1
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53fabba694ba6c34688df409a4666ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LvFlag: 0
 --- !u!1 &1976512859
 GameObject:
   m_ObjectHideFlags: 0

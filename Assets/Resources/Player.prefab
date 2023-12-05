@@ -967,8 +967,12 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageOneSpawnData.Array.data[4].IsBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[4].health
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTowSpawnData.Array.data[0].health
@@ -1015,6 +1019,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageTwoSpawnData.Array.data[3].IsBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTwoSpawnData.Array.data[3].health
       value: 100
       objectReference: {fileID: 0}
@@ -1036,6 +1044,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[1].health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
+      propertyPath: StageThreeSpawnData.Array.data[2].IsBoss
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}

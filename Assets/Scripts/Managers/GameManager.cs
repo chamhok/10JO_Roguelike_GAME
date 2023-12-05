@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         private static GameObject nextStagePrefab = null;
 
         public float stageLapseTime;
-        public float bossZenTime = 5f;
+        public float bossZenTime = 20f;
         public bool bossZen = false;
 
     /// <summary>
