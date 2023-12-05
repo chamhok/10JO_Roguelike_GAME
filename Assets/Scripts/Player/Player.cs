@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private Image hpBar;
     public Rigidbody2D _rigidbody;
     public SpriteRenderer _sprite;
-    Animator anim;          //이동 애니메이션 추가 예정 
+    AudioSource ApplyDamage;
+    
     
     public float maxHp;     //최대체력
     public float hp;        //체력
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     public bool isDead;
 
     int layer_name;
+    
 
     public Player()
     {
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour
         layer_name = LayerMask.NameToLayer("Player");
         this.gameObject.layer = layer_name;
         _rigidbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        ApplyDamage = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -64,8 +67,29 @@ public class Player : MonoBehaviour
         hpBar.fillAmount = hp / maxHp;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)  //적 투사체에 맞을 때 데미지 판정
+    {
+        ApplyDamage.Play();
+        layer_name = LayerMask.NameToLayer("Attack");
+        if (GameManager.Instance.player.isDead)
+            return;
+        else
+        {
+            if (GameManager.Instance.player.hp <= 0)
+            {
+                isDead = true;
+                GameManager.Instance.GameOver();
+            }
+            if (collision.gameObject.layer == layer_name)
+            {
+                OnDamage(collision.gameObject.layer); //몬스터 공격 데미지로 수정 예정
+            }
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision) //적과 접촉 시 데미지 적용
     {
+        ApplyDamage.Play();
         layer_name = LayerMask.NameToLayer("Monster");
         if (GameManager.Instance.player.isDead)
             return;
@@ -74,27 +98,28 @@ public class Player : MonoBehaviour
             if (GameManager.Instance.player.hp <= 0)
             {
                 isDead = true;
-                anim.SetTrigger("isDead");
                 GameManager.Instance.GameOver();
             }
             if (collision.gameObject.layer == layer_name)
             {
-                OnDamage();
+                OnDamage(10);
             }
         }
     }
 
-    void OnDamage()
+    void OnDamage(int damage)
     {
         _sprite.color = new Color(1, 1 , 1, 0.4f);
-        GameManager.Instance.player.hp -= Time.deltaTime * 10;
+        GameManager.Instance.player.hp -= damage;
+        gameObject.layer = 20;
         Invoke("OffDamage", 1);
     }//데미지를 입은 경우
 
     void OffDamage()
     {
         _sprite.color = new Color(1, 1, 1, 1);
-    }
+        gameObject.layer = LayerMask.NameToLayer("Player");
+    }//데미지를 받고 일정시간 동안 무적판정
 
     public void GetExp(int _exp)
     {
