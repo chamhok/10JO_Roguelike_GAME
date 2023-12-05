@@ -16,6 +16,7 @@ public class StatUpgrade : MonoBehaviour
             DataManager.Instance.playerData.maxHp += 50;
             DataManager.Instance.playerData.upgradeLevel[0]++;
             DataManager.Instance.playerData.money -= hpPrice;
+            DataManager.Instance.SaveData();
         }
 
     }
@@ -28,6 +29,7 @@ public class StatUpgrade : MonoBehaviour
             DataManager.Instance.playerData.atk += 1;
             DataManager.Instance.playerData.upgradeLevel[1]++;
             DataManager.Instance.playerData.money -= atkPrice;
+            DataManager.Instance.SaveData();
         }
 
     }
@@ -40,6 +42,7 @@ public class StatUpgrade : MonoBehaviour
             DataManager.Instance.playerData.speed += 1;
             DataManager.Instance.playerData.upgradeLevel[2]++;
             DataManager.Instance.playerData.money -= speedPrice;
+            DataManager.Instance.SaveData();
         }
 
     }

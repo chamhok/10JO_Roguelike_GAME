@@ -276,7 +276,6 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         GameObject gameover = curUI.transform.Find("GameOver").gameObject;
-
     }
 
     private IEnumerator ShowStageName()
@@ -300,6 +299,14 @@ public class UIManager : MonoBehaviour
             Debug.LogError("curUI is null.");
         }
     }
+
+    //신 전환 시 애니메이션?
+    private IEnumerator BetweenStartAndStage1()
+    {
+        yield return 0;
+    }
+        
+   
     #endregion
 }
 
