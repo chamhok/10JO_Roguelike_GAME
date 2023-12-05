@@ -275,7 +275,8 @@ public class UIManager : MonoBehaviour
     private void ShowGameOver()
     {
         Time.timeScale = 0;
-        curUI.transform.Find("GameOver").gameObject.SetActive(true);
+        GameObject gameover = curUI.transform.Find("GameOver").gameObject;
+
     }
 
     private IEnumerator ShowStageName()

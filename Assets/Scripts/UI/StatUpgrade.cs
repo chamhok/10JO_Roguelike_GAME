@@ -5,6 +5,9 @@ using UnityEngine;
 public class StatUpgrade : MonoBehaviour
 {
     int price = 100;
+
+    //일정 금액을 내고 업그레이드 가능
+
     public void HPUpgrade()
     {
         int hpPrice = price * (DataManager.Instance.playerData.upgradeLevel[0] + 1);
@@ -40,6 +43,4 @@ public class StatUpgrade : MonoBehaviour
         }
 
     }
-
-
 }
