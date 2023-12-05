@@ -56,7 +56,10 @@ public class Thrower : MonoBehaviour
     void Start()
     {
         _muzzle.transform.localPosition = _offset * ArmLength;
+    }
 
+    private void LoadPrefab()
+    {
         string path = "Item/" + ProjectilePrefabName;
         ProjectilePrefab = Resources.Load<GameObject>(path);
     }
@@ -84,6 +87,8 @@ public class Thrower : MonoBehaviour
     public void ThrowObject()
     {
         _bFire = true;
+        LoadPrefab();
+
         StartCoroutine(IFire());
     }
 
@@ -99,7 +104,19 @@ public class Thrower : MonoBehaviour
     void SpawnPrefab()
     {
         var go = Instantiate(ProjectilePrefab, _muzzle.transform.position, _muzzle.transform.rotation);
-        go.GetComponent<Weapon>().Damage = Power;
-        go.GetComponent<Projectile>()?.SetForward(_lookDir);
+        var weapons = go.GetComponentsInChildren<Weapon>();
+        foreach (var weapon in weapons)
+        {
+            weapon.Damage = Power;
+            Debug.Log($"{weapon.gameObject.name}");
+            weapon.gameObject.GetComponent<Projectile>()?.SetForward(_lookDir);
+        }
+        //go.GetComponent<Weapon>().Damage = Power;
+        //go.GetComponent<Projectile>()?.SetForward(_lookDir);
+    }
+
+    public void Init()
+    {
+        LoadPrefab();
     }
 }

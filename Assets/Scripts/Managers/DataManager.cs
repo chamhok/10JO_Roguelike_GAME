@@ -26,10 +26,8 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-            instance.Initialize();
-        }
+        instance.Initialize();
     }
 
     private void Start()
@@ -50,13 +48,7 @@ public class DataManager : MonoBehaviour
     private void Initialize()
     {
         // 각종 정보들을 초기화
-        if (!LoadData())
-        {
-            // 불러올 수 없다면 기본값으로 세팅
-            Debug.Log($"{name} call {nameof(LoadData)} is fail. redirect {nameof(CreateDefaultData)}...");
-            CreateDefaultData();
-        }
-
+        LoadData();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -77,27 +69,14 @@ public class DataManager : MonoBehaviour
         return true;
     }
 
-    public bool LoadData()
+    public void LoadData()
     {
-        try
-        {
-            // Load data..
-            var playerDataJson = PlayerPrefs.GetString(nameof(playerData));
-            playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-            return false;
-        }
-        Debug.Log($"{name} call {nameof(LoadData)} is success");
-        return true;
-    }
-
-    public void CreateDefaultData()
-    {
-        // 모든 데이터를 기본값으로 설정...
+        // Set default data..
         playerData = new();
+        // Load data..
+        var playerDataJson = PlayerPrefs.GetString(nameof(playerData));
+        playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
+        Debug.Log($"{name} call {nameof(LoadData)} is success");
     }
 }
 
@@ -107,12 +86,13 @@ public class DataManager : MonoBehaviour
 [System.Serializable]
 public class PlayerData
 {
-    public int maxHp;
-    public int atk;
-    public int speed;
+    public float maxHp;
+    public float atk;
+    public float speed;
     public int level;
     public int currentExp;
     public int money;
+    public int[] upgradeLevel = new int[3];
 
     public PlayerData()
     {

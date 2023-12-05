@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6823596272584956358}
   - component: {fileID: 4003702763375968993}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Turtle
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.15686275}
   m_FlipX: 0

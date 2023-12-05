@@ -11,9 +11,9 @@ public class PlayerCamera : MonoBehaviour
 
     void FixedUpdate()
     {
-        //target = gameobject.findgameobjectwithtag("player");
-        //targetpos = new vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 10);
+        target = GameManager.Instance.player.gameObject;
+        targetPos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 10);
 
-        //transform.position = vector3.lerp(transform.position, targetpos, time.deltatime * cameraspeed);
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * CameraSpeed);
     }
 }

@@ -25,7 +25,13 @@ public class ItemManager : MonoBehaviour
     {
         // Test Code
         AddOrUpgradeItem(Define.EItemType.Stone);
-        AddOrUpgradeItem(Define.EItemType.Sun);
+    }
+
+    private void Update()
+    {
+        // Test Code
+        if (Input.GetKeyDown(KeyCode.I))
+            AddOrUpgradeItem(Define.EItemType.Turtle);
     }
 
     /// <summary>
@@ -101,7 +107,7 @@ public class ItemManager : MonoBehaviour
                 break;
 
             case Define.EItemType.Deer:
-                item = go_Item.AddComponent<HornThrower>();
+                item = go_Item.AddComponent<DeerItem>();
                 break;
         }
 

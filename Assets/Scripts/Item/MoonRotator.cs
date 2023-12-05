@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 class MoonRotator : Item
@@ -8,7 +10,8 @@ class MoonRotator : Item
     float _armLength = 1.0f;
     GameObject[] _satelite = new GameObject[4];
     int _index = 0;
-    public float speed = 10.0f;
+    public float speed = 200.0f;
+    float[] _weight = { 0.25f, 0.5f, 0.75f }; // 데미지 증가 시 적용할 값
 
     private void Awake()
     {
@@ -20,7 +23,6 @@ class MoonRotator : Item
             GameObject go_Moon = Instantiate(Resources.Load<GameObject>("Item/Moon"));
             go_Moon.transform.parent = this.transform;
             go_Moon.transform.localPosition = (Vector3)_offsets[i] * _armLength;
-            Debug.Log("Weapon Awake");
             _satelite[i] = go_Moon;
         }
                 
@@ -31,12 +33,6 @@ class MoonRotator : Item
         }
     }
 
-    private void Start()
-    {
-        Debug.Log("Weapon Start");
-        UpdateWeaponDamage();
-    }
-
     private void Update()
     {
         // 회전 
@@ -44,17 +40,41 @@ class MoonRotator : Item
         transform.Rotate(Vector3.forward, speed * Time.deltaTime);
     }
 
-    private void UpdateWeaponDamage()
+    private void UpdateWeaponDamage(int step)
     {
         foreach (var moon in _satelite)
         {
-            moon.GetComponent<Weapon>().Damage = 10; // Get Player Attack Status
+            moon.GetComponent<Weapon>().Damage = Player.atk * _weight[step];
         }
     }
 
     public override void Upgrade()
     {
-        _satelite[_index++].SetActive(true);
-        ++Lv;
+        if (IsMaxLevel()) return;
+
+        switch(++Lv)
+        {
+            case 1:
+                _satelite[_index++].SetActive(true);
+                UpdateWeaponDamage(0);
+                break;
+
+            case 2:
+                _satelite[_index++].SetActive(true);
+                break;
+
+            case 3:
+                UpdateWeaponDamage(1);
+                break;
+
+            case 4:
+                _satelite[_index++].SetActive(true);
+                _satelite[_index++].SetActive(true);
+                break;
+
+            case 5:
+                UpdateWeaponDamage(2);
+                break;
+        }
     }
 }

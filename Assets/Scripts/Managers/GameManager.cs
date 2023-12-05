@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private static GameObject nextStagePrefab = null;
 
     public float stageLapseTime;
+    public float bossZenTime = 5f;
+    public bool bossZen = false;
 
     /// <summary>
     /// player 객체 참조 <br/>
@@ -23,13 +25,13 @@ public class GameManager : MonoBehaviour
     /// stage에 생성된 monster들을 담을 리스트 <br/>
     /// 추후에 자료형을 몬스터들의 최상위 클래스로 바꿔야함.
     /// </summary>
-    public List<GameObject> monsters;
+    public List<Monster> monsters;
 
     /// <summary>
     /// stage에 생성된 item들을 담을 리스트 <br/>
-    /// 추후에 자료형을 dropable item들의 상위 클래스로 바꿔야함.
+    /// 추후에 자료형을 droppable item들의 상위 클래스로 바꿔야함.
     /// </summary>
-    public List<GameObject> items;
+    public List<DroppableItem> items;
 
     public PoolManager poolManager;
 
@@ -70,7 +72,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
         OnGameStart.AddListener(LoadStage);
-        OnStageClear.AddListener(ToNextStage);
+        OnStageClear.AddListener(LootAllItems);
+        //OnStageClear.AddListener(ToNextStage);
     }
 
     protected virtual void Start()
@@ -90,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public virtual void GameOver(bool isGameClear = false)
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         OnGameOver?.Invoke();
         if (isGameClear) OnStageClear?.Invoke();
         else OnStageFail?.Invoke();
@@ -115,7 +118,8 @@ public class GameManager : MonoBehaviour
         poolManager = Instantiate(poolManagerPrefab).GetComponent<PoolManager>();
         Instantiate(UIManagerPrefab);
         Resources.UnloadUnusedAssets();
-    }
+        bossZen = false;
+     }
 
     public static void ToNextStage()
     {
@@ -129,6 +133,15 @@ public class GameManager : MonoBehaviour
         {
             stageCount = 0;
             SceneManager.LoadScene("GameStartScene");
+        }
+    }
+
+    public void LootAllItems()
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] != null)
+                items[i].AutoLooting();
         }
     }
 }

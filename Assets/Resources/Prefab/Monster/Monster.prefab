@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2895685448374273831}
   - component: {fileID: 6036093984792763381}
   - component: {fileID: 2041113448673345264}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -193,7 +193,6 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   animCon:
-  - {fileID: 22100000, guid: 0d1b08c419e1e6649b0412b88ad21207, type: 2}
   - {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
   - {fileID: 22100000, guid: 050556270436d4f4288557291a1a99c0, type: 2}
   - {fileID: 22100000, guid: 12cfc8b2360c2fc4499d4f6f6607671a, type: 2}

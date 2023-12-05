@@ -37,12 +37,6 @@ class PineConeItem : Item
             _power += 0.1f;
             float damage = Player.atk * _power;
             _thrower.Power = damage;
-        }        
-
-        // _thrower.ProjectilePrefab.GetComponent<WeaponDropper>();
-        // WeaponDropper > Explosion
-        // SetSize();
-        // GetComponent<Weapon>()
-        // SetDamage;
+        }
     }
 }
