@@ -7,10 +7,13 @@ public class Monster : MonoBehaviour
     public float speed;
     public float health;
     public float maxHealth;
-    public RuntimeAnimatorController[] animCon;
-    public Rigidbody2D target;
+    public float Damege;
+    public bool IsBoss;
 
     bool isLive;
+
+    public RuntimeAnimatorController[] animCon;
+    public Rigidbody2D target;
 
     Rigidbody2D rigid;
     Collider2D coll;
@@ -62,6 +65,8 @@ public class Monster : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health;
         health = data.health;
+        Damege = data.Damege;
+        IsBoss = data.IsBoss;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +89,10 @@ public class Monster : MonoBehaviour
             rigid.simulated = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
+            if (IsBoss)
+            {
+                GameManager.Instance.GameOver(true);
+            }
         }
     }
 
