@@ -26,8 +26,10 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
-        instance.Initialize();
+            instance.Initialize();
+        }
     }
 
     private void Start()
