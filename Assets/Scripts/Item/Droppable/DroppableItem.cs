@@ -99,6 +99,6 @@ public class DroppableItem : MonoBehaviour
     public void AutoLooting()
     {
         target = GameManager.Instance.player.transform;
-        detectRange = float.MaxValue;
+        StartCoroutine(LootingProgress());
     }
 }
