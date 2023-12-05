@@ -73,11 +73,6 @@ public class Monster : MonoBehaviour
 
         if (collision.GetComponent<Weapon>() != null)
             health -= collision.GetComponent<Weapon>().Damage;
-        else if (collision.GetComponent<Rayzer>() != null) // Test Code . 나중에 Weapon 을 상속받은 Rayzer 를 만들기
-        {
-            health -= collision.GetComponent<Rayzer>().Damage;
-            Debug.Log($"Rayzer Damage : {collision.GetComponent<Rayzer>().Damage}");
-        }
 
         if (health > 0)
         {

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4168859744118911273}
-  - component: {fileID: 6292834543670114442}
   - component: {fileID: 2705283464819614176}
   - component: {fileID: 2762928491769724638}
+  - component: {fileID: 9193015735036391424}
   m_Layer: 7
   m_Name: Horn
   m_TagString: Weapon
@@ -34,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &6292834543670114442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887210584589450502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a141cac6e61163040a9e732256b87bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliderRadius: 0.5
 --- !u!114 &2705283464819614176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +100,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9193015735036391424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887210584589450502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972af0bae1aa8f647bf7b73cafc07b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider2D: {fileID: 0}
+  _damage: 0

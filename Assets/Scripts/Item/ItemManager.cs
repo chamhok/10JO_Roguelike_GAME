@@ -24,14 +24,14 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         // Test Code
-        AddOrUpgradeItem(Define.EItemType.Water);
+        AddOrUpgradeItem(Define.EItemType.PineCone);
     }
 
     private void Update()
     {
         // Test Code
         if (Input.GetKeyDown(KeyCode.I))
-            AddOrUpgradeItem(Define.EItemType.Water);
+            AddOrUpgradeItem(Define.EItemType.Crane);
     }
 
     /// <summary>

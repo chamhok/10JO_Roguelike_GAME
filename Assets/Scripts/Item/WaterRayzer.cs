@@ -73,7 +73,7 @@ class WaterRayzer : Item
             _bFire = true;
             StartCoroutine(IFire());
         }
-        _waterPrefab.GetComponent<Rayzer>().Damage = Player.atk * _weight[Lv];
+        _waterPrefab.GetComponent<Weapon>().Damage = Player.atk * _weight[Lv];
     }
 
     IEnumerator IFire()

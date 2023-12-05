@@ -111,8 +111,6 @@ public class Thrower : MonoBehaviour
             Debug.Log($"{weapon.gameObject.name}");
             weapon.gameObject.GetComponent<Projectile>()?.SetForward(_lookDir);
         }
-        //go.GetComponent<Weapon>().Damage = Power;
-        //go.GetComponent<Projectile>()?.SetForward(_lookDir);
     }
 
     public void Init()

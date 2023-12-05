@@ -4,34 +4,17 @@ using UnityEngine;
 
 abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] float _colliderRadius;
-
-    CircleCollider2D _weaponCollider;
-
+    [SerializeField] protected Collider2D _collider2D;
+    [SerializeField] float _damage;
+    
     public float Damage
     {
-        get;
-        set;
-    }
-
-
-    private void Awake()
-    {
-        _weaponCollider = GetComponent<CircleCollider2D>();
-        if(_weaponCollider == null) _weaponCollider = gameObject.AddComponent<CircleCollider2D>();
-        _weaponCollider.isTrigger = true;
-        _weaponCollider.radius = _colliderRadius;
-    }
-
-    private void Start()
-    {
-        
+        get { return _damage; }
+        set { _damage = value; }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // if( collision.gameObject.tag.Compare() )
-        // monster.ApplyDamage();
         Debug.Log($"{gameObject.name} Hit {collision.gameObject.name} : {Damage}");
     }
 }

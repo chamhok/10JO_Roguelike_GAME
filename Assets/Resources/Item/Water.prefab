@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2104534027428862857}
   - component: {fileID: 7264512068227778624}
-  - component: {fileID: 2495183645899550407}
   - component: {fileID: 1614699609266035443}
+  - component: {fileID: -8808452310067909800}
   m_Layer: 7
   m_Name: Water
   m_TagString: Weapon
@@ -86,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2495183645899550407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2743343666563175084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7ece35e07679343abd799827110cdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1614699609266035443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.88386, y: 3.0916455}
   m_EdgeRadius: 0
+--- !u!114 &-8808452310067909800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743343666563175084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3adeb8009e0c04d9dabca9a18f913a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider2D: {fileID: 0}
+  _damage: 0

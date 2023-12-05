@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6823596272584956358}
   - component: {fileID: 4003702763375968993}
   - component: {fileID: 6601873003455706274}
-  - component: {fileID: -9102952257527030201}
   - component: {fileID: 2643329600123522532}
+  - component: {fileID: 916585705976888177}
   m_Layer: 7
   m_Name: PineCone
   m_TagString: Weapon
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 240}
 --- !u!212 &4003702763375968993
 SpriteRenderer:
@@ -101,19 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _lifeTime: 2
---- !u!114 &-9102952257527030201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002944206491567321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a141cac6e61163040a9e732256b87bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliderRadius: 0.5
 --- !u!114 &2643329600123522532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +114,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Bomb
+--- !u!114 &916585705976888177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002944206491567321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972af0bae1aa8f647bf7b73cafc07b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider2D: {fileID: 0}
+  _damage: 0
