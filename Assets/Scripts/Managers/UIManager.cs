@@ -14,10 +14,14 @@ public class UIManager : MonoBehaviour
     private Canvas curUI;
     public static bool isUpgrade = false;
     private int currentStage;
-    private int LvFlag;
-    private bool isAlive = true;
+    //private bool isAlive = true;
     private GameObject square;
     private string[] itemNames = new string[] { " ", "돌", "사슴", "해", "달", "두루미", "소나무", "물", "거북이", "불로초", "산" };
+
+    // [우진영] 레벨업을 한 번에 해서 아이템 선택을 연속적으로 할 수 있게 Count하는 용도로 바꿨습니다.
+    public int LvFlag;
+    private GameObject itemSelectWindow;
+
     private void Awake()
     {
         currentStage = GameManager.stageCount;
@@ -56,11 +60,12 @@ public class UIManager : MonoBehaviour
         else
         {
             StartCoroutine(ShowStageName());
+            itemSelectWindow = curUI.transform.Find("SelectItem").gameObject;
         }
-        if (currentStage > 0)
-        {
-            LvFlag = GameManager.Instance.player.level;
-        }
+        //if (currentStage > 0)
+        //{
+        //    LvFlag = GameManager.Instance.player.level;
+        //}
     }
 
     private void Update()
@@ -80,9 +85,16 @@ public class UIManager : MonoBehaviour
         {
             ShowStageData();
 
-            if (LvFlag != GameManager.Instance.player.level)
+
+            //if (LvFlag != GameManager.Instance.player.level)
+            //{
+            //    LvFlag = GameManager.Instance.player.level;
+            //    SelectItem();
+            //}
+
+            if (LvFlag > 0 && !itemSelectWindow.activeSelf)
             {
-                LvFlag = GameManager.Instance.player.level;
+                Debug.Log($"open select window, LvFlag: {LvFlag}");
                 SelectItem();
             }
 
@@ -220,7 +232,7 @@ public class UIManager : MonoBehaviour
     private void SelectItem()
     {
         Time.timeScale = 0;
-        curUI.transform.Find("SelectItem").gameObject.SetActive(true);
+        itemSelectWindow.SetActive(true);
 
         //랜덤 아이템 3개 생성을 위한 숫자 생성
         int[] randomItemNum = new int[3];
@@ -235,11 +247,11 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        var select = curUI.transform.Find("SelectItem").gameObject;
+        //var select = curUI.transform.Find("SelectItem").gameObject;
         for (int i = 1; i < 4; i++)
         {
             //아이템 이미지 변경
-            Image selectItem = select.transform.Find($"Item{i}Border").GetComponent<Image>();
+            Image selectItem = itemSelectWindow.transform.Find($"Item{i}Border").GetComponent<Image>();
             var obj = selectItem.transform.Find("ItemImage").gameObject.GetComponent<Image>();
             if (obj != null)
             {
@@ -248,10 +260,12 @@ public class UIManager : MonoBehaviour
 
             //아이템 이름 변경
             TMP_Text itemName = selectItem.transform.Find("ItemText").GetComponent<TMP_Text>();
-            itemName.text = itemNames[randomItemNum[i-1]];
+            itemName.text = itemNames[randomItemNum[i - 1]];
 
             //선택하면 창 닫히도록
-            Button selectButton = select.transform.Find($"Item{i}Border").GetComponent<Button>();
+            Button selectButton = itemSelectWindow.transform.Find($"Item{i}Border").GetComponent<Button>();
+            // [우진영] 창이 열릴 때마다 이벤트가 등록돼서, 기존에 등록된 리스너 Remove하도록 변경
+            selectButton.onClick.RemoveAllListeners();
             selectButton.onClick.AddListener(ChoiceItem);
         }
     }
@@ -260,7 +274,9 @@ public class UIManager : MonoBehaviour
     private void ChoiceItem()
     {
         Time.timeScale = 1;
-        curUI.transform.Find("SelectItem").gameObject.SetActive(false);
+        LvFlag--;
+        Debug.Log($"select item, LvFlag: {LvFlag}");
+        itemSelectWindow.SetActive(false);
     }
 
     //게임오버 판넬

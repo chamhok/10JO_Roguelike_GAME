@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public List<DroppableItem> items;
 
     public PoolManager poolManager;
+    public UIManager uiManager;
 
     [Header("Events")]
     public UnityEvent OnGameStart;
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
         StageInstantiate();
         PlayerInstatiate();
         poolManager = Instantiate(poolManagerPrefab).GetComponent<PoolManager>();
-        Instantiate(UIManagerPrefab);
+        uiManager = Instantiate(UIManagerPrefab).GetComponent<UIManager>();
         Resources.UnloadUnusedAssets();
         bossZen = false;
     }

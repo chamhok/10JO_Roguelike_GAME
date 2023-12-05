@@ -35,6 +35,6 @@ public class Droppable_EXP : DroppableItem
 
     protected override void OnLooting()
     {
-        DataManager.Instance.playerData.currentExp += value;
+        GameManager.Instance.player.GetExp(value);
     }
 }
