@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6471101825640385141}
+  - component: {fileID: 2042488827092018617}
   m_Layer: 0
   m_Name: TripleStone
   m_TagString: Untagged
@@ -29,11 +30,23 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1787886253209171335}
-  - {fileID: 9067808821878477039}
+  - {fileID: 2550476360592345384}
   - {fileID: 4875785871868769916}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2042488827092018617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090479599895473277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae1fd8058fc99547beca243e850f555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2096440757501046714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,7 +240,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7ba0478272bb6a43b2f2c1143005ee4, type: 3}
---- !u!4 &9067808821878477039 stripped
+--- !u!4 &2550476360592345384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6823596272584956358, guid: c7ba0478272bb6a43b2f2c1143005ee4, type: 3}
   m_PrefabInstance: {fileID: 9067808821878477038}
