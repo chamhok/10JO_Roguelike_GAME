@@ -23,12 +23,16 @@ public class Spawner : MonoBehaviour
 
         void Update()
         {
-                if (GameManager.Instance.player.isDead) return; // 플레이어가 죽었으면 아무것도 실행하지 않음
-                if (GameManager.Instance.bossZen)
-                        return; // 보스가 스폰되었으면 다른 몬스터는 스폰하지 않음
-                UpdateTimerAndLevel(); // 타이머와 레벨 업데이트
-                SpawnBossIfTime(); // 시간이 되었으면 보스 스폰
-                SpawnMonsterIfTime(); // 시간이 되었으면 몬스터 스폰
+                if (GameManager.stageCount>0)
+                {
+                        if (GameManager.Instance.player.isDead) return; // 플레이어가 죽었으면 아무것도 실행하지 않음
+                        if (GameManager.Instance.bossZen)
+                                return; // 보스가 스폰되었으면 다른 몬스터는 스폰하지 않음
+                        UpdateTimerAndLevel(); // 타이머와 레벨 업데이트
+                        SpawnBossIfTime(); // 시간이 되었으면 보스 스폰
+                        SpawnMonsterIfTime(); // 시간이 되었으면 몬스터 스폰
+                }
+                
         }
 
         /// <summary>
@@ -87,4 +91,5 @@ public class SpawnData // 스폰 데이터 클래스
         public float spawnTime; // 스폰 시간
         public int health; // 체력
         public float speed; // 속도
+        public float Damege; // 대미지
 }
