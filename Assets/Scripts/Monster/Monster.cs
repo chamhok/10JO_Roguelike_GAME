@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
         public float maxHealth;
         public RuntimeAnimatorController[] animCon;
         public Rigidbody2D target;
-        
+
         bool isLive;
 
         Rigidbody2D rigid;
@@ -30,10 +30,7 @@ public class Monster : MonoBehaviour
 
         void FixedUpdate()
         {
-            
-
                 if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) return;
-
                 Vector2 dirVec = target.position - rigid.position;
                 Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
                 rigid.MovePosition(rigid.position + nextVec);
@@ -42,7 +39,7 @@ public class Monster : MonoBehaviour
 
         private void LateUpdate()
         {
-                //   if (!GameManager.Instance.player.isLive) return;
+                if (GameManager.Instance.player.isDead) return;
 
                 if (!isLive) return;
                 spriter.flipX = target.position.x < rigid.position.x;
@@ -85,10 +82,9 @@ public class Monster : MonoBehaviour
                         rigid.simulated = false;
                         spriter.sortingOrder = 1;
                         anim.SetBool("Dead", true);
-                        Dead();
-/*
-                        GameManager.Instance.kill++;
-                        GameManager.Instance.GetExp();*/
+                        /*
+                                                GameManager.Instance.kill++;
+                                                GameManager.Instance.GetExp();*/
                 }
         }
 
@@ -98,6 +94,11 @@ public class Monster : MonoBehaviour
                 Vector3 playerPos = GameManager.Instance.player.transform.position;
                 Vector3 dirVec = transform.position - playerPos;
                 rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+        }
+
+        void Attack()
+        {
+                anim.SetTrigger("Attack");
         }
 
         void Dead()

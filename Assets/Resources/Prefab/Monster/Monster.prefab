@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2895685448374273831}
   - component: {fileID: 6036093984792763381}
   - component: {fileID: 2041113448673345264}
+  - component: {fileID: 9014773347176673320}
   m_Layer: 9
   m_Name: Monster
   m_TagString: Monster
@@ -166,7 +167,7 @@ Animator:
   m_GameObject: {fileID: 1663882355329847534}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
+  m_Controller: {fileID: 22100000, guid: 25f7a818644b68042bb0c0c2a28d1550, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,3 +212,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45f812961e977c4b9185abc359ace38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9014773347176673320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663882355329847534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2888c48630fc94b84347a8c6f5be9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackPrefab: {fileID: 6180340041261621303, guid: e963698712b828342b8fa56b4decdcbb, type: 3}
