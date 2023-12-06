@@ -15,6 +15,12 @@ class Gift : Item
     {
         Type = Define.EItemType.Mountine;
 
+        _comments[0] = "돌 강화\n이동 속도 증가\n체력 회복";
+        _comments[1] = "돌 강화\n이동 속도 증가\n체력 회복";
+        _comments[2] = "돌 강화\n이동 속도 증가\n체력 회복";
+        _comments[3] = "돌 강화\n이동 속도 증가\n체력 회복";
+        _comments[4] = "돌 강화\n이동 속도 증가\n체력 회복";
+
         _itemManager = GetComponentInParent<ItemManager>();
     }
 

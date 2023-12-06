@@ -16,6 +16,12 @@ class StoneItem : Item
     {
         Type = Define.EItemType.Stone;
 
+        _comments[0] = "È¹µæ";
+        _comments[1] = "·£´ý °­È­";
+        _comments[2] = "·£´ý °­È­";
+        _comments[3] = "·£´ý °­È­";
+        _comments[4] = "·£´ý °­È­";
+
         _thrower = gameObject.AddComponent<Thrower>();
         _thrower.ProjectilePrefabName = _prefabNames[_nameIndex++];
         _thrower.ArmLength = _armLength;

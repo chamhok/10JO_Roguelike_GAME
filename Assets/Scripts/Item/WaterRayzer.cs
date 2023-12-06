@@ -25,6 +25,12 @@ class WaterRayzer : Item
     {
         Type = Define.EItemType.Water;
 
+        _comments[0] = "획득";
+        _comments[1] = "데미지 증가";
+        _comments[2] = "데미지 증가";
+        _comments[3] = "데미지 증가";
+        _comments[4] = "데미지 증가";
+
         _spawnWaterPosition = new GameObject("Spawn Water Position");
         _spawnWaterPosition.transform.parent = transform;
         _spawnWaterPosition.transform.localPosition = Vector2.right * _armLength;
