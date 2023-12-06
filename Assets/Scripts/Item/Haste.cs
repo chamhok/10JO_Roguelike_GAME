@@ -6,7 +6,6 @@ using UnityEngine;
 class Haste : Item
 {
     float _defaultPlayerSpeed;
-    //float _speedWeight;
 
     private void Awake()
     {
@@ -20,8 +19,8 @@ class Haste : Item
 
     public override void Upgrade()
     {
+        if (IsMaxLevel()) return;
         ++Lv;
-        //Player.speed = _defaultPlayerSpeed * _speedWeight;
-        Player.speed += 1;
+        Player.speed += 0.1f;
     }
 }
