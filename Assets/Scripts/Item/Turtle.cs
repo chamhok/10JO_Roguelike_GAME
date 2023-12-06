@@ -37,6 +37,13 @@ class Turtle : Item
     {
         Debug.Log($"Shield [{_deffensableCount}]");
         //_circleCollider2D.enabled = _deffensableCount > 0;
+        _property = _deffensableCount;
         _turtle.SetActive(_deffensableCount > 0);
+    }
+
+    public override void SetProperty(int val)
+    {
+        _deffensableCount = val;
+        CheckDeffensable();
     }
 }
