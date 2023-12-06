@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         speed = 1;   //이동속도 배율
         level = 1;   //현재 레벨(게임 오버, 게임 클리어 시 초기화 - 스테이지 클리어 아님)
         currentExp = 0;     //현재 exp(게임 오버, 게임 클리어 시 초기화 - 스테이지 클리어 아님)
-        maxExp = 50;
+        maxExp = 10;
         money = 0;   //현재 gold(메인화면, 스테이터스 강화 화면에서 사용하는 것으로 maxHp, atk, speed를 영구적으로 증가)
                      //증가할때 마다 필요한 money 증가
         isDead = false;
