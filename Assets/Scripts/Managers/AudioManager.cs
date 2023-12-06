@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class AudioManager : MonoBehaviour
@@ -37,6 +38,11 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        ChangeBgm();
+    }
     private void Initialize()
     {
         bgm = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
@@ -46,21 +52,33 @@ public class AudioManager : MonoBehaviour
     public void ChangeBgm()
     {
         audioSource.Stop();
-        switch(GameManager.stageCount)
+        if(SceneManager.GetActiveScene().name == "GameStartScene")
         {
-            case 0:
-                audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
-                break;
-            case 1:
-                audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_2(8Bit)");
-                break;
-            case 2:
-                audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_3(8Bit)");
-                break;
-            case 3:
-                audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_3");
-                break;
+            audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/BGM_1");
         }
+        else if(SceneManager.GetActiveScene().name == "StageScene")
+        {
+            switch (GameManager.stageCount)
+            {
+                case 1:
+                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
+                    break;
+                case 2:
+                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_2(8Bit)");
+                    break;
+                case 3:
+                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_3(8Bit)");
+                    break;
+                default:
+                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
+                    break;
+            }
+        }
+        else if(SceneManager.GetActiveScene().name == "StoryScene")
+        {
+            audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1");
+        }
+
         audioSource.Play();
     }
 }
