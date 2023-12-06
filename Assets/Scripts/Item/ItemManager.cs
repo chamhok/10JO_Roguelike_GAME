@@ -34,7 +34,7 @@ public class ItemManager : MonoBehaviour
         else
         {
             // Test Code
-            AddOrUpgradeItem(Define.EItemType.Stone);
+            // AddOrUpgradeItem(Define.EItemType.Stone);
         }
     }
 
