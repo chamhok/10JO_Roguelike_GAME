@@ -116,7 +116,7 @@ public class PlayerData
     {
         maxHp = 100;
         level = 1;
-        currentHp = 0;
+        currentHp = 100;
         atk = 1;
         speed = 1;
         currentExp = 0;
