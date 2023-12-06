@@ -131,7 +131,9 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitNextStage()
     {
         yield return new WaitForSeconds(3f);
-        ToNextStage();
+        //[연호] 바로 넘어가지 않고 컷신으로 이동하게 했습니다.
+        //ToNextStage();
+        SceneManager.LoadScene("StoryScene");
     }
 
     public static void ToNextStage()

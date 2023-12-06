@@ -11,13 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/UI/Scenes/StageScene.unity
     guid: 9ac8f25e4bfbead4695e738cded7bdad
-  - enabled: 0
-    path: Assets/Scenes/StageScene2.unity
-    guid: e8e039316a4dbb24b9dc7db075c2e04a
-  - enabled: 0
-    path: Assets/Scenes/StageScene3.unity
-    guid: ed25b363528bbde499fcc2cb2225a54d
   - enabled: 1
     path: Assets/Resources/UI/Scenes/UpgradeScene.unity
     guid: 277ad3b04975c6441b26bdf98b004b11
+  - enabled: 1
+    path: Assets/Resources/UI/Scenes/StoryScene.unity
+    guid: deb643d6633b77345b9c10b7fdf9ba8e
   m_configObjects: {}

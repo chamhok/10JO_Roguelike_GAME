@@ -7,7 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
     public void ToStageScene()
     {
-        GameManager.ToNextStage();
+        SceneManager.LoadScene("StoryScene");
     }
 
     public void ToUpgradeScene()
