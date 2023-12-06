@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         atk = playerData.atk;
         speed = playerData.speed;
         level = playerData.level;
-
         currentExp = playerData.currentExp;
         money = playerData.money;
         isDead = false;
@@ -61,10 +60,8 @@ public class Player : MonoBehaviour
     }
 
     private void Update()
-    {
-        //ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
-
-
+    { //매 프레임 플레이어 체력바 갱신 
+        ChangeHpBar(hp);
     }
 
     private void ChangeHpBar(float hp) //현재 체력 체력바에 표시
@@ -126,8 +123,6 @@ public class Player : MonoBehaviour
         gameObject.layer = 20;
         Invoke("OffDamage", 1);
 
-        // [우진영] 데미지를 입었을 때 체력바를 갱신하게 변경
-        ChangeHpBar(hp);
     }//데미지를 입은 경우
 
     void OffDamage()
