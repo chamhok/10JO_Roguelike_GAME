@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D _rigidbody;
     public SpriteRenderer _sprite;
     AudioSource ApplyDamage;
-    
-    
+
+
     public float maxHp;     //최대체력
     public float hp;        //체력
     public float atk;       //공격력 배율
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public bool isDead;
 
     int layer_name;
-    
+
 
     public Player()
     {
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         atk = playerData.atk;
         speed = playerData.speed;
         level = playerData.level;
-
         currentExp = playerData.currentExp;
         money = playerData.money;
         isDead = false;
@@ -61,10 +60,8 @@ public class Player : MonoBehaviour
     }
 
     private void Update()
-    {
-        //ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
-
-
+    { //매 프레임 플레이어 체력바 갱신 
+        ChangeHpBar(hp);
     }
 
     private void ChangeHpBar(float hp) //현재 체력 체력바에 표시
@@ -87,7 +84,7 @@ public class Player : MonoBehaviour
             if (collision.gameObject.layer == layer_name)
             {
                 ApplyDamage.Play();
-                OnDamage(collision.gameObject.layer); //몬스터 공격 데미지로 수정 예정
+                OnDamage(CheckDamage(collision)); //몬스터 공격 데미지로 수정 예정
             }
         }
     }
@@ -107,12 +104,12 @@ public class Player : MonoBehaviour
             if (collision.gameObject.layer == layer_name)
             {
                 ApplyDamage.Play();
-                OnDamage(10);
+                OnDamage(CheckDamage(collision));
             }
         }
     }
 
-    void OnDamage(int damage)
+    void OnDamage(float damage)
     {
         Debug.Log("Attacked");
         if (GetComponent<ItemManager>().HaveActivatedShield())
@@ -121,13 +118,11 @@ public class Player : MonoBehaviour
             Invoke("OffDamage", 1);
             return;
         }
-        _sprite.color = new Color(1, 1 , 1, 0.4f);
+        _sprite.color = new Color(1, 1, 1, 0.4f);
         GameManager.Instance.player.hp -= damage;
         gameObject.layer = 20;
         Invoke("OffDamage", 1);
 
-        // [우진영] 데미지를 입었을 때 체력바를 갱신하게 변경
-        ChangeHpBar(hp);
     }//데미지를 입은 경우
 
     void OffDamage()
@@ -148,4 +143,20 @@ public class Player : MonoBehaviour
             Debug.Log($"player level up, LvFlag: {GameManager.Instance.uiManager.LvFlag}");
         }
     }//경험치 획득 시
+
+    float CheckDamage(Collision2D collision)
+    {
+        float _damage = 0;
+        var obj = collision.gameObject;
+
+        if (obj.tag == "Monster")
+        {
+            _damage = obj.GetComponent<Monster>().Damege;
+        }
+        else if(obj.tag =="Attack")
+        {
+            _damage = obj.GetComponent<AttackHit>().damage;
+        }
+        return _damage;
+    }
 }

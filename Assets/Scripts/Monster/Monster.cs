@@ -76,6 +76,8 @@ public class Monster : MonoBehaviour
         health = data.health;
         Damege = data.Damege;
         IsBoss = data.IsBoss;
+        exp = data.exp;
+        money = data.money;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

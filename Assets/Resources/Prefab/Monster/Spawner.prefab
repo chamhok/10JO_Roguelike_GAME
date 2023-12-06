@@ -1127,7 +1127,7 @@ Transform:
   - {fileID: 8117880758004275302}
   - {fileID: 2297724981076331160}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9063443393631102670
 MonoBehaviour:
@@ -1141,28 +1141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f27a631d57d734409542c1772390df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spqwnPoint: []
-  spawnData:
-  - spriteType: 0
-    spawnTime: 0.02
-    health: 10
-    speed: 1.5
-  - spriteType: 1
-    spawnTime: 0.05
-    health: 15
-    speed: 2.5
-  - spriteType: 2
-    spawnTime: 0.05
-    health: 10
-    speed: 3
-  - spriteType: 3
-    spawnTime: 0.05
-    health: 10
-    speed: 3
-  - spriteType: 4
-    spawnTime: 0.05
-    health: 10
-    speed: 0.5
+  SpawnPoint: []
+  StageOneSpawnData: []
+  StageTwoSpawnData: []
+  StageThreeSpawnData: []
 --- !u!1 &6778542791408219207
 GameObject:
   m_ObjectHideFlags: 0
