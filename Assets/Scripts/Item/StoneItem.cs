@@ -9,7 +9,7 @@ class StoneItem : Item
     string[] _prefabNames = { "Stone", "DoubleStone", "TripleStone" };
     int _nameIndex = 0;
     [SerializeField] float _armLength = 1.0f;
-    [SerializeField] float _throwingSpeed = 1.0f;
+    [SerializeField] float _throwingSpeed = 1.5f;
     [SerializeField] float _power = 1.0f;
 
     private void Awake()
@@ -74,7 +74,7 @@ class StoneItem : Item
 
     private void PowerUp()
     {
-        _power += 0.1f;
+        _power += 0.3f;
         float damage = Player.atk * _power;
         _thrower.Power = damage;
     }
@@ -98,7 +98,8 @@ class StoneItem : Item
 
     public override void SetProperty(int val)
     {
-        Debug.Log("Stone Set");
+        Debug.Log($"Stone Set {val}");
+        ++Lv;
         int[] levels = new int[3];
         levels[0] = val / 100;
         val %= 100;
@@ -111,7 +112,10 @@ class StoneItem : Item
             for(int j = 0; j < levels[i]; ++j)
             {
                 RandomUpgrade(i);
+                ++Lv;
             }
         }
+        Debug.Log($"Stone Level {Lv}");
+        _thrower.ThrowObject();
     }
 }

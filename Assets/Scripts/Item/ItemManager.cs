@@ -27,6 +27,7 @@ public class ItemManager : MonoBehaviour
         GameManager.Instance.SaveNextData.AddListener(() => { DataManager.Instance.ItemDict = _items; });
         if (DataManager.Instance.ItemDict != null && DataManager.Instance.ItemDict.Count > 0)
         {
+            Debug.Log("Load Item Setting");
             Dictionary<string, int> dict = (Dictionary<string, int>)DataManager.Instance.ItemDict;
             foreach (var e in dict)
                 _items[e.Key].SetProperty(e.Value);
@@ -34,7 +35,7 @@ public class ItemManager : MonoBehaviour
         else
         {
             // Test Code
-            AddOrUpgradeItem(Define.EItemType.Stone);
+            // AddOrUpgradeItem(Define.EItemType.Stone);
         }
     }
 

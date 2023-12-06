@@ -19,7 +19,7 @@ class WaterRayzer : Item
     bool _bFire;
 
     // 데미지 배율
-    float[] _weight = { 0.0f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
+    float[] _weight = { 0.0f, 0.8f, 1.0f, 1.2f, 1.3f, 1.5f };
 
     private void Awake()
     {

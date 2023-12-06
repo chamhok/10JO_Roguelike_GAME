@@ -9,7 +9,7 @@ class PineConeItem : Item
     [SerializeField] string _throwingPrefabName = "PineCone";
     [SerializeField] float _armLength = 1.0f;
     [SerializeField] float _throwingSpeed = 0.5f;
-    [SerializeField] float _power = 0.5f;
+    [SerializeField] float _power = 1.0f;
 
     private void Awake()
     {
@@ -34,9 +34,11 @@ class PineConeItem : Item
         }
         else
         {
-            _power += 0.1f;
+            _power += 0.25f;
             float damage = Player.atk * _power;
-            _thrower.Power = damage;
+
+            _throwingSpeed += 0.25f;
+            _thrower.FireRate = _throwingSpeed;
         }        
     }
 }
