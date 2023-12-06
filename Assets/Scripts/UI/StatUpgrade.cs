@@ -26,7 +26,7 @@ public class StatUpgrade : MonoBehaviour
         int atkPrice = price * (DataManager.Instance.playerData.upgradeLevel[1] + 1);
         if (DataManager.Instance.playerData.upgradeLevel[1] < 5 && DataManager.Instance.playerData.money >= atkPrice)
         {
-            DataManager.Instance.playerData.atk += 1;
+            DataManager.Instance.playerData.atk += 2;
             DataManager.Instance.playerData.upgradeLevel[1]++;
             DataManager.Instance.playerData.money -= atkPrice;
             DataManager.Instance.SaveData();
@@ -39,7 +39,7 @@ public class StatUpgrade : MonoBehaviour
         int speedPrice = price * (DataManager.Instance.playerData.upgradeLevel[2] + 1);
         if (DataManager.Instance.playerData.upgradeLevel[2] < 5 && DataManager.Instance.playerData.money >= speedPrice)
         {
-            DataManager.Instance.playerData.speed += 1;
+            DataManager.Instance.playerData.speed += 0.1f;
             DataManager.Instance.playerData.upgradeLevel[2]++;
             DataManager.Instance.playerData.money -= speedPrice;
             DataManager.Instance.SaveData();

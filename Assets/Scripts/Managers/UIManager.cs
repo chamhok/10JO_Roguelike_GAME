@@ -90,13 +90,6 @@ public class UIManager : MonoBehaviour
         {
             ShowStageData();
 
-
-            //if (LvFlag != GameManager.Instance.player.level)
-            //{
-            //    LvFlag = GameManager.Instance.player.level;
-            //    SelectItem();
-            //}
-
             if (LvFlag > 0 && !itemSelectWindow.activeSelf)
             {
                 Debug.Log($"open select window, LvFlag: {LvFlag}");
@@ -107,13 +100,6 @@ public class UIManager : MonoBehaviour
             {
                 square.transform.Rotate(Vector3.back, 10f * Time.deltaTime);
             }
-
-            // [우진영] GameManager에서 띄우도록 변경
-            //if (GameManager.Instance.player.hp <= 0&&isAlive == true)
-            //{
-            //    isAlive = false;
-            //    ShowGameOver();
-            //}
 
             if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.player.isDead)
             {
@@ -269,7 +255,6 @@ public class UIManager : MonoBehaviour
             TMP_Text itemName = selectItem.transform.Find("ItemText").GetComponent<TMP_Text>();
             itemName.text = itemNames[(int)upitems[i]];
 
-            //선택한 아이템 장착
             Button selectButton = select.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
             int index = i;
             // [우진영] 창이 열릴 때마다 이벤트가 등록돼서, 기존에 등록된 리스너 Remove하도록 변경
@@ -284,22 +269,20 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1;
         LvFlag--;
-        Debug.Log($"select item, LvFlag: {LvFlag}");
         itemSelectWindow.SetActive(false);
         curUI.transform.Find("SelectItem").gameObject.SetActive(false);
+
         //아이템 장착
         GameManager.Instance.player.GetComponent<ItemManager>().AddOrUpgradeItem(item);
         if (!myItems.Contains(item) && (int)item < 8)
         {
             myItems.Add(item);
         }
-
     }
 
     //게임오버 판넬
     private void ShowGameOver()
     {
-        //Time.timeScale = 0;
         GameObject gameover = curUI.transform.Find("GameOver").gameObject;
         gameover.SetActive(true);
     }
