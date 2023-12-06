@@ -17,6 +17,12 @@ class DeerItem : Item
     {
         Type = Define.EItemType.Deer;
 
+        _comments[0] = "획득";
+        _comments[1] = "데미지 증가";
+        _comments[2] = "연사 속도 증가";
+        _comments[3] = "데미지 증가";
+        _comments[4] = "연사 속도 증가";
+
         _offsets[0] = new Vector3(1, 1, 0);
         _offsets[0].Normalize();
         _offsets[1] = Vector3.right;

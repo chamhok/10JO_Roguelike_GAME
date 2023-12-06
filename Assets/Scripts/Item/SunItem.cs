@@ -13,6 +13,12 @@ class SunItem : Item
     {
         Type = Define.EItemType.Sun;
 
+        _comments[0] = "획득";
+        _comments[1] = "데미지 증가";
+        _comments[2] = "데미지 증가";
+        _comments[3] = "데미지 증가";
+        _comments[4] = "데미지 증가";
+
         _thrower = gameObject.AddComponent<Thrower>();
         _thrower.ProjectilePrefabName = _throwingPrefabName;
         _thrower.FireRate = _throwingSpeed;

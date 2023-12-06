@@ -5,6 +5,11 @@ using UnityEngine;
 abstract class Item : MonoBehaviour
 {
     public static int MaxLevel = 5;
+    protected string[] _comments = new string[5];
+    public string[] Comments
+    {
+        get;
+    }
 
     public Define.EItemType Type
     {
