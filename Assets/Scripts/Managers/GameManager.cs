@@ -112,6 +112,9 @@ public class GameManager : MonoBehaviour
             player.currentExp = DataManager.Instance.playerData.currentExp;
             player.money = DataManager.Instance.playerData.money;
             player.hp = DataManager.Instance.playerData.currentHp;
+            player.maxHp = DataManager.Instance.playerData.maxHp;
+            player.atk = DataManager.Instance.playerData.atk;
+            player.speed = DataManager.Instance.playerData.speed;
         }
     }
 
