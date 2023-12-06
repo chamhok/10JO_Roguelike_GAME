@@ -201,8 +201,8 @@ MonoBehaviour:
   - {fileID: 22100000, guid: afe929eaf66e6014ba7d0ee4acb6707c, type: 2}
   - {fileID: 22100000, guid: 0cfc45d68b24a4a4eb9114af2096b746, type: 2}
   target: {fileID: 0}
-  exp: 100
-  money: 100
+  exp: 0
+  money: 0
 --- !u!114 &2041113448673345264
 MonoBehaviour:
   m_ObjectHideFlags: 0
