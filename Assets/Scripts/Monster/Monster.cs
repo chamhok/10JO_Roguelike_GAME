@@ -100,10 +100,6 @@ public class Monster : MonoBehaviour
             rigid.simulated = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
-            if (IsBoss)
-            {
-                GameManager.Instance.GameOver(true);
-            }
         }
     }
 
@@ -127,5 +123,7 @@ public class Monster : MonoBehaviour
         var moneyObj = Instantiate(moneyPrefab, transform.position, Quaternion.identity).GetComponent<Droppable_Money>();
         expObj.value = exp;
         moneyObj.value = money;
+        if (IsBoss)
+            GameManager.Instance.GameOver(true);
     }
 }

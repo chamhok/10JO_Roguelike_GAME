@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
     public UnityEvent OnStageClear;
     public UnityEvent OnStageFail;
-    public UnityEvent SaveNextData;
+    public UnityEvent NextSceneDataSaveHandler;
 
     [Header("Prefabs")]
     public GameObject poolManagerPrefab;
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         OnStageClear.AddListener(LootAllItems);
         OnStageClear.AddListener(() => { StartCoroutine(WaitNextStage()); });
         OnStageFail.AddListener(() => { Time.timeScale = 0; });
-        SaveNextData.AddListener(SavePlayerData);
+        NextSceneDataSaveHandler.AddListener(SavePlayerData);
     }
 
     protected virtual void Start()
@@ -113,7 +113,6 @@ public class GameManager : MonoBehaviour
             player.money = DataManager.Instance.playerData.money;
             player.hp = DataManager.Instance.playerData.currentHp;
         }
-        // TODO: ItemManager item list도 다음 스테이지로 넘길 수 있어야함.
     }
 
     void StageInstantiate()
