@@ -22,6 +22,11 @@ class StoneItem : Item
         _thrower.FireRate = _throwingSpeed;
     }
 
+    private void Start()
+    {
+        Upgrade();
+    }
+
     public override void Upgrade()
     {
         if (IsMaxLevel()) return;
@@ -42,18 +47,26 @@ class StoneItem : Item
     {
         // 연사속도, 데미지, 수량
         int random = Random.Range(0, 3);
-        Debug.Log("Stone Upgrade : " + random);
-        switch(random)
+        RandomUpgrade(random);
+    }
+
+    private void RandomUpgrade(int type)
+    {
+        Debug.Log("Stone Upgrade : " + type);
+        switch (type)
         {
             case 0: // 속도
+                _property += 100;
                 PowerUp();
                 break;
 
             case 1: // 데미지
+                _property += 10;
                 SpeedUp();
                 break;
 
             case 2: // 수량
+                _property += 1;
                 QuantityUp();
                 break;
         }
@@ -81,5 +94,24 @@ class StoneItem : Item
         }
         _thrower.ProjectilePrefabName = _prefabNames[_nameIndex++];
         _thrower.Init();
+    }
+
+    public override void SetProperty(int val)
+    {
+        Debug.Log("Stone Set");
+        int[] levels = new int[3];
+        levels[0] = val / 100;
+        val %= 100;
+        levels[1] = val / 10;
+        val %= 10;
+        levels[2] = val / 1;
+
+        for(int i = 0; i < 3; ++i)
+        {
+            for(int j = 0; j < levels[i]; ++j)
+            {
+                RandomUpgrade(i);
+            }
+        }
     }
 }

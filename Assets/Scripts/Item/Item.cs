@@ -24,6 +24,17 @@ abstract class Item : MonoBehaviour
         set;
     }
 
+    protected int _property = 0;
+
+    public int Property
+    {
+        get
+        {
+            if (0 == _property) return Lv;
+            else return _property;
+        }
+    }
+
     private void Start()
     {
         //GameManager.Instance.OnGameOver.AddListener(StopOperation);
@@ -42,4 +53,12 @@ abstract class Item : MonoBehaviour
     }
 
     public abstract void Upgrade();
+
+    public virtual void SetProperty(int val)
+    {
+        for(int i = 0; i < val; ++i)
+        {
+            Upgrade();
+        }        
+    }
 }

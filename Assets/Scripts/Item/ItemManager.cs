@@ -24,13 +24,12 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.OnStageClear.AddListener(() => { DataManager.Instance.ItemDict = _items; });
+        GameManager.Instance.SaveNextData.AddListener(() => { DataManager.Instance.ItemDict = _items; });
         if (DataManager.Instance.ItemDict != null && DataManager.Instance.ItemDict.Count > 0)
         {
             Dictionary<string, int> dict = (Dictionary<string, int>)DataManager.Instance.ItemDict;
             foreach (var e in dict)
-                for (int i = 0; i < e.Value; i++)
-                    _items[e.Key].Upgrade();
+                _items[e.Key].SetProperty(e.Value);
         }
         else
         {
