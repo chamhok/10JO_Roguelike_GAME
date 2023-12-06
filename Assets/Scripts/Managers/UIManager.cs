@@ -66,6 +66,42 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(ShowStageName());
             itemSelectWindow = curUI.transform.Find("SelectItem").gameObject;
+
+            var myDict = (Dictionary<string, int>)DataManager.Instance.ItemDict;
+            foreach (var item in myDict)
+            {
+                if(item.Value > 0)
+                {
+                    switch(item.Key)
+                    {
+                        case "Stone":
+                            myItems.Add(Define.EItemType.Stone);
+                            break;
+                        case "Moon":
+                            myItems.Add(Define.EItemType.Moon);
+                            break;
+                        case "Sun":
+                            myItems.Add(Define.EItemType.Sun);
+                            break;
+                        case "PineCone":
+                            myItems.Add(Define.EItemType.PineCone);
+                            break;
+                        case "Water":
+                            myItems.Add(Define.EItemType.Water);
+                            break;
+                        case "Crane":
+                            myItems.Add(Define.EItemType.Crane);
+                            break;
+                        case "Deer":
+                            myItems.Add(Define.EItemType.Deer);
+                            break;
+                        default: break;
+
+
+                    }
+                }
+            }
+            myItems = myItems.OrderBy(x => (int)x < 8).Distinct().ToList();
         }
         //if (currentStage > 0)
         //{
@@ -274,6 +310,8 @@ public class UIManager : MonoBehaviour
 
         //아이템 장착
         GameManager.Instance.player.GetComponent<ItemManager>().AddOrUpgradeItem(item);
+
+        //UI에도 장착
         if (!myItems.Contains(item) && (int)item < 8)
         {
             myItems.Add(item);
@@ -308,9 +346,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
- 
-        
-   
+
+
+
     #endregion
 
 }
