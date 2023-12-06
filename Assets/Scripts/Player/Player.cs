@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D _rigidbody;
     public SpriteRenderer _sprite;
     AudioSource ApplyDamage;
-    
-    
+
+
     public float maxHp;     //최대체력
     public float hp;        //체력
     public float atk;       //공격력 배율
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public bool isDead;
 
     int layer_name;
-    
+
 
     public Player()
     {
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
             if (collision.gameObject.layer == layer_name)
             {
                 ApplyDamage.Play();
-                OnDamage(collision.gameObject.layer); //몬스터 공격 데미지로 수정 예정
+                OnDamage(CheckDamage(collision)); //몬스터 공격 데미지로 수정 예정
             }
         }
     }
@@ -107,12 +107,12 @@ public class Player : MonoBehaviour
             if (collision.gameObject.layer == layer_name)
             {
                 ApplyDamage.Play();
-                OnDamage(10);
+                OnDamage(CheckDamage(collision));
             }
         }
     }
 
-    void OnDamage(int damage)
+    void OnDamage(float damage)
     {
         Debug.Log("Attacked");
         if (GetComponent<ItemManager>().HaveActivatedShield())
@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
             Invoke("OffDamage", 1);
             return;
         }
-        _sprite.color = new Color(1, 1 , 1, 0.4f);
+        _sprite.color = new Color(1, 1, 1, 0.4f);
         GameManager.Instance.player.hp -= damage;
         gameObject.layer = 20;
         Invoke("OffDamage", 1);
@@ -148,4 +148,20 @@ public class Player : MonoBehaviour
             Debug.Log($"player level up, LvFlag: {GameManager.Instance.uiManager.LvFlag}");
         }
     }//경험치 획득 시
+
+    float CheckDamage(Collision2D collision)
+    {
+        float _damage = 0;
+        var obj = collision.gameObject;
+
+        if (obj.tag == "Monster")
+        {
+            _damage = obj.GetComponent<Monster>().Damege;
+        }
+        else if(obj.tag =="Attack")
+        {
+            _damage = obj.GetComponent<AttackHit>().damage;
+        }
+        return _damage;
+    }
 }
