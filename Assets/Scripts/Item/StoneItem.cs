@@ -10,7 +10,7 @@ class StoneItem : Item
     int _nameIndex = 0;
     [SerializeField] float _armLength = 1.0f;
     [SerializeField] float _throwingSpeed = 1.5f;
-    [SerializeField] float _power = 1.0f;
+    [SerializeField] float _power = 2.0f;
 
     private void Awake()
     {

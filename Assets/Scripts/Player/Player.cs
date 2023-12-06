@@ -22,9 +22,9 @@ public class Player : MonoBehaviour
     public int maxExp;
     public int money;       //µ·
     public bool isDead;
-
+    
     int layer_name;
-
+    private float _expWeight = 1.5f;
 
     public Player()
     {
@@ -134,12 +134,13 @@ public class Player : MonoBehaviour
     public void GetExp(int _exp)
     {
         currentExp += _exp;
-        while (currentExp > maxExp)
+        while (currentExp >= maxExp)
         {
             GameManager.Instance.uiManager.LvFlag++;
             level++;
             currentExp -= maxExp;
-            maxExp = (int)(1.2f * maxExp);
+            maxExp = (int)(_expWeight * maxExp);
+            _expWeight *= 1.2f;
             Debug.Log($"player level up, LvFlag: {GameManager.Instance.uiManager.LvFlag}");
         }
     }//°æÇèÄ¡ È¹µæ ½Ã

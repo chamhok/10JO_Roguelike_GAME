@@ -5,11 +5,11 @@ using UnityEngine;
 class MoonRotator : Item
 {
     Vector2[] _offsets = { Vector2.up, Vector2.down, Vector2.right, Vector2.left };
-    float _armLength = 1.4f;
+    float _armLength = 2.0f;
     GameObject[] _satelite = new GameObject[4];
     int _index = 0;
-    public float speed = 200.0f;
-    float[] _weight = { 0.25f, 0.5f, 0.75f };
+    public float speed = 350.0f;
+    float[] _weight = { 1.0f, 1.5f, 2.0f };
 
     private void Awake()
     {

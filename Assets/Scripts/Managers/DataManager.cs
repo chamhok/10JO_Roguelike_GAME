@@ -141,7 +141,7 @@ public class PlayerData
         level = 1;
         atk = 1;
         speed = 1;
-        maxExp = 50;
+        maxExp = 10;
         currentExp = 0;
         money = 0;
     }
@@ -150,7 +150,7 @@ public class PlayerData
     {
         currentHp = maxHp;
         level = 1;
-        maxExp = 50;
+        maxExp = 10;
         currentExp = 0;
         speed = 1;
         atk = 1;
