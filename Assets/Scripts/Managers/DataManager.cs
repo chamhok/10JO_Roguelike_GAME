@@ -20,7 +20,7 @@ public class DataManager : MonoBehaviour
             {
                 foreach (var e in dict)
                 {
-                    _items.Add(e.Key, e.Value.Lv);
+                    _items.Add(e.Key, e.Value.Property);
                 }
             }
         }

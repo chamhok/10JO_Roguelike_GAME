@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 class Gift : Item
 {
     ItemManager _itemManager;
+    Define.EItemType[] _types = new Define.EItemType[] {
+        Define.EItemType.Stone, 
+        Define.EItemType.ElixirHerbs, 
+        Define.EItemType.PineCone };
 
     private void Awake()
     {
@@ -15,8 +20,9 @@ class Gift : Item
 
     public override void Upgrade()
     {
-        _itemManager.AddOrUpgradeItem(Define.EItemType.ElixirHerbs);
-        _itemManager.AddOrUpgradeItem(Define.EItemType.Stone);
-        _itemManager.AddOrUpgradeItem(Define.EItemType.PineCone);
+        foreach(var type in _types)
+        {
+            _itemManager.AddOrUpgradeItem(type);
+        }
     }
 }
