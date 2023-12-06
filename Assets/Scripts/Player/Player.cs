@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     public float atk;       //공격력 배율
     public float speed;     //이동속도 배율
     public int level;       //레벨
-    public int exp;         //경험치   
+    public int currentExp;  //경험치   
+    public int maxExp;
     public int money;       //돈
     public bool isDead;
 
@@ -32,7 +33,8 @@ public class Player : MonoBehaviour
         atk = 1;     //공격력 배율(무기 데미지 * atk)
         speed = 1;   //이동속도 배율
         level = 1;   //현재 레벨(게임 오버, 게임 클리어 시 초기화 - 스테이지 클리어 아님)
-        exp = 0;     //현재 exp(게임 오버, 게임 클리어 시 초기화 - 스테이지 클리어 아님)
+        currentExp = 0;     //현재 exp(게임 오버, 게임 클리어 시 초기화 - 스테이지 클리어 아님)
+        maxExp = 50;
         money = 0;   //현재 gold(메인화면, 스테이터스 강화 화면에서 사용하는 것으로 maxHp, atk, speed를 영구적으로 증가)
                      //증가할때 마다 필요한 money 증가
         isDead = false;
@@ -44,7 +46,8 @@ public class Player : MonoBehaviour
         atk = playerData.atk;
         speed = playerData.speed;
         level = playerData.level;
-        exp = playerData.currentExp;
+
+        currentExp = playerData.currentExp;
         money = playerData.money;
         isDead = false;
     }
@@ -61,14 +64,7 @@ public class Player : MonoBehaviour
     {
         //ChangeHpBar(hp); //매 프레임 플레이어 체력바 갱신 
 
-        // [우진영] 대량의 경험치 획득 시 연속적으로 아이템 선택을 위해 Update로 옮겼습니다.
-        if (exp > level * 5)
-        {
-            GameManager.Instance.uiManager.LvFlag++;
-            level++;
-            exp -= level * 5;
-            Debug.Log($"player level up, LvFlag: {GameManager.Instance.uiManager.LvFlag}");
-        }
+
     }
 
     private void ChangeHpBar(float hp) //현재 체력 체력바에 표시
@@ -142,6 +138,14 @@ public class Player : MonoBehaviour
 
     public void GetExp(int _exp)
     {
-        exp += _exp;
+        currentExp += _exp;
+        while (currentExp > maxExp)
+        {
+            GameManager.Instance.uiManager.LvFlag++;
+            level++;
+            currentExp -= maxExp;
+            maxExp = (int)(1.2f * maxExp);
+            Debug.Log($"player level up, LvFlag: {GameManager.Instance.uiManager.LvFlag}");
+        }
     }//경험치 획득 시
 }

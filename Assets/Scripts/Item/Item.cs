@@ -26,9 +26,9 @@ abstract class Item : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnGameOver.AddListener(StopOperation);
-        GameManager.Instance.OnStageClear.AddListener(StopOperation);
-        GameManager.Instance.OnStageFail.AddListener(StopOperation);
+        //GameManager.Instance.OnGameOver.AddListener(StopOperation);
+        //GameManager.Instance.OnStageClear.AddListener(StopOperation);
+        //GameManager.Instance.OnStageFail.AddListener(StopOperation);
     }
 
     private void StopOperation()
