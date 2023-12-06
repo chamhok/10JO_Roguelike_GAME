@@ -10,11 +10,17 @@ class StoneItem : Item
     int _nameIndex = 0;
     [SerializeField] float _armLength = 1.0f;
     [SerializeField] float _throwingSpeed = 1.5f;
-    [SerializeField] float _power = 1.0f;
+    [SerializeField] float _power = 2.0f;
 
     private void Awake()
     {
         Type = Define.EItemType.Stone;
+
+        _comments[0] = "È¹µæ";
+        _comments[1] = "·£´ý °­È­";
+        _comments[2] = "·£´ý °­È­";
+        _comments[3] = "·£´ý °­È­";
+        _comments[4] = "·£´ý °­È­";
 
         _thrower = gameObject.AddComponent<Thrower>();
         _thrower.ProjectilePrefabName = _prefabNames[_nameIndex++];

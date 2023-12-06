@@ -11,6 +11,12 @@ class Haste : Item
     {
         Type = Define.EItemType.Crane;
 
+        _comments[0] = "이동 속도 증가";
+        _comments[1] = "이동 속도 증가";
+        _comments[2] = "이동 속도 증가";
+        _comments[3] = "이동 속도 증가";
+        _comments[4] = "이동 속도 증가";
+
         if (Player)
         {
             _defaultPlayerSpeed = Player.speed;
