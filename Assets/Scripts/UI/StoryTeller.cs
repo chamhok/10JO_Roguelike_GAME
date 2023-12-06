@@ -52,9 +52,7 @@ public class StoryTeller : MonoBehaviour
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 검수지옥으로 넘어간다"));
-        yield return new WaitForSecondsRealtime(4);
-
-        storyText.color = newcolor;
+        yield return new WaitForSecondsRealtime(3);
         GameManager.ToNextStage();
     }
 
@@ -66,9 +64,8 @@ public class StoryTeller : MonoBehaviour
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 나태지옥으로 넘어간다"));
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSecondsRealtime(3);
 
-        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
@@ -80,9 +77,8 @@ public class StoryTeller : MonoBehaviour
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 흑암지옥으로 넘어간다"));
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSecondsRealtime(3);
 
-        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
@@ -94,9 +90,8 @@ public class StoryTeller : MonoBehaviour
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 처음 화면으로 넘어간다"));
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSecondsRealtime(3);
 
-        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
@@ -113,7 +108,7 @@ public class StoryTeller : MonoBehaviour
 
         while (counter < fadeDuration)
         {
-            counter += Time.deltaTime;
+            counter += 0.01f;
             float alpha = Mathf.Lerp(transparentColor.a, originalColor.a, counter / fadeDuration);
             storyText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             yield return null;
@@ -127,13 +122,12 @@ public class StoryTeller : MonoBehaviour
 
         while (counter < fadeDuration)
         {
-            counter += Time.deltaTime;
+            counter += 0.01f;
             float alpha = Mathf.Lerp(originalColor.a, transparentColor.a, counter / fadeDuration);
             storyText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             yield return null;
         }
         Debug.Log(text + " End");
-        // 일정 시간 대기합
-        yield return new WaitForSecondsRealtime(pauseDuration);
+        // 일정 시간 대기
     }
 }
