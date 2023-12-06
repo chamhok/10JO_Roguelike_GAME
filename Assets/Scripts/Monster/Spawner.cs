@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
     private void UpdateTimerAndLevel()
     {
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 2f), StageSpawnDatas[GameManager.stageCount - 1].Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 15f), StageSpawnDatas[GameManager.stageCount - 1].Length - 1);
         level = level == StageSpawnDatas[GameManager.stageCount - 1].Length - 1 ? level - 1 : level;
     }
 
@@ -92,4 +92,6 @@ public class SpawnData // 스폰 데이터 클래스
     public float speed; // 속도
     public float Damege; // 대미지
     public bool IsBoss; // 보스몬스터인가
+    public int exp;
+    public int money;
 }

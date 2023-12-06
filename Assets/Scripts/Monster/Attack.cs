@@ -24,7 +24,6 @@ public class Attack : MonoBehaviour
 
                 float rotZ = Mathf.Atan2(_lookDir.y, _lookDir.x) * Mathf.Rad2Deg;
 
-                //armRenderer.flipY = Mathf.Abs(rotZ) > 90f;        
                 _muzzle.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
