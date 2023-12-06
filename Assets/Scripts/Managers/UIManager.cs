@@ -211,7 +211,7 @@ public class UIManager : MonoBehaviour
     private void ShowExp()
     {
         curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.currentExp;
-        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.maxExp;
+        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.level * 5;
     }
 
     //°ñµå Ç¥½Ã

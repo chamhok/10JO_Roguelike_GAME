@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2041113448673345264}
   - component: {fileID: 2904646018654553498}
   m_Layer: 9
-  m_Name: Monster 1
+  m_Name: S3Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ Animator:
   m_GameObject: {fileID: 1663882355329847534}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 1aa4a67660f4d204cac41a24d72f4515, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0cfc45d68b24a4a4eb9114af2096b746, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -188,11 +188,18 @@ MonoBehaviour:
   speed: 0
   health: 0
   maxHealth: 0
+  Damege: 0
+  IsBoss: 0
   animCon:
+  - {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
   - {fileID: 22100000, guid: 0d1b08c419e1e6649b0412b88ad21207, type: 2}
+  - {fileID: 22100000, guid: 050556270436d4f4288557291a1a99c0, type: 2}
   - {fileID: 22100000, guid: ac960990a02741e45bd34a2c0c471c68, type: 2}
+  - {fileID: 22100000, guid: 12cfc8b2360c2fc4499d4f6f6607671a, type: 2}
   - {fileID: 22100000, guid: 1aa4a67660f4d204cac41a24d72f4515, type: 2}
+  - {fileID: 22100000, guid: 8d1d920724ffb8a409ce0e458dc4b7a9, type: 2}
   - {fileID: 22100000, guid: afe929eaf66e6014ba7d0ee4acb6707c, type: 2}
+  - {fileID: 22100000, guid: 0cfc45d68b24a4a4eb9114af2096b746, type: 2}
   target: {fileID: 0}
   exp: 100
   money: 100
@@ -220,4 +227,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2888c48630fc94b84347a8c6f5be9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPrefab: {fileID: 435983342731117420, guid: 1a4f5b94a38256e489bde45396a32fd8, type: 3}
+  AttackPrefab: {fileID: 6180340041261621303, guid: 1a0a68e08ad6ead40b1fb0078c27491d, type: 3}
