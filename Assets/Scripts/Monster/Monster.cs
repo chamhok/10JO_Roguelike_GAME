@@ -42,6 +42,11 @@ public class Monster : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (IsBoss)
+        {
+            transform.localScale = new Vector3(10, 10, 1);
+            transform.localRotation = Quaternion.identity;
+        }
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) return;
         Vector2 dirVec = target.position - rigid.position;
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
@@ -60,12 +65,14 @@ public class Monster : MonoBehaviour
     private void OnEnable()
     {
         target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
+
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
         spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         health = maxHealth;
+
     }
 
     public void Init(SpawnData data)
@@ -123,7 +130,10 @@ public class Monster : MonoBehaviour
         var moneyObj = Instantiate(moneyPrefab, transform.position, Quaternion.identity).GetComponent<Droppable_Money>();
         expObj.value = exp;
         moneyObj.value = money;
-        if (IsBoss)
-            GameManager.Instance.GameOver(true);
+        if (IsBoss) GameManager.Instance.GameOver(true);
+        transform.localScale = new Vector3(1, 1, 1);
+        transform.localRotation = Quaternion.identity;
+        spriter.color = Color.white;
+
     }
 }
