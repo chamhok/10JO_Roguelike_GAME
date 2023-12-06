@@ -8,6 +8,7 @@ public class StoryTeller : MonoBehaviour
     private int currentStage;
     private Canvas canvas;
     private TMP_Text storyText;
+    private TMP_Text skipText;
     private float fadeDuration = 1f;
     private float pauseDuration = 1f;
     private Color newcolor;
@@ -16,12 +17,22 @@ public class StoryTeller : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         currentStage = GameManager.stageCount;
-        storyText = canvas.GetComponentInChildren<TMP_Text>();
+        storyText = canvas.GetComponentsInChildren<TMP_Text>()[0];
+        skipText = canvas.GetComponentsInChildren<TMP_Text>()[1];
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.ToNextStage();
+        }
     }
 
     private void Start()
     {
         storyText.color = new Color(1f, 1f, 1f, 1f);
+        StartCoroutine(ShowSkipText());
         newcolor = storyText.color;
         switch (currentStage)
         {
@@ -128,6 +139,23 @@ public class StoryTeller : MonoBehaviour
             yield return null;
         }
         Debug.Log(text + " End");
-        // 일정 시간 대기
+    }
+
+    private IEnumerator ShowSkipText()
+    {
+        Color originalColor = skipText.color;
+        Color transparentColor = originalColor;
+        transparentColor.a = 0f;
+
+        // 서서히 텍스트 나타나게
+        float counter = 0;
+
+        while (counter < fadeDuration)
+        {
+            counter += 0.01f;
+            float alpha = Mathf.Lerp(transparentColor.a, originalColor.a, counter / fadeDuration);
+            skipText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
     }
 }
