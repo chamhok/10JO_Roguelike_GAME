@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         // Test Code
-        AddOrUpgradeItem(Define.EItemType.Stone);
+        //_items["Stone"].SetProperty(23);
     }
 
     private void Update()
