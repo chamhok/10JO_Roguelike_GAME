@@ -39,6 +39,12 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        if (instance != this)
+            Destroy(gameObject);
+    }
+
     private void OnLevelWasLoaded(int level)
     {
         if (SceneManager.GetActiveScene().name != "UpgradeScene")
