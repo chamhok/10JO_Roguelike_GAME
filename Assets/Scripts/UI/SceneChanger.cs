@@ -9,7 +9,7 @@ public class SceneChanger : MonoBehaviour
     {
         DataManager.Instance.playerData.SetDefaultInStageData();
         DataManager.Instance.ItemDict = null;
-        GameManager.ToNextStage();
+        SceneManager.LoadScene("StoryScene");
     }
 
     public void ToUpgradeScene()
