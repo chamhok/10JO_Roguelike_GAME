@@ -65,47 +65,8 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(ShowStageName());
             itemSelectWindow = curUI.transform.Find("SelectItem").gameObject;
-
-            var myDict = (Dictionary<string, int>)DataManager.Instance.ItemDict;
-            foreach (var item in myDict)
-            {
-                if(item.Value > 0)
-                {
-                    switch(item.Key)
-                    {
-                        case "Stone":
-                            myItems.Add(Define.EItemType.Stone);
-                            break;
-                        case "Moon":
-                            myItems.Add(Define.EItemType.Moon);
-                            break;
-                        case "Sun":
-                            myItems.Add(Define.EItemType.Sun);
-                            break;
-                        case "PineCone":
-                            myItems.Add(Define.EItemType.PineCone);
-                            break;
-                        case "Water":
-                            myItems.Add(Define.EItemType.Water);
-                            break;
-                        case "Crane":
-                            myItems.Add(Define.EItemType.Crane);
-                            break;
-                        case "Deer":
-                            myItems.Add(Define.EItemType.Deer);
-                            break;
-                        default: break;
-
-
-                    }
-                }
-            }
-            myItems = myItems.OrderBy(x => (int)x < 8).Distinct().ToList();
+            myItems = (Dictionary<string, Item>)GameManager.Instance.player.GetComponent<ItemManager>().ItemDict;
         }
-        //if (currentStage > 0)
-        //{
-        //    LvFlag = GameManager.Instance.player.level;
-        //}
     }
 
     private void Update()
@@ -232,7 +193,7 @@ public class UIManager : MonoBehaviour
     private void ShowExp()
     {
         curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.currentExp;
-        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.level * 5;
+        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.maxExp;
     }
 
     //골드 표시
@@ -295,7 +256,7 @@ public class UIManager : MonoBehaviour
             TMP_Text itemName = selectItem.transform.Find("ItemText").GetComponent<TMP_Text>();
             itemName.text = itemNames[(int)upitems[i]];
 
-            Button selectButton = select.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
+            Button selectButton = itemSelectWindow.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
             int index = i;
             // [우진영] 창이 열릴 때마다 이벤트가 등록돼서, 기존에 등록된 리스너 Remove하도록 변경
             selectButton.onClick.RemoveAllListeners();
@@ -315,11 +276,11 @@ public class UIManager : MonoBehaviour
         //아이템 장착
         GameManager.Instance.player.GetComponent<ItemManager>().AddOrUpgradeItem(item);
 
-        //UI에도 장착
-        if (!myItems.Contains(item) && (int)item < 8)
-        {
-            myItems.Add(item);
-        }
+        ////UI에도 장착
+        //if (!myItems.Contains(item) && (int)item < 8)
+        //{
+        //    myItems.Add(item);
+        //}
     }
 
     //게임오버 판넬
