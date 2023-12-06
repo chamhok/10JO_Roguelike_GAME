@@ -8,21 +8,22 @@ public class DataManager : MonoBehaviour
     private static DataManager instance;
 
     public PlayerData playerData;
-    Dictionary<string, int> _items;
+    Dictionary<string, Item> _items;
     public IDictionary ItemDict
     {
         get => _items;
         set
         {
-            _items = new Dictionary<string, int>();
-            Dictionary<string, Item> dict = value == null ? null : (Dictionary<string, Item>)value;
-            if (dict != null)
-            {
-                foreach (var e in dict)
-                {
-                    _items.Add(e.Key, e.Value.Property);
-                }
-            }
+            _items = (Dictionary<string, Item>)value;
+            //_items = new Dictionary<string, int>();
+            //Dictionary<string, Item> dict = value == null ? null : (Dictionary<string, Item>)value;
+            //if (dict != null)
+            //{
+            //    foreach (var e in dict)
+            //    {
+            //        _items.Add(e.Key, e.Value.Property);
+            //    }
+            //}
         }
     }
 

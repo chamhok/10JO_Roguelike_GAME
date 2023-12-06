@@ -22,8 +22,7 @@ public class UIManager : MonoBehaviour
     // [우진영] 레벨업을 한 번에 해서 아이템 선택을 연속적으로 할 수 있게 Count하는 용도로 바꿨습니다.
     public int LvFlag;
     private GameObject itemSelectWindow;
-
-    private List<Define.EItemType> myItems = new List<Define.EItemType>() { Define.EItemType.Stone };
+    Dictionary<string, Item> myItems;
     private string[] itemNames = new string[] { "돌", "달", "거북이", "해", "소나무", "물", "두루미", "사슴", "불로초", "산" };
 
     #region LifeCycle
@@ -66,6 +65,7 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(ShowStageName());
             itemSelectWindow = curUI.transform.Find("SelectItem").gameObject;
+            myItems = (Dictionary<string, Item>)GameManager.Instance.player.GetComponent<ItemManager>().ItemDict;
         }
         //if (currentStage > 0)
         //{
@@ -234,10 +234,16 @@ public class UIManager : MonoBehaviour
     private void ShowItem()
     {
         GameObject item = curUI.transform.Find("Items").gameObject;
-        foreach (Define.EItemType i in myItems)
+        foreach (var i in myItems)
         {
-            Image nitem = item.transform.Find($"Item{(int)i + 1}").GetComponent<Image>();
-            nitem.transform.Find("ItemImage").gameObject.SetActive(true);
+            if (i.Value.Type == Define.EItemType.ElixirHerbs || i.Value.Type == Define.EItemType.Mountine)
+                continue;
+
+            if (i.Value.Lv > 0)
+            {
+                Image nitem = item.transform.Find($"Item{(int)i.Value.Type + 1}")?.GetComponent<Image>();
+                nitem.transform.Find("ItemImage").gameObject.SetActive(true);
+            }
         }
     }
 
@@ -254,11 +260,10 @@ public class UIManager : MonoBehaviour
         System.Random random = new System.Random();
         upitems = upitems.OrderBy(x => random.Next()).Take(3).ToArray();
 
-        var select = curUI.transform.Find("SelectItem").gameObject;
         for (int i = 0; i < upitems.Length; i++)
         {
             //아이템 이미지 변경
-            Image selectItem = select.transform.Find($"Item{i + 1}Border").GetComponent<Image>();
+            Image selectItem = itemSelectWindow.transform.Find($"Item{i + 1}Border").GetComponent<Image>();
             var obj = selectItem.transform.Find("ItemImage").gameObject.GetComponent<Image>();
             if (obj != null)
             {
@@ -270,7 +275,7 @@ public class UIManager : MonoBehaviour
             itemName.text = itemNames[(int)upitems[i]];
 
             //선택한 아이템 장착
-            Button selectButton = select.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
+            Button selectButton = itemSelectWindow.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
             int index = i;
             // [우진영] 창이 열릴 때마다 이벤트가 등록돼서, 기존에 등록된 리스너 Remove하도록 변경
             selectButton.onClick.RemoveAllListeners();
@@ -286,13 +291,13 @@ public class UIManager : MonoBehaviour
         LvFlag--;
         Debug.Log($"select item, LvFlag: {LvFlag}");
         itemSelectWindow.SetActive(false);
-        curUI.transform.Find("SelectItem").gameObject.SetActive(false);
         //아이템 장착
         GameManager.Instance.player.GetComponent<ItemManager>().AddOrUpgradeItem(item);
-        if (!myItems.Contains(item) && (int)item < 8)
-        {
-            myItems.Add(item);
-        }
+        //myItems = (Dictionary<string, Item>)GameManager.Instance.player.GetComponent<ItemManager>().ItemDict;
+        //if (!myItems.Contains(item) && (int)item < 8)
+        //{
+        //    myItems.Add(item);
+        //}
 
     }
 
