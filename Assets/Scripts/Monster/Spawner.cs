@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
     private void UpdateTimerAndLevel()
     {
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 2f), StageSpawnDatas[GameManager.stageCount - 1].Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.stageLapseTime / 15f), StageSpawnDatas[GameManager.stageCount - 1].Length - 1);
         level = level == StageSpawnDatas[GameManager.stageCount - 1].Length - 1 ? level - 1 : level;
     }
 

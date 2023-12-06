@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageLapseTime: 0
-  bossZenTime: 20
+  bossZenTime: 120
   bossZen: 0
   player: {fileID: 0}
   monsters: []
