@@ -21,6 +21,7 @@ public class StoryTeller : MonoBehaviour
 
     private void Start()
     {
+        storyText.color = new Color(1f, 1f, 1f, 1f);
         newcolor = storyText.color;
         switch (currentStage)
         {
@@ -47,12 +48,13 @@ public class StoryTeller : MonoBehaviour
     {
         storyText.color = newcolor;
         StartCoroutine(ShowText("이건 스토리1"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 검수지옥으로 넘어간다"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
+        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
@@ -60,12 +62,13 @@ public class StoryTeller : MonoBehaviour
     {
         storyText.color = newcolor;
         StartCoroutine(ShowText("이건 스토리2"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 나태지옥으로 넘어간다"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
+        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
@@ -73,12 +76,13 @@ public class StoryTeller : MonoBehaviour
     {
         storyText.color = newcolor;
         StartCoroutine(ShowText("이건 스토리3"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 흑암지옥으로 넘어간다"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
+        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
@@ -86,18 +90,19 @@ public class StoryTeller : MonoBehaviour
     {
         storyText.color = newcolor;
         StartCoroutine(ShowText("이건 엔딩"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
         storyText.color = newcolor;
         StartCoroutine(ShowText("이제 처음 화면으로 넘어간다"));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSecondsRealtime(4);
 
+        storyText.color = newcolor;
         GameManager.ToNextStage();
     }
 
     private IEnumerator ShowText(string text)
     {
-        Debug.Log(text+" Start");
+        Debug.Log(text + " Start");
         storyText.text = text;
         Color originalColor = storyText.color;
         Color transparentColor = originalColor;
@@ -113,9 +118,9 @@ public class StoryTeller : MonoBehaviour
             storyText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             yield return null;
         }
-
+        Debug.Log(text + "Wait");
         // 일정 시간 대기
-        yield return new WaitForSeconds(pauseDuration);
+        yield return new WaitForSecondsRealtime(pauseDuration);
 
         // 서서히 텍스트 드러나게
         counter = 0;
@@ -129,6 +134,6 @@ public class StoryTeller : MonoBehaviour
         }
         Debug.Log(text + " End");
         // 일정 시간 대기합
-        yield return new WaitForSeconds(pauseDuration);
+        yield return new WaitForSecondsRealtime(pauseDuration);
     }
 }

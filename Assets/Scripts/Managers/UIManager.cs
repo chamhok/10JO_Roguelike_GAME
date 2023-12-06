@@ -256,12 +256,22 @@ public class UIManager : MonoBehaviour
             TMP_Text itemName = selectItem.transform.Find("ItemText").GetComponent<TMP_Text>();
             itemName.text = itemNames[(int)upitems[i]];
 
+            //업그레이드 효과 설명 변경
+            TMP_Text description = selectItem.transform.Find("Description").GetComponent<TMP_Text>();
+            foreach(var item in myItems)
+            {
+                if(item.Value.Type == upitems[i])
+                {
+                    string[] _comments = item.Value.Comments;   //null
+                    description.text = _comments[item.Value.Lv];
+                }
+            }
+
             Button selectButton = itemSelectWindow.transform.Find($"Item{i + 1}Border").GetComponent<Button>();
             int index = i;
             // [우진영] 창이 열릴 때마다 이벤트가 등록돼서, 기존에 등록된 리스너 Remove하도록 변경
             selectButton.onClick.RemoveAllListeners();
             selectButton.onClick.AddListener(() => ChoiceItem(upitems[index]));
-            //선택하면 창 닫히도록
         }
     }
 
