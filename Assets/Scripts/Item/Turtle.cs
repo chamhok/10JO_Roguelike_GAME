@@ -22,6 +22,12 @@ class Turtle : Item
     {
         Type = Define.EItemType.Turtle;
 
+        _comments[0] = "보호막 1회 추가";
+        _comments[1] = "보호막 1회 추가";
+        _comments[2] = "보호막 1회 추가";
+        _comments[3] = "보호막 1회 추가";
+        _comments[4] = "보호막 1회 추가";
+
         _turtle = Instantiate(Resources.Load<GameObject>("Item/Turtle"));
         _turtle.transform.parent = this.transform;
         CheckDeffensable();
@@ -36,7 +42,7 @@ class Turtle : Item
     private void CheckDeffensable()
     {
         Debug.Log($"Shield [{_deffensableCount}]");
-        //_circleCollider2D.enabled = _deffensableCount > 0;
+        Lv = _deffensableCount > 0 ? 1 : 0;
         _property = _deffensableCount;
         _turtle.SetActive(_deffensableCount > 0);
     }

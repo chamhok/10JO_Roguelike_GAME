@@ -15,6 +15,12 @@ class MoonRotator : Item
     {
         Type = Define.EItemType.Moon;
 
+        _comments[0] = "획득";
+        _comments[1] = "달 1개 추가";
+        _comments[2] = "데미지 증가";
+        _comments[3] = "달 2개 추가";
+        _comments[4] = "데미지 증가";
+
         // 자신의 상 하 좌 우 위치에 인스턴스 생성 및 보관
         for (int i = 0; i < 4; ++i)
         {
