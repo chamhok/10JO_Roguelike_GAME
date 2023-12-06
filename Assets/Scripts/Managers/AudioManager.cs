@@ -41,7 +41,8 @@ public class AudioManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        ChangeBgm();
+        if (SceneManager.GetActiveScene().name != "UpgradeScene")
+            ChangeBgm();
     }
     private void Initialize()
     {
