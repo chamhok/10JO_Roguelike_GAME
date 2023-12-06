@@ -310,7 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scale: 0.5
   vfxObject: {fileID: 2719280335919552246}
-  detectRange: 1
+  detectRange: 7
   randomDropRange: 1
   dropCurveProgressTime: 0.5
   lootingProgressTime: 1
