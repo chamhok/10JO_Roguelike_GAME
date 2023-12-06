@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-        protected static GameManager instance;
-        public static int stageCount = 0;
-        private static GameObject nextStagePrefab = null;
+    protected static GameManager instance;
+    public static int stageCount = 0;
+    private static GameObject nextStagePrefab = null;
 
-        public float stageLapseTime;
-        public float bossZenTime = 20f;
-        public bool bossZen = false;
+    public float stageLapseTime;
+    public float bossZenTime = 20f;
+    public bool bossZen = false;
 
     /// <summary>
     /// player 객체 참조 <br/>
@@ -33,63 +33,62 @@ public class GameManager : MonoBehaviour
     public PoolManager poolManager;
     public UIManager uiManager;
 
-        [Header("Events")]
-        public UnityEvent OnGameStart;
-        public UnityEvent OnGameOver;
-        public UnityEvent OnStageClear;
-        public UnityEvent OnStageFail;
+    [Header("Events")]
+    public UnityEvent OnGameStart;
+    public UnityEvent OnGameOver;
+    public UnityEvent OnStageClear;
+    public UnityEvent OnStageFail;
 
-        [Header("Prefabs")]
-        public GameObject poolManagerPrefab;
-        public GameObject UIManagerPrefab;
+    [Header("Prefabs")]
+    public GameObject poolManagerPrefab;
+    public GameObject UIManagerPrefab;
 
-        public static GameManager Instance
+    public static GameManager Instance
+    {
+        get
         {
-                get
-                {
-                        if (instance == null)
-                        {
-                                // Data Manager면 몰라도 얘는 생성할 필요 없을 듯?
-                        }
-                        return instance;
-                }
+            if (instance == null)
+            {
+                // Data Manager면 몰라도 얘는 생성할 필요 없을 듯?
+            }
+            return instance;
         }
+    }
 
-        private GameManager() { }
+    private GameManager() { }
 
-        protected virtual void Awake()
+    protected virtual void Awake()
+    {
+        if (instance == null)
         {
-                if (instance == null)
-                {
-                        instance = this;
-                        Initialize();
-                }
+            instance = this;
+            Initialize();
         }
+    }
 
     private void Initialize()
     {
         Debug.Log($"{nameof(GameManager)} call {nameof(Initialize)}.");
         OnGameStart.AddListener(LoadStage);
-        OnGameOver.AddListener(SavePlayerData);
         OnStageClear.AddListener(LootAllItems);
         OnStageClear.AddListener(() => { StartCoroutine(WaitNextStage()); });
         OnStageFail.AddListener(() => { Time.timeScale = 0; });
     }
 
-        protected virtual void Start()
-        {
-                Time.timeScale = 1f;
-                OnGameStart?.Invoke();
-        }
+    protected virtual void Start()
+    {
+        Time.timeScale = 1f;
+        OnGameStart?.Invoke();
+    }
 
-        protected virtual void Update()
-        {
-                stageLapseTime += Time.deltaTime;
+    protected virtual void Update()
+    {
+        stageLapseTime += Time.deltaTime;
 
-                // Debug Code
-                if (Input.GetKeyDown(KeyCode.Space))
-                        GameOver(true);
-        }
+        // Debug Code
+        if (Input.GetKeyDown(KeyCode.Space))
+            GameOver(true);
+    }
 
     public virtual void GameOver(bool isGameClear = false)
     {
@@ -101,22 +100,25 @@ public class GameManager : MonoBehaviour
 
     void PlayerInstatiate()
     {
-        var obj = Resources.Load<GameObject>("Player");
-        player = Instantiate(obj).GetComponent<Player>();
+        if (!player)
+        {
+            var obj = Resources.Load<GameObject>("Player");
+            player = Instantiate(obj).GetComponent<Player>();
 
-        player.level = DataManager.Instance.playerData.level;
-        player.exp = DataManager.Instance.playerData.currentExp;
-        player.money = DataManager.Instance.playerData.money;
-        player.hp = DataManager.Instance.playerData.currentHp;
-
+            player.level = DataManager.Instance.playerData.level;
+            player.maxExp = DataManager.Instance.playerData.maxExp;
+            player.currentExp = DataManager.Instance.playerData.currentExp;
+            player.money = DataManager.Instance.playerData.money;
+            player.hp = DataManager.Instance.playerData.currentHp;
+        }
         // TODO: ItemManager item list도 다음 스테이지로 넘길 수 있어야함.
     }
 
-        void StageInstantiate()
-        {
-                if (nextStagePrefab != null)
-                        Instantiate(nextStagePrefab);
-        }
+    void StageInstantiate()
+    {
+        if (nextStagePrefab != null)
+            Instantiate(nextStagePrefab);
+    }
 
     private void LoadStage()
     {
@@ -137,7 +139,8 @@ public class GameManager : MonoBehaviour
     public static void ToNextStage()
     {
         stageCount++;
-
+        if (instance)
+            instance.SavePlayerData();
         string path = "Prefab/Stage/" + $"Stage{stageCount}Grid";
         nextStagePrefab = Resources.Load<GameObject>(path);
         if (nextStagePrefab != null)
@@ -152,7 +155,8 @@ public class GameManager : MonoBehaviour
     public void SavePlayerData()
     {
         DataManager.Instance.playerData.level = player.level;
-        DataManager.Instance.playerData.currentExp = player.exp;
+        DataManager.Instance.playerData.maxExp = player.maxExp;
+        DataManager.Instance.playerData.currentExp = player.currentExp;
         DataManager.Instance.playerData.money = player.money;
         DataManager.Instance.playerData.currentHp = player.hp;
     }

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEditor;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
     Dictionary<string, Item> _items = new Dictionary<string, Item>();
+    // [우진영] 씬 전환 시 정보 유지를 위해 딕셔너리에 접근 가능한 프로퍼티 추가
+    public IDictionary ItemDict { get => _items; }
+
     Player _player;
 
     private void Awake()
@@ -23,8 +24,19 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Test Code
-        AddOrUpgradeItem(Define.EItemType.Stone);
+        GameManager.Instance.OnStageClear.AddListener(() => { DataManager.Instance.ItemDict = _items; });
+        if (DataManager.Instance.ItemDict != null && DataManager.Instance.ItemDict.Count > 0)
+        {
+            Dictionary<string, int> dict = (Dictionary<string, int>)DataManager.Instance.ItemDict;
+            foreach (var e in dict)
+                for (int i = 0; i < e.Value; i++)
+                    _items[e.Key].Upgrade();
+        }
+        else
+        {
+            // Test Code
+            AddOrUpgradeItem(Define.EItemType.Stone);
+        }
     }
 
     private void Update()

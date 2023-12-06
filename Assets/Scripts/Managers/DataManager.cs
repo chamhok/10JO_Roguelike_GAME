@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -6,6 +8,23 @@ public class DataManager : MonoBehaviour
     private static DataManager instance;
 
     public PlayerData playerData;
+    Dictionary<string, int> _items;
+    public IDictionary ItemDict
+    {
+        get => _items;
+        set
+        {
+            _items = new Dictionary<string, int>();
+            Dictionary<string, Item> dict = value == null ? null : (Dictionary<string, Item>)value;
+            if (dict != null)
+            {
+                foreach (var e in dict)
+                {
+                    _items.Add(e.Key, e.Value.Lv);
+                }
+            }
+        }
+    }
 
     public static DataManager Instance
     {
@@ -108,6 +127,7 @@ public class PlayerData
     public float atk;
     public float speed;
     public int level;
+    public int maxExp;
     public int currentExp;
     public int money;
     public int[] upgradeLevel = new int[3] { 0, 0, 0 };
@@ -120,7 +140,18 @@ public class PlayerData
         level = 1;
         atk = 1;
         speed = 1;
+        maxExp = 50;
         currentExp = 0;
         money = 0;
+    }
+
+    public void SetDefaultInStageData()
+    {
+        currentHp = maxHp;
+        level = 1;
+        maxExp = 50;
+        currentExp = 0;
+        speed = 1;
+        atk = 1;
     }
 }

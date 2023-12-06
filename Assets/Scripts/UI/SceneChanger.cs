@@ -7,6 +7,8 @@ public class SceneChanger : MonoBehaviour
 {
     public void ToStageScene()
     {
+        DataManager.Instance.playerData.SetDefaultInStageData();
+        DataManager.Instance.ItemDict = null;
         GameManager.ToNextStage();
     }
 

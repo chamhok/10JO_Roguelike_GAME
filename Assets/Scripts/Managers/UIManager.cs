@@ -210,8 +210,8 @@ public class UIManager : MonoBehaviour
     //경험치 표시, 최대 경험치 필요함. 일단 10으로 가정.
     private void ShowExp()
     {
-        curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.exp;
-        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.level * 5;
+        curUI.GetComponentInChildren<Slider>().value = GameManager.Instance.player.currentExp;
+        curUI.GetComponentInChildren<Slider>().maxValue = GameManager.Instance.player.maxExp;
     }
 
     //골드 표시
