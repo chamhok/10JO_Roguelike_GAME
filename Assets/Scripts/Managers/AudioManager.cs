@@ -32,6 +32,8 @@ public class AudioManager : MonoBehaviour
             instance = this;
             instance.Initialize();
             audioSource.playOnAwake = true;
+            ChangeBgm();
+            Debug.Log("오디오 초기화");
         }
         DontDestroyOnLoad(gameObject);
     }

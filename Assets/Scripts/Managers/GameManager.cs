@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
     public UnityEvent OnStageClear;
     public UnityEvent OnStageFail;
+    public UnityEvent SaveNextData;
 
     [Header("Prefabs")]
     public GameObject poolManagerPrefab;
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         OnStageClear.AddListener(LootAllItems);
         OnStageClear.AddListener(() => { StartCoroutine(WaitNextStage()); });
         OnStageFail.AddListener(() => { Time.timeScale = 0; });
+        SaveNextData.AddListener(SavePlayerData);
     }
 
     protected virtual void Start()
@@ -141,8 +143,7 @@ public class GameManager : MonoBehaviour
     public static void ToNextStage()
     {
         stageCount++;
-        if (instance)
-            instance.SavePlayerData();
+        instance?.SaveNextData?.Invoke();
         string path = "Prefab/Stage/" + $"Stage{stageCount}Grid";
         nextStagePrefab = Resources.Load<GameObject>(path);
         if (nextStagePrefab != null)
