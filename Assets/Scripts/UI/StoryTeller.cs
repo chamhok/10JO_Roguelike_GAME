@@ -46,10 +46,6 @@ public class StoryTeller : MonoBehaviour
     private IEnumerator ShowStory0()
     {
         storyText.color = newcolor;
-        StartCoroutine(ShowText("반가워"));
-        yield return new WaitForSeconds(4);
-
-        storyText.color = newcolor;
         StartCoroutine(ShowText("이건 스토리1"));
         yield return new WaitForSeconds(4);
 
@@ -62,10 +58,6 @@ public class StoryTeller : MonoBehaviour
 
     private IEnumerator ShowStory1()
     {
-        storyText.color = newcolor;
-        StartCoroutine(ShowText("반가워"));
-        yield return new WaitForSeconds(4);
-
         storyText.color = newcolor;
         StartCoroutine(ShowText("이건 스토리2"));
         yield return new WaitForSeconds(4);
@@ -80,10 +72,6 @@ public class StoryTeller : MonoBehaviour
     private IEnumerator ShowStory2()
     {
         storyText.color = newcolor;
-        StartCoroutine(ShowText("반가워"));
-        yield return new WaitForSeconds(4);
-
-        storyText.color = newcolor;
         StartCoroutine(ShowText("이건 스토리3"));
         yield return new WaitForSeconds(4);
 
@@ -96,10 +84,6 @@ public class StoryTeller : MonoBehaviour
 
     private IEnumerator ShowStory3()
     {
-        storyText.color = newcolor;
-        StartCoroutine(ShowText("반가워"));
-        yield return new WaitForSeconds(4);
-
         storyText.color = newcolor;
         StartCoroutine(ShowText("이건 엔딩"));
         yield return new WaitForSeconds(4);

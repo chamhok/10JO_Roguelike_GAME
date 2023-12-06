@@ -137,13 +137,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         //[연호] 바로 넘어가지 않고 컷신으로 이동하게 했습니다.
         //ToNextStage();
+        instance?.SaveNextData?.Invoke();
         SceneManager.LoadScene("StoryScene");
     }
 
     public static void ToNextStage()
     {
         stageCount++;
-        instance?.SaveNextData?.Invoke();
+        //instance?.SaveNextData?.Invoke();
         string path = "Prefab/Stage/" + $"Stage{stageCount}Grid";
         nextStagePrefab = Resources.Load<GameObject>(path);
         if (nextStagePrefab != null)
