@@ -53,6 +53,7 @@ public class Spawner : MonoBehaviour
     {
         if (GameManager.Instance.stageLapseTime > GameManager.Instance.bossZenTime && !GameManager.Instance.bossZen)
         {
+            Debug.Log($"Spawn Boss {GameManager.Instance.stageLapseTime} / {GameManager.Instance.bossZenTime}");
             boss = GameManager.Instance.poolManager.Get(GameManager.stageCount - 1);
             boss.transform.localScale = new Vector3(10, 10, 1);
             boss.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(1, 1);

@@ -936,7 +936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[0].health
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[1].Damege
@@ -944,7 +944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[1].health
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[2].Damege
@@ -952,7 +952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[2].health
-      value: 1100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[3].Damege
@@ -960,7 +960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[3].health
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[4].Damege
@@ -972,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[4].health
-      value: 1
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTowSpawnData.Array.data[0].health
