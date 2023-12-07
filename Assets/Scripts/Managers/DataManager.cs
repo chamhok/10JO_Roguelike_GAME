@@ -139,7 +139,7 @@ public class PlayerData
         maxHp = 100;
         currentHp = 100;
         level = 1;
-        atk = 1;
+        atk = 10;
         speed = 1;
         maxExp = 10;
         currentExp = 0;
@@ -148,11 +148,12 @@ public class PlayerData
 
     public void SetDefaultInStageData()
     {
+        maxHp = 100 + StatUpgrade.upgradeModifiers[0] * upgradeLevel[0];
         currentHp = maxHp;
         level = 1;
         maxExp = 10;
         currentExp = 0;
-        speed = 1;
-        atk = 1;
+        atk = 10 + StatUpgrade.upgradeModifiers[1] * upgradeLevel[1];
+        speed = 1 + StatUpgrade.upgradeModifiers[2] * upgradeLevel[2];
     }
 }
