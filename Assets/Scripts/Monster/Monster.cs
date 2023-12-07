@@ -14,12 +14,17 @@ public class Monster : MonoBehaviour
 
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
+    public AudioClip HitAudio;
 
     Rigidbody2D rigid;
     Collider2D coll;
     Animator anim;
     SpriteRenderer spriter;
     WaitForFixedUpdate wait;
+    AudioSource ApplyDamage;
+
+
+
 
     // [우진영] 드랍 아이템 연결을 위해 추가
     public int exp;
@@ -30,12 +35,12 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
+        ApplyDamage = GetComponent<AudioSource>();
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         wait = new WaitForFixedUpdate();
         coll = GetComponent<Collider2D>();
-
         expPrefab = Resources.Load<GameObject>("Item/Droppable/Droppable Exp");
         moneyPrefab = Resources.Load<GameObject>("Item/Droppable/Droppable Money");
     }
@@ -97,7 +102,8 @@ public class Monster : MonoBehaviour
         if (health > 0)
         {
             StartCoroutine(KnockBack());
-
+            ApplyDamage.clip = HitAudio;
+            ApplyDamage.Play();
             anim.SetTrigger("Hit");
         }
         else
