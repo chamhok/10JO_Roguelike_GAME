@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatUpgrade : MonoBehaviour
 {
     int price = 100;
-    public static float[] upgradeModifiers = new float[] { 50, 2, 0.1f };
+    public static float[] upgradeModifiers = new float[] { 50, 20, 0.1f };
 
     //일정 금액을 내고 업그레이드 가능
 

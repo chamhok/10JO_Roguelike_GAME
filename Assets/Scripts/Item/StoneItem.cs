@@ -80,7 +80,7 @@ class StoneItem : Item
 
     private void PowerUp()
     {
-        _power += 0.3f;
+        _power += 0.2f;
         float damage = Player.atk * _power;
         _thrower.Power = damage;
     }

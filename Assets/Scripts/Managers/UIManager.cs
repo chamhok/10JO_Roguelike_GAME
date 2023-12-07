@@ -226,6 +226,11 @@ public class UIManager : MonoBehaviour
                 Image nitem = item.transform.Find($"Item{(int)i.Value.Type + 1}")?.GetComponent<Image>();
                 nitem.transform.Find("ItemImage").gameObject.SetActive(true);
             }
+            else
+            {
+                Image nitem = item.transform.Find($"Item{(int)i.Value.Type + 1}")?.GetComponent<Image>();
+                nitem.transform.Find("ItemImage").gameObject.SetActive(false);
+            }
         }
     }
 

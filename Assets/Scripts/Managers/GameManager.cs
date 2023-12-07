@@ -165,6 +165,8 @@ public class GameManager : MonoBehaviour
         DataManager.Instance.playerData.currentExp = player.currentExp;
         DataManager.Instance.playerData.money = player.money;
         DataManager.Instance.playerData.currentHp = player.hp;
+        DataManager.Instance.playerData.speed = player.speed;
+        DataManager.Instance.playerData.atk = player.atk;
     }
 
     public void LootAllItems()

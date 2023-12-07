@@ -901,19 +901,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTwoSpawnData.Array.data[0].exp
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTwoSpawnData.Array.data[1].exp
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTwoSpawnData.Array.data[2].exp
-      value: 7
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTwoSpawnData.Array.data[3].exp
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[0].money
@@ -957,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[0].exp
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[1].exp
@@ -965,19 +965,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[2].exp
-      value: 11
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[3].exp
-      value: 11
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[4].exp
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[5].exp
-      value: 12
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[6].exp
@@ -985,7 +985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[7].exp
-      value: 15
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTowSpawnData.Array.data[0].speed
@@ -1077,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageOneSpawnData.Array.data[4].health
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTowSpawnData.Array.data[0].health
@@ -1129,7 +1129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageTwoSpawnData.Array.data[3].health
-      value: 600
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[0].money
@@ -1213,7 +1213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[0].health
-      value: 300
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[1].Damege
@@ -1221,7 +1221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[1].health
-      value: 300
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[2].Damege
@@ -1233,7 +1233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[2].health
-      value: 320
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[3].Damege
@@ -1245,7 +1245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[3].health
-      value: 320
+      value: 1050
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[4].Damege
@@ -1257,7 +1257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[4].health
-      value: 350
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[5].Damege
@@ -1269,7 +1269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[5].health
-      value: 350
+      value: 1300
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[6].Damege
@@ -1281,7 +1281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[6].health
-      value: 400
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[7].Damege
@@ -1293,7 +1293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[7].health
-      value: 400
+      value: 1650
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[8].Damege
@@ -1305,7 +1305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[8].health
-      value: 1000
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 9063443393631102670, guid: 44b4f3ce29fc6d647b4b476a152284b2, type: 3}
       propertyPath: StageThreeSpawnData.Array.data[9].IsBoss
