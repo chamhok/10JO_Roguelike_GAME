@@ -47,6 +47,11 @@ public class AudioManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        if (instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         if (SceneManager.GetActiveScene().name != "UpgradeScene")
             ChangeBgm();
     }
@@ -58,34 +63,40 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeBgm()
     {
-        audioSource.Stop();
+        AudioClip newClip = null;
+
         if(SceneManager.GetActiveScene().name == "GameStartScene")
         {
-            audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/BGM_1");
+            newClip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/BGM_1");
         }
         else if(SceneManager.GetActiveScene().name == "StageScene")
         {
             switch (GameManager.stageCount)
             {
                 case 1:
-                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
+                    newClip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
                     break;
                 case 2:
-                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_2(8Bit)");
+                    newClip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_2(8Bit)");
                     break;
                 case 3:
-                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_3(8Bit)");
+                    newClip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_3(8Bit)");
                     break;
                 default:
-                    audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
+                    newClip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1(8Bit)");
                     break;
             }
         }
         else if(SceneManager.GetActiveScene().name == "StoryScene")
         {
-            audioSource.clip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1");
+            newClip = Resources.Load<AudioClip>("GameSound/BackgroundMusic/StageBGM_1");
         }
 
-        audioSource.Play();
+        if (audioSource?.clip?.name != newClip?.name)
+        {
+            audioSource.clip = newClip;
+            audioSource.Stop();
+            audioSource.Play();
+        }
     }
 }
