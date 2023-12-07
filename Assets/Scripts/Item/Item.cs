@@ -8,7 +8,10 @@ abstract class Item : MonoBehaviour
     protected string[] _comments = new string[5];
     public string[] Comments
     {
-        get;
+        get
+        {
+            return _comments;
+        }
     }
 
     public Define.EItemType Type
